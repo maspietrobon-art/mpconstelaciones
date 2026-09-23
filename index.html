@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Massimo Pietrobon — Constelaciones Familiares Barcelona</title>
-<meta name="description" content="Facilitador de constelaciones familiares, tarot evolutivo e interpretación de sueños en Barcelona. Disponible en español, italiano, inglés, francés, portugués y catalán.">
+<meta name="description" content="Massimo Pietrobon, terapeuta y facilitador de constelaciones familiares, tarot evolutivo e interpretación de sueños en Barcelona. Sesiones en español, italiano, inglés, francés, portugués y catalán.">
 <meta name="language" content="es, it, en, fr, pt, ca">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,7 @@
   }
   html{scroll-padding-top:76px;}
   *{box-sizing:border-box;}
+  html{overflow-x:hidden;}
   body{
     margin:0;
     background:var(--bg);
@@ -42,6 +43,8 @@
     font-family:var(--sans);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    width:100%;
   }
   h1,h2,h3{font-family:var(--serif); font-weight:500; margin:0; color:var(--navy-deep);}
   a{color:inherit;}
@@ -88,17 +91,28 @@
   .pin-actions{display:flex; gap:10px; margin-top:14px;}
   .pin-actions .btn{flex:1; padding:10px;}
   .pin-error{color:#B0453D; font-size:13px; margin-top:10px;}
+  .avail-box{background:var(--surface); border-radius:10px; padding:24px; width:100%; max-width:360px; box-shadow:0 20px 50px rgba(0,0,0,0.3);}
+  .avail-box-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .avail-box-title{font-family:var(--serif); font-size:17px; color:var(--navy-deep); margin:0;}
+  .avail-close{appearance:none; border:none; background:none; color:var(--ink-muted); font-size:16px; cursor:pointer;}
+  .avail-close:hover{color:var(--navy-deep);}
 
-  .admin-panel{position:sticky; top:64px; z-index:35; background:#132540; color:#E8EEF6; border-bottom:2px solid var(--gold);}
+  .admin-panel{position:relative; z-index:35; background:#132540; color:#E8EEF6; border-bottom:2px solid var(--gold); max-height:80vh; overflow-y:auto;}
   .admin-panel-inner{padding:18px 24px;}
   .admin-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
   .admin-head strong{font-size:14px; letter-spacing:0.3px;}
+  .dirty-banner{background:rgba(201,154,69,0.18); border:1px solid var(--gold); color:#F3E3C4; font-size:13px; padding:10px 14px; border-radius:6px; margin-bottom:14px;}
   .admin-grid{display:grid; grid-template-columns:1fr; gap:18px;}
   @media(min-width:800px){ .admin-grid{grid-template-columns:1fr 1fr;} }
   .admin-card{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:8px; padding:16px;}
   .admin-card h4{font-family:var(--sans); font-size:14px; font-weight:600; color:#fff; margin:0 0 10px;}
   .admin-card label{color:#B9C7DA; font-size:12.5px; margin-bottom:4px;}
   .admin-card input, .admin-card select, .admin-card textarea{width:100%; margin-bottom:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:#fff; color-scheme:dark;}
+  .weekly-grid{display:flex; flex-direction:column; gap:10px;}
+  .weekly-row{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; font-size:12.5px; min-width:0;}
+  .weekly-row span{color:#DCE6F2; min-width:64px;}
+  .weekly-row input[type=checkbox]{width:auto; margin:0; flex:0 0 auto;}
+  .weekly-row input[type=time]{margin:0; flex:1 1 90px; min-width:80px; max-width:120px;}
   .admin-list{margin-top:10px; display:flex; flex-direction:column; gap:6px; max-height:180px; overflow-y:auto;}
   .admin-row{display:flex; align-items:center; justify-content:space-between; gap:8px; background:rgba(255,255,255,0.05); border-radius:6px; padding:6px 10px; font-size:12.5px;}
   .admin-row .status-badge{font-size:11px; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.3);}
@@ -121,9 +135,9 @@
   .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1fr; gap:40px; align-items:center;}
   @media(min-width:900px){ .hero-grid{grid-template-columns:1.15fr 0.85fr;} }
   .kicker{font-family:var(--serif); font-style:italic; font-size:16px; color:var(--sky); margin:0 0 10px; animation:riseIn .7s ease-out both;}
-  .hero h1{font-size:34px; line-height:1.16; letter-spacing:-0.2px; animation:riseIn .7s ease-out .06s both;}
-  @media(min-width:640px){ .hero h1{font-size:46px;} }
-  .hero p.lead{color:var(--ink-muted); font-size:17px; max-width:46ch; margin-top:16px; animation:riseIn .7s ease-out .12s both;}
+  .hero h1{font-size:26px; line-height:1.2; letter-spacing:-0.2px; animation:riseIn .7s ease-out .06s both;}
+  @media(min-width:640px){ .hero h1{font-size:36px;} }
+  .hero p.lead{color:var(--ink-muted); font-size:15.5px; max-width:46ch; margin-top:16px; animation:riseIn .7s ease-out .12s both;}
   .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:26px; animation:riseIn .7s ease-out .24s both;}
   .btn{
     display:inline-flex; align-items:center; justify-content:center; gap:8px;
@@ -159,13 +173,13 @@
   section.alt{background:var(--bg-alt);}
   .eyebrow{font-size:13px; color:var(--gold-deep); font-weight:600; margin-bottom:10px; display:block;}
   .section-head{max-width:640px; margin-bottom:36px;}
-  .section-head h2{font-size:29px;}
+  .section-head h2{font-size:24px;}
   .section-head p{color:var(--ink-muted); margin-top:12px; font-size:16px;}
   .divider{height:1px; background:linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);}
 
   /* ---------- about ---------- */
   .about-wrap{max-width:760px;}
-  .about-lede{font-family:var(--serif); font-size:21px; line-height:1.55; color:var(--ink); font-weight:400; margin-top:14px;}
+  .about-lede{font-family:var(--serif); font-size:18px; line-height:1.55; color:var(--ink); font-weight:400; margin-top:14px;}
   .about-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;}
   .about-tags .tag{font-size:13.5px; color:var(--navy-deep); border:1px solid var(--line); padding:8px 14px; border-radius:999px; background:var(--surface);}
 
@@ -174,7 +188,7 @@
     background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--navy);
     padding:36px; border-radius:10px; margin-bottom:24px; box-shadow:0 10px 28px rgba(15,36,64,0.06);
   }
-  .service-main h3{font-size:25px; margin-bottom:14px;}
+  .service-main h3{font-size:22px; margin-bottom:14px;}
   .service-main > p{color:var(--ink-muted); max-width:60ch; margin-bottom:24px;}
   .service-items{display:grid; grid-template-columns:1fr; gap:16px;}
   @media(min-width:700px){ .service-items{grid-template-columns:repeat(3,1fr);} }
@@ -187,6 +201,9 @@
   .service-sub:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(15,36,64,0.10);}
   .service-sub h3{font-size:19px; margin-bottom:10px; color:var(--navy-deep);}
   .service-sub p{color:var(--ink-muted); font-size:15px; margin:0;}
+  .extra-services{margin-top:20px; display:flex; flex-direction:column; gap:8px;}
+  .extra-services .extra-row{display:flex; justify-content:space-between; gap:12px; font-size:15px; border-top:1px solid var(--line); padding-top:10px;}
+  .extra-services .extra-row strong{color:var(--gold-deep); font-weight:600;}
 
   /* ---------- sessions ---------- */
   .sessions-grid{display:grid; grid-template-columns:1fr; gap:36px;}
@@ -211,7 +228,9 @@
   }
   input:focus, select:focus, textarea:focus{outline:2px solid var(--sky); outline-offset:1px;}
   label{font-size:13.5px; color:var(--ink-muted); display:block; margin-bottom:6px;}
-  .form-msg{font-size:14px; color:var(--gold-deep); min-height:20px; font-weight:600;}
+  .form-msg{font-size:14px; color:var(--gold-deep); min-height:20px; font-weight:600; line-height:1.6;}
+  .whatsapp-followup{display:inline-block; margin-top:4px; color:#3E8B5F; font-weight:600; text-decoration:none;}
+  .whatsapp-followup:hover{text-decoration:underline;}
 
   /* ---------- booking ---------- */
   .booking-grid{display:grid; grid-template-columns:1fr; gap:40px;}
@@ -219,8 +238,15 @@
   .booking-info p{color:var(--ink-muted); font-size:15.5px; max-width:42ch;}
   .booking-info ul{padding-left:18px; color:var(--ink-muted); font-size:14.5px;}
   .booking-info li{margin-bottom:6px;}
+  .weekly-summary-title{font-size:13px; font-weight:600; color:var(--navy-deep); margin-top:24px; margin-bottom:8px;}
+  .weekly-summary{display:flex; flex-direction:column; gap:6px; font-size:14px; color:var(--ink-muted);}
+  .weekly-summary .wk-row{display:flex; justify-content:space-between; gap:10px;}
+  .weekly-summary .wk-row.off{color:#B9B2A6; font-style:italic;}
+  .booking-avail-note{font-size:13.5px; color:var(--gold-deep); min-height:18px; margin:-6px 0 4px;}
+  .booking-avail-note.warn{color:#B0453D;}
   form.booking{display:flex; flex-direction:column; gap:16px; background:var(--surface); border:1px solid var(--line); padding:28px; border-radius:10px; box-shadow:0 10px 28px rgba(15,36,64,0.06);}
-  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:14px; min-width:0;}
+  .two-col > div{min-width:0;}
   @media(max-width:520px){ .two-col{grid-template-columns:1fr;} }
 
   /* ---------- contact ---------- */
@@ -288,14 +314,40 @@
   </div>
 </div>
 
+
 <div id="adminPanel" class="admin-panel" hidden>
   <div class="wrap admin-panel-inner">
     <div class="admin-head">
       <strong>Area privata — gestione pagina</strong>
       <button id="adminExit" class="btn btn-line" type="button">✕ Chiudi sezione privata</button>
     </div>
+    <p id="dirtyBanner" class="dirty-banner" hidden>⚠ Hai modifiche non ancora pubblicate — se chiudi la pagina senza premere "Salva e pubblica" andranno perse.</p>
 
     <div class="admin-grid">
+      <div class="admin-card">
+        <h4>Testi di presentazione — lingua: <span id="txtLangLabel">ES</span></h4>
+        <p style="font-size:11.5px; color:#8DA0BB; margin-top:-4px;">Cambia lingua con il selettore in alto a destra per modificare le altre versioni.</p>
+        <label>Frase piccola sopra il titolo</label>
+        <input type="text" id="txtKicker">
+        <label>Titolo principale</label>
+        <input type="text" id="txtHeadline">
+        <label>Testo introduttivo (sotto il titolo)</label>
+        <textarea id="txtSubhead" rows="3"></textarea>
+        <label>Testo "Sobre mí"</label>
+        <textarea id="txtAbout" rows="4"></textarea>
+        <label>Tag 1 (identità)</label>
+        <input type="text" id="txtTag1">
+        <label>Tag 2 (esperienza)</label>
+        <input type="text" id="txtTag2">
+        <label>Tag 3 (modalità)</label>
+        <input type="text" id="txtTagMode1">
+        <label>Tag 4 (formato)</label>
+        <input type="text" id="txtTagMode2">
+        <label>Tag 5 (lingue)</label>
+        <input type="text" id="txtTagLang">
+        <button id="txtSave" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiorna testi</button>
+      </div>
+
       <div class="admin-card">
         <h4>Aggiungi sessione / evento</h4>
         <div class="two-col">
@@ -311,13 +363,66 @@
       </div>
 
       <div class="admin-card">
-        <h4>Gestisci disponibilità</h4>
+        <h4>Disponibilità settimanale</h4>
+        <div id="weeklyGrid" class="weekly-grid"></div>
+        <p style="font-size:11.5px; color:#8DA0BB; margin-top:8px;">Questi orari valgono ogni settimana. Usa le eccezioni qui sotto per singoli giorni diversi.</p>
+      </div>
+
+      <div class="admin-card">
+        <h4>Eccezioni (giorni bloccati o orari già occupati)</h4>
         <div class="two-col">
-          <div><label>Data</label><input type="date" id="slDate"></div>
-          <div><label>Orario</label><input type="text" id="slTime" placeholder="Es. 17:00–19:00"></div>
+          <div><label>Data</label><input type="date" id="exDate"></div>
+          <div><label>Tipo</label>
+            <select id="exType"><option value="blocked">Giornata intera bloccata</option><option value="booked">Orario specifico occupato</option></select>
+          </div>
         </div>
-        <button id="slAdd" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiungi franja</button>
-        <div id="slList" class="admin-list"></div>
+        <div class="two-col">
+          <div><label>Dalle (solo se "orario occupato")</label><input type="time" id="exStart"></div>
+          <div><label>Alle</label><input type="time" id="exEnd"></div>
+        </div>
+        <label>Nota (opzionale, es. nome cliente)</label>
+        <input type="text" id="exNote" placeholder="Es. Sessione con M.">
+        <button id="exAdd" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiungi eccezione</button>
+        <div id="exList" class="admin-list"></div>
+      </div>
+
+      <div class="admin-card">
+        <h4>Prezzi dei servizi (€)</h4>
+        <div class="two-col">
+          <div><label>Individuale presencial 2h</label><input type="number" id="pIndPres2h"></div>
+          <div><label>Individuale presencial 1h</label><input type="number" id="pIndPres1h"></div>
+        </div>
+        <div class="two-col">
+          <div><label>Individuale online 2h</label><input type="number" id="pIndOnline2h"></div>
+          <div><label>Individuale online 1h</label><input type="number" id="pIndOnline1h"></div>
+        </div>
+        <div class="two-col">
+          <div><label>Grupo — constelar tema</label><input type="number" id="pGroupTheme"></div>
+          <div><label>Grupo — participar</label><input type="number" id="pGroupParticipate"></div>
+        </div>
+        <div class="two-col">
+          <div><label>Constelador para tu grupo</label><input type="number" id="pFacilitator"></div>
+          <div><label>Tarot evolutivo (1h)</label><input type="number" id="pTarot"></div>
+        </div>
+        <label>Interpretación de sueños</label><input type="number" id="pDreams">
+        <button id="priceSave" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiorna prezzi</button>
+
+        <h4 style="margin-top:18px;">Altri servizi (facoltativo)</h4>
+        <div class="two-col">
+          <div><label>Nome servizio</label><input type="text" id="epLabel" placeholder="Es. Sesión de seguimiento"></div>
+          <div><label>Prezzo (€)</label><input type="number" id="epAmount"></div>
+        </div>
+        <button id="epAdd" class="btn btn-line" type="button">Aggiungi servizio</button>
+        <div id="epList" class="admin-list"></div>
+      </div>
+
+      <div class="admin-card">
+        <h4>Backup dati (eventi, disponibilità, prezzi)</h4>
+        <p style="font-size:12.5px; color:#B9C7DA;">Esporta un file con tutto ciò che hai inserito. Se la pagina viene rigenerata, puoi importarlo per recuperare tutto senza rifare il lavoro a mano.</p>
+        <button id="dataExport" class="btn btn-line" type="button">⬇ Esporta dati (JSON)</button>
+        <label style="margin-top:12px;">Importa file JSON</label>
+        <input type="file" id="dataImport" accept="application/json">
+        <span id="importStatus" style="font-size:12px; color:#B9C7DA;"></span>
       </div>
     </div>
 
@@ -372,10 +477,13 @@
   <section id="sobre-mi">
     <div class="wrap about-wrap">
       <span class="eyebrow" data-i18n="about_eyebrow">Sobre mí</span>
-      <p class="about-lede" data-i18n="about_body">Antes de las constelaciones, mi vida ya se movía entre mapas, lenguas y países. De ahí me quedó una intuición simple: igual que un navegante lee en las estrellas las líneas que lo guían, dentro de cada familia hay una geometría propia —un orden de vínculos y lealtades— que también puede leerse y reordenarse. Para mí, una constelación familiar es exactamente eso: <strong>reordenar tu mundo interno para volver a encontrar la ruta</strong>. Aplico el mismo cuidado en el tarot evolutivo, en la línea abierta por Alejandro Jodorowsky, y en la interpretación simbólica de los sueños.</p>
+      <p class="about-lede" data-i18n="about_body">Antes de las constelaciones, mi vida ya se movía entre mapas, lenguas y países. De ahí me quedó una intuición simple: igual que un navegante lee en las estrellas las líneas que lo guían, dentro de cada familia hay una geometría propia —un orden de vínculos y lealtades— que también puede leerse y reordenarse. Es un trabajo que va muy hondo, capaz de remover capas profundas del alma: para mí, una constelación familiar es exactamente eso, <strong>reordenar tu mundo interno para volver a encontrar la ruta</strong>. Aplico el mismo cuidado en el tarot evolutivo, en la línea abierta por Alejandro Jodorowsky, y en la interpretación simbólica de los sueños.</p>
       <div class="about-tags">
+        <span class="tag" data-i18n="about_tag1">Terapeuta y tarólogo</span>
         <span class="tag" data-i18n="about_tag2">Cientos de sesiones facilitadas</span>
-        <span class="tag" data-i18n="about_tag1">Cartógrafo y viajero de formación</span>
+        <span class="tag" data-i18n="about_tag_mode1">Sesiones presenciales y online</span>
+        <span class="tag" data-i18n="about_tag_mode2">Sesiones grupales e individuales</span>
+        <span class="tag" data-i18n="about_tag_lang">Terapia en español, italiano, inglés, francés, portugués y catalán</span>
         <span class="tag" data-i18n="about_location">Zona metropolitana de Barcelona</span>
       </div>
     </div>
@@ -395,14 +503,17 @@
           <div class="service-item">
             <h4 data-i18n="service1_item1_title">Sesiones individuales</h4>
             <p data-i18n="service1_item1">1 hora o 2 horas, presencial u online. Trabajo con representantes simbólicos o con la técnica de constelación individual.</p>
+            <p class="price-line" id="priceIndividual"></p>
           </div>
           <div class="service-item">
             <h4 data-i18n="service1_item2_title">Sesiones grupales</h4>
             <p data-i18n="service1_item2">Encuentros en grupo, presenciales u online, donde cada participante puede constelar su propio tema.</p>
+            <p class="price-line" id="priceGroup"></p>
           </div>
           <div class="service-item">
             <h4 data-i18n="service1_item3_title">Constelador para tu grupo</h4>
             <p data-i18n="service1_item3">Si ya tienes un grupo formado, me ofrezco como facilitador invitado para conducir la sesión.</p>
+            <p class="price-line" id="priceFacilitator"></p>
           </div>
         </div>
       </div>
@@ -411,12 +522,15 @@
         <div class="service-sub">
           <h3 data-i18n="service2_title">Tarot Evolutivo</h3>
           <p data-i18n="service2_body">Lectura psico-intuitiva orientada al autoconocimiento y al empoderamiento personal, siguiendo la escuela abierta por Alejandro Jodorowsky: el tarot como espejo psicológico, no como predicción.</p>
+          <p class="price-line" id="priceTarot"></p>
         </div>
         <div class="service-sub">
           <h3 data-i18n="service3_title">Interpretación de Sueños</h3>
           <p data-i18n="service3_body">Un espacio para explorar el lenguaje simbólico de tus sueños y su relación con lo que vives despierto.</p>
+          <p class="price-line" id="priceDreams"></p>
         </div>
       </div>
+      <div id="extraServicesList" class="extra-services"></div>
     </div>
   </section>
 
@@ -439,28 +553,11 @@
     </div>
   </section>
 
-  <section id="boletin" class="alt">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow" data-i18n="newsletter_eyebrow">Boletín</span>
-        <h2 data-i18n="newsletter_title">No te pierdas las próximas sesiones</h2>
-        <p data-i18n="newsletter_body">Suscríbete para recibir aviso de nuevas fechas de constelaciones, tarot y sesiones de sueños.</p>
-      </div>
-      <form class="newsletter-box" id="newsletterForm">
-        <div class="field-row">
-          <input type="email" id="newsletterEmail" required data-i18n-placeholder="newsletter_placeholder" placeholder="tu@email.com">
-          <button type="submit" class="btn btn-solid" data-i18n="newsletter_button">Suscribirme</button>
-        </div>
-        <div class="form-msg" id="newsletterMsg"></div>
-      </form>
-    </div>
-  </section>
-
-  <section id="reservar">
+  <section id="reservar" class="alt">
     <div class="wrap booking-grid">
       <div class="booking-info">
         <span class="eyebrow" data-i18n="booking_eyebrow">Reservar</span>
-        <h2 data-i18n="booking_title" style="font-size:28px; margin-bottom:14px;">Reserva tu sesión</h2>
+        <h2 data-i18n="booking_title" style="font-size:23px; margin-bottom:14px;">Reserva tu sesión</h2>
         <p data-i18n="booking_body">Completa el formulario indicando el servicio y la franja que prefieras. Te contactaré por WhatsApp o email para confirmar el horario definitivo.</p>
         <ul>
           <li data-i18n="booking_li1">Sesiones individuales de 1 o 2 horas</li>
@@ -498,13 +595,18 @@
               <option data-i18n="booking_modality_online">Online</option>
             </select>
           </div>
+        </div>
+        <div class="two-col">
           <div>
-            <label data-i18n="booking_slot">Franja preferida</label>
-            <div id="slotFieldWrap">
-              <input type="text" id="bookingSlot" data-i18n-placeholder="booking_slot_placeholder" placeholder="Ej. martes por la tarde">
-            </div>
+            <label data-i18n="booking_date">Fecha preferida</label>
+            <input type="date" id="bookingDate">
+          </div>
+          <div>
+            <label data-i18n="booking_time">Hora preferida</label>
+            <select id="bookingTime" disabled></select>
           </div>
         </div>
+        <p id="bookingAvailNote" class="booking-avail-note"></p>
         <div>
           <label data-i18n="booking_message">Mensaje (opcional)</label>
           <textarea id="bookingMessage" rows="3"></textarea>
@@ -515,11 +617,28 @@
     </div>
   </section>
 
+  <section id="boletin">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="newsletter_eyebrow">Boletín</span>
+        <h2 data-i18n="newsletter_title">No te pierdas las próximas sesiones</h2>
+        <p data-i18n="newsletter_body">Suscríbete para recibir aviso de nuevas fechas de constelaciones, tarot y sesiones de sueños.</p>
+      </div>
+      <form class="newsletter-box" id="newsletterForm">
+        <div class="field-row">
+          <input type="email" id="newsletterEmail" required data-i18n-placeholder="newsletter_placeholder" placeholder="tu@email.com">
+          <button type="submit" class="btn btn-solid" data-i18n="newsletter_button">Suscribirme</button>
+        </div>
+        <div class="form-msg" id="newsletterMsg"></div>
+      </form>
+    </div>
+  </section>
+
   <section id="contacto" class="alt">
     <div class="wrap contact-grid">
       <div>
         <span class="eyebrow" data-i18n="contact_eyebrow">Contacto</span>
-        <h2 data-i18n="contact_title" style="font-size:28px; margin-bottom:18px;">Hablemos</h2>
+        <h2 data-i18n="contact_title" style="font-size:23px; margin-bottom:18px;">Hablemos</h2>
         <div class="contact-line">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.5 17.4v2.6a1.5 1.5 0 0 1-1.6 1.5A17.9 17.9 0 0 1 3.5 4.6 1.5 1.5 0 0 1 5 3h2.6a1 1 0 0 1 1 .8l.7 3.3a1 1 0 0 1-.3 1L7.6 9.5a13.5 13.5 0 0 0 6.9 6.9l1.4-1.4a1 1 0 0 1 1-.3l3.3.7a1 1 0 0 1 .8 1Z"/></svg>
           <a href="https://wa.me/34626651196" target="_blank" rel="noopener">+34 626 65 11 96 (WhatsApp)</a>
@@ -566,16 +685,30 @@
   </div>
 </footer>
 
-<script type="application/json" id="site-data">{"events":[],"slots":[]}</script>
+<script type="application/json" id="site-data">{"events":[],"availability":{"weekly":{"mon":{"enabled":true,"start":"17:00","end":"19:00"},"tue":{"enabled":true,"start":"17:00","end":"19:00"},"wed":{"enabled":true,"start":"17:00","end":"19:00"},"thu":{"enabled":true,"start":"17:00","end":"19:00"},"fri":{"enabled":true,"start":"15:30","end":"19:00"},"sat":{"enabled":true,"start":"10:00","end":"19:00"},"sun":{"enabled":true,"start":"10:00","end":"19:00"}},"exceptions":[]},"prices":{"indPres2h":80,"indPres1h":60,"indOnline2h":70,"indOnline1h":50,"groupTheme":40,"groupParticipate":15,"facilitator":120,"tarot":50,"dreams":25},"extraPrices":[],"texts":{}}</script>
 
 <script>
 const PRISTINE_HTML = '<!doctype html>\n' + document.documentElement.outerHTML;
 let siteData;
 try {
   siteData = JSON.parse(document.getElementById('site-data').textContent);
-} catch(e) { siteData = {events:[], slots:[]}; }
+} catch(e) { siteData = {}; }
 if (!Array.isArray(siteData.events)) siteData.events = [];
-if (!Array.isArray(siteData.slots)) siteData.slots = [];
+if (!siteData.availability) siteData.availability = {};
+if (!siteData.availability.weekly) siteData.availability.weekly = {
+  mon:{enabled:true,start:"17:00",end:"19:00"}, tue:{enabled:true,start:"17:00",end:"19:00"},
+  wed:{enabled:true,start:"17:00",end:"19:00"}, thu:{enabled:true,start:"17:00",end:"19:00"},
+  fri:{enabled:true,start:"15:30",end:"19:00"}, sat:{enabled:true,start:"10:00",end:"19:00"},
+  sun:{enabled:true,start:"10:00",end:"19:00"}
+};
+if (!Array.isArray(siteData.availability.exceptions)) siteData.availability.exceptions = [];
+if (!siteData.prices) siteData.prices = {};
+const priceDefaults = {indPres2h:80,indPres1h:60,indOnline2h:70,indOnline1h:50,groupTheme:40,groupParticipate:15,facilitator:120,tarot:50,dreams:25};
+for (const k in priceDefaults){ if (siteData.prices[k]===undefined) siteData.prices[k] = priceDefaults[k]; }
+if (!Array.isArray(siteData.extraPrices)) siteData.extraPrices = [];
+if (!siteData.texts) siteData.texts = {};
+const WEEK_ORDER = ['mon','tue','wed','thu','fri','sat','sun'];
+const WEEK_REF_DATES = {mon:'2024-01-01',tue:'2024-01-02',wed:'2024-01-03',thu:'2024-01-04',fri:'2024-01-05',sat:'2024-01-06',sun:'2024-01-07'};
 
 const translations = {
   es: {
@@ -585,8 +718,10 @@ const translations = {
     hero_subhead:"Soy Massimo Pietrobon. Facilito constelaciones familiares y sistémicas desde hace años, y ya he acompañado a cientos de personas en sesiones individuales y grupales, presenciales y online. También trabajo con tarot evolutivo e interpretación de sueños como caminos complementarios de autoconocimiento.",
     hero_cta_book:"Reservar una sesión", hero_cta_whatsapp:"Escribir por WhatsApp",
     about_eyebrow:"Sobre mí",
-    about_body:"Antes de las constelaciones, mi vida ya se movía entre mapas, lenguas y países. De ahí me quedó una intuición simple: igual que un navegante lee en las estrellas las líneas que lo guían, dentro de cada familia hay una geometría propia —un orden de vínculos y lealtades— que también puede leerse y reordenarse. Para mí, una constelación familiar es exactamente eso: reordenar tu mundo interno para volver a encontrar la ruta. Aplico el mismo cuidado en el tarot evolutivo, en la línea abierta por Alejandro Jodorowsky, y en la interpretación simbólica de los sueños.",
-    about_tag1:"Cartógrafo y viajero de formación", about_tag2:"Cientos de sesiones facilitadas",
+    about_body:"Antes de las constelaciones, mi vida ya se movía entre mapas, lenguas y países. De ahí me quedó una intuición simple: igual que un navegante lee en las estrellas las líneas que lo guían, dentro de cada familia hay una geometría propia —un orden de vínculos y lealtades— que también puede leerse y reordenarse. Es un trabajo que va muy hondo, capaz de remover capas profundas del alma: para mí, una constelación familiar es exactamente eso, reordenar tu mundo interno para volver a encontrar la ruta. Aplico el mismo cuidado en el tarot evolutivo, en la línea abierta por Alejandro Jodorowsky, y en la interpretación simbólica de los sueños.",
+    about_tag1:"Terapeuta y tarólogo", about_tag2:"Cientos de sesiones facilitadas",
+    about_tag_mode1:"Sesiones presenciales y online", about_tag_mode2:"Sesiones grupales e individuales",
+    about_tag_lang:"Terapia en español, italiano, inglés, francés, portugués y catalán",
     about_location:"Zona metropolitana de Barcelona",
     services_eyebrow:"Servicios", services_title:"Cómo puedo acompañarte",
     service1_title:"Constelaciones Familiares",
@@ -617,12 +752,20 @@ const translations = {
     booking_service_opt3:"Sesión grupal de constelaciones", booking_service_opt4:"Constelador para mi grupo",
     booking_service_opt5:"Tarot evolutivo", booking_service_opt6:"Interpretación de sueños",
     booking_modality:"Modalidad", booking_modality_presencial:"Presencial", booking_modality_online:"Online",
+    price_theme:"por constelar tu tema", price_participate:"por participar", price_session1h:"sesión de 1 hora",
+    booking_date:"Fecha preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidad habitual",
+    availability_button:"Ver disponibilidad habitual",
+    avail_yes:"Disponible de {start} a {end}.", avail_off:"Ese día no suele estar disponible — escríbeme igualmente si lo necesitas.",
+    avail_blocked:"Ese día está bloqueado.", avail_note_prefix:"Nota: ",
+    booking_no_slots:"No hay horas disponibles ese día — prueba con otra fecha.",
     booking_slot:"Franja preferida", booking_slot_placeholder:"Ej. martes por la tarde",
     booking_message:"Mensaje (opcional)", booking_submit:"Solicitar reserva",
     booking_success:"Gracias, te contactaré para confirmar la cita.",
     contact_eyebrow:"Contacto", contact_title:"Hablemos",
     contact_form_name:"Nombre", contact_form_email:"Email", contact_form_message:"Mensaje", contact_form_submit:"Enviar mensaje",
     contact_form_success:"Gracias, tu mensaje se ha preparado para enviar.",
+    mail_client_note:"Se abrirá tu app de correo: solo tienes que pulsar \"Enviar\".",
+    whatsapp_followup_label:"O avísame directamente por WhatsApp →",
     footer_bottom:"Constelaciones familiares, tarot evolutivo e interpretación de sueños · Barcelona y área metropolitana."
   },
   it: {
@@ -632,8 +775,10 @@ const translations = {
     hero_subhead:"Sono Massimo Pietrobon. Conduco costellazioni familiari e sistemiche da anni, e ho già accompagnato centinaia di persone in sessioni individuali e di gruppo, in presenza e online. Lavoro anche con i tarocchi evolutivi e l'interpretazione dei sogni come percorsi complementari di conoscenza di sé.",
     hero_cta_book:"Prenota una sessione", hero_cta_whatsapp:"Scrivi su WhatsApp",
     about_eyebrow:"Chi sono",
-    about_body:"Prima delle costellazioni, la mia vita si muoveva già tra mappe, lingue e paesi diversi. Da lì mi è rimasta un'intuizione semplice: come un navigante legge nelle stelle le linee che lo guidano, dentro ogni famiglia c'è una geometria propria — un ordine di legami e lealtà — che può essere letta e riordinata allo stesso modo. Per me, una costellazione familiare è esattamente questo: riordinare il tuo mondo interno per ritrovare la rotta. Applico la stessa cura nei tarocchi evolutivi, secondo la linea aperta da Alejandro Jodorowsky, e nell'interpretazione simbolica dei sogni.",
-    about_tag1:"Cartografo e viaggiatore di formazione", about_tag2:"Centinaia di sessioni condotte",
+    about_body:"Prima delle costellazioni, la mia vita si muoveva già tra mappe, lingue e paesi diversi. Da lì mi è rimasta un'intuizione semplice: come un navigante legge nelle stelle le linee che lo guidano, dentro ogni famiglia c'è una geometria propria — un ordine di legami e lealtà — che può essere letta e riordinata allo stesso modo. È un lavoro che va molto in profondità, capace di smuovere strati profondi dell'anima: per me, una costellazione familiare è esattamente questo, riordinare il tuo mondo interno per ritrovare la rotta. Applico la stessa cura nei tarocchi evolutivi, secondo la linea aperta da Alejandro Jodorowsky, e nell'interpretazione simbolica dei sogni.",
+    about_tag1:"Terapeuta e tarologo", about_tag2:"Centinaia di sessioni condotte",
+    about_tag_mode1:"Sessioni in presenza e online", about_tag_mode2:"Sessioni di gruppo e individuali",
+    about_tag_lang:"Terapia in spagnolo, italiano, inglese, francese, portoghese e catalano",
     about_location:"Area metropolitana di Barcellona",
     services_eyebrow:"Servizi", services_title:"Come posso accompagnarti",
     service1_title:"Costellazioni Familiari",
@@ -664,12 +809,20 @@ const translations = {
     booking_service_opt3:"Sessione di gruppo di costellazioni", booking_service_opt4:"Costellatore per il mio gruppo",
     booking_service_opt5:"Tarocchi evolutivi", booking_service_opt6:"Interpretazione dei sogni",
     booking_modality:"Modalità", booking_modality_presencial:"In presenza", booking_modality_online:"Online",
+    price_theme:"per costellare il tuo tema", price_participate:"per partecipare", price_session1h:"sessione di 1 ora",
+    booking_date:"Data preferita", booking_time:"Ora preferita", weekly_summary_title:"Disponibilità abituale",
+    availability_button:"Vedi disponibilità abituale",
+    avail_yes:"Disponibile dalle {start} alle {end}.", avail_off:"Questo giorno di solito non è disponibile — scrivimi comunque se ti serve.",
+    avail_blocked:"Questo giorno è bloccato.", avail_note_prefix:"Nota: ",
+    booking_no_slots:"Non ci sono orari disponibili quel giorno — prova con un'altra data.",
     booking_slot:"Fascia preferita", booking_slot_placeholder:"Es. martedì pomeriggio",
     booking_message:"Messaggio (facoltativo)", booking_submit:"Richiedi prenotazione",
     booking_success:"Grazie, ti contatterò per confermare l'appuntamento.",
     contact_eyebrow:"Contatti", contact_title:"Parliamone",
     contact_form_name:"Nome", contact_form_email:"Email", contact_form_message:"Messaggio", contact_form_submit:"Invia messaggio",
     contact_form_success:"Grazie, il tuo messaggio è pronto per essere inviato.",
+    mail_client_note:"Si aprirà la tua app di posta: basta premere \"Invia\".",
+    whatsapp_followup_label:"Oppure scrivimi direttamente su WhatsApp →",
     footer_bottom:"Costellazioni familiari, tarocchi evolutivi e interpretazione dei sogni · Barcellona e area metropolitana."
   },
   en: {
@@ -679,8 +832,10 @@ const translations = {
     hero_subhead:"I'm Massimo Pietrobon. I have facilitated family and systemic constellations for years, and have already accompanied hundreds of people through individual and group sessions, in person and online. I also work with evolutionary tarot and dream interpretation as complementary paths of self-knowledge.",
     hero_cta_book:"Book a session", hero_cta_whatsapp:"Message on WhatsApp",
     about_eyebrow:"About",
-    about_body:"Before constellations, my life already moved between maps, languages and countries. From that I kept a simple intuition: just as a navigator reads in the stars the lines that guide him, inside every family there is its own geometry — an order of bonds and loyalties — that can be read and reordered the same way. To me, a family constellation is exactly that: reordering your inner world to find your course again. I bring the same care to evolutionary tarot, in the line opened by Alejandro Jodorowsky, and to symbolic dream interpretation.",
-    about_tag1:"Cartographer and traveller by training", about_tag2:"Hundreds of sessions facilitated",
+    about_body:"Before constellations, my life already moved between maps, languages and countries. From that I kept a simple intuition: just as a navigator reads in the stars the lines that guide him, inside every family there is its own geometry — an order of bonds and loyalties — that can be read and reordered the same way. It is deep work, capable of reaching down into profound layers of the soul: to me, a family constellation is exactly that, reordering your inner world to find your course again. I bring the same care to evolutionary tarot, in the line opened by Alejandro Jodorowsky, and to symbolic dream interpretation.",
+    about_tag1:"Therapist and tarot reader", about_tag2:"Hundreds of sessions facilitated",
+    about_tag_mode1:"In-person and online sessions", about_tag_mode2:"Group and individual sessions",
+    about_tag_lang:"Sessions in Spanish, Italian, English, French, Portuguese and Catalan",
     about_location:"Barcelona metropolitan area",
     services_eyebrow:"Services", services_title:"How I can support you",
     service1_title:"Family Constellations",
@@ -711,12 +866,20 @@ const translations = {
     booking_service_opt3:"Group constellation session", booking_service_opt4:"Facilitator for my group",
     booking_service_opt5:"Evolutionary tarot", booking_service_opt6:"Dream interpretation",
     booking_modality:"Format", booking_modality_presencial:"In person", booking_modality_online:"Online",
+    price_theme:"to constellate your theme", price_participate:"to take part", price_session1h:"1-hour session",
+    booking_date:"Preferred date", booking_time:"Preferred time", weekly_summary_title:"Usual availability",
+    availability_button:"View usual availability",
+    avail_yes:"Available from {start} to {end}.", avail_off:"That day isn't usually available — write to me anyway if you need it.",
+    avail_blocked:"That day is blocked.", avail_note_prefix:"Note: ",
+    booking_no_slots:"No times available that day — try another date.",
     booking_slot:"Preferred time", booking_slot_placeholder:"E.g. Tuesday afternoon",
     booking_message:"Message (optional)", booking_submit:"Request booking",
     booking_success:"Thank you, I'll contact you to confirm the appointment.",
     contact_eyebrow:"Contact", contact_title:"Let's talk",
     contact_form_name:"Name", contact_form_email:"Email", contact_form_message:"Message", contact_form_submit:"Send message",
     contact_form_success:"Thank you, your message is ready to send.",
+    mail_client_note:"Your email app will open: just tap \"Send\".",
+    whatsapp_followup_label:"Or message me directly on WhatsApp →",
     footer_bottom:"Family constellations, evolutionary tarot and dream interpretation · Barcelona metropolitan area."
   },
   fr: {
@@ -726,8 +889,10 @@ const translations = {
     hero_subhead:"Je suis Massimo Pietrobon. J'anime des constellations familiales et systémiques depuis des années, et j'ai déjà accompagné des centaines de personnes en séances individuelles et de groupe, en présentiel et en ligne. Je travaille aussi avec le tarot évolutif et l'interprétation des rêves comme voies complémentaires de connaissance de soi.",
     hero_cta_book:"Réserver une séance", hero_cta_whatsapp:"Écrire sur WhatsApp",
     about_eyebrow:"À propos",
-    about_body:"Avant les constellations, ma vie se déplaçait déjà entre cartes, langues et pays. J'en ai gardé une intuition simple : tout comme un navigateur lit dans les étoiles les lignes qui le guident, il existe à l'intérieur de chaque famille une géométrie propre — un ordre de liens et de loyautés — qui peut, elle aussi, être lue et réordonnée. Pour moi, une constellation familiale, c'est exactement cela : réordonner ton monde intérieur pour retrouver ta route. J'applique le même soin au tarot évolutif, dans la lignée ouverte par Alejandro Jodorowsky, et à l'interprétation symbolique des rêves.",
-    about_tag1:"Cartographe et voyageur de formation", about_tag2:"Des centaines de séances animées",
+    about_body:"Avant les constellations, ma vie se déplaçait déjà entre cartes, langues et pays. J'en ai gardé une intuition simple : tout comme un navigateur lit dans les étoiles les lignes qui le guident, il existe à l'intérieur de chaque famille une géométrie propre — un ordre de liens et de loyautés — qui peut, elle aussi, être lue et réordonnée. C'est un travail qui va très profond, capable de remuer des couches profondes de l'âme : pour moi, une constellation familiale, c'est exactement cela, réordonner ton monde intérieur pour retrouver ta route. J'applique le même soin au tarot évolutif, dans la lignée ouverte par Alejandro Jodorowsky, et à l'interprétation symbolique des rêves.",
+    about_tag1:"Thérapeute et tarologue", about_tag2:"Des centaines de séances animées",
+    about_tag_mode1:"Séances en présentiel et en ligne", about_tag_mode2:"Séances de groupe et individuelles",
+    about_tag_lang:"Séances en espagnol, italien, anglais, français, portugais et catalan",
     about_location:"Région métropolitaine de Barcelone",
     services_eyebrow:"Services", services_title:"Comment je peux t'accompagner",
     service1_title:"Constellations Familiales",
@@ -758,12 +923,20 @@ const translations = {
     booking_service_opt3:"Séance de groupe de constellations", booking_service_opt4:"Constellateur pour mon groupe",
     booking_service_opt5:"Tarot évolutif", booking_service_opt6:"Interprétation des rêves",
     booking_modality:"Modalité", booking_modality_presencial:"En présentiel", booking_modality_online:"En ligne",
+    price_theme:"pour constellater ton thème", price_participate:"pour participer", price_session1h:"séance d'1 heure",
+    booking_date:"Date préférée", booking_time:"Heure préférée", weekly_summary_title:"Disponibilité habituelle",
+    availability_button:"Voir la disponibilité habituelle",
+    avail_yes:"Disponible de {start} à {end}.", avail_off:"Ce jour n'est habituellement pas disponible — écris-moi quand même si besoin.",
+    avail_blocked:"Ce jour est bloqué.", avail_note_prefix:"Note : ",
+    booking_no_slots:"Pas d'horaires disponibles ce jour-là — essaie une autre date.",
     booking_slot:"Créneau préféré", booking_slot_placeholder:"Ex. mardi après-midi",
     booking_message:"Message (facultatif)", booking_submit:"Demander une réservation",
     booking_success:"Merci, je te contacterai pour confirmer le rendez-vous.",
     contact_eyebrow:"Contact", contact_title:"Parlons-en",
     contact_form_name:"Nom", contact_form_email:"Email", contact_form_message:"Message", contact_form_submit:"Envoyer le message",
     contact_form_success:"Merci, ton message est prêt à être envoyé.",
+    mail_client_note:"Ton application mail va s'ouvrir : il te suffit d'appuyer sur \"Envoyer\".",
+    whatsapp_followup_label:"Ou écris-moi directement sur WhatsApp →",
     footer_bottom:"Constellations familiales, tarot évolutif et interprétation des rêves · région métropolitaine de Barcelone."
   },
   pt: {
@@ -773,8 +946,10 @@ const translations = {
     hero_subhead:"Sou o Massimo Pietrobon. Facilito constelações familiares e sistémicas há anos, e já acompanhei centenas de pessoas em sessões individuais e de grupo, presenciais e online. Trabalho também com tarot evolutivo e interpretação de sonhos como caminhos complementares de autoconhecimento.",
     hero_cta_book:"Reservar uma sessão", hero_cta_whatsapp:"Escrever no WhatsApp",
     about_eyebrow:"Sobre mim",
-    about_body:"Antes das constelações, a minha vida já se movia entre mapas, línguas e países. Ficou-me daí uma intuição simples: tal como um navegador lê nas estrelas as linhas que o guiam, dentro de cada família há uma geometria própria — uma ordem de vínculos e lealdades — que também pode ser lida e reordenada. Para mim, uma constelação familiar é exatamente isso: reordenar o teu mundo interno para voltares a encontrar o rumo. Aplico o mesmo cuidado no tarot evolutivo, na linha aberta por Alejandro Jodorowsky, e na interpretação simbólica dos sonhos.",
-    about_tag1:"Cartógrafo e viajante de formação", about_tag2:"Centenas de sessões facilitadas",
+    about_body:"Antes das constelações, a minha vida já se movia entre mapas, línguas e países. Ficou-me daí uma intuição simples: tal como um navegador lê nas estrelas as linhas que o guiam, dentro de cada família há uma geometria própria — uma ordem de vínculos e lealdades — que também pode ser lida e reordenada. É um trabalho que vai muito fundo, capaz de mexer em camadas profundas da alma: para mim, uma constelação familiar é exatamente isso, reordenar o teu mundo interno para voltares a encontrar o rumo. Aplico o mesmo cuidado no tarot evolutivo, na linha aberta por Alejandro Jodorowsky, e na interpretação simbólica dos sonhos.",
+    about_tag1:"Terapeuta e tarólogo", about_tag2:"Centenas de sessões facilitadas",
+    about_tag_mode1:"Sessões presenciais e online", about_tag_mode2:"Sessões em grupo e individuais",
+    about_tag_lang:"Sessões em espanhol, italiano, inglês, francês, português e catalão",
     about_location:"Área metropolitana de Barcelona",
     services_eyebrow:"Serviços", services_title:"Como posso acompanhar-te",
     service1_title:"Constelações Familiares",
@@ -805,12 +980,20 @@ const translations = {
     booking_service_opt3:"Sessão em grupo de constelações", booking_service_opt4:"Constelador para o meu grupo",
     booking_service_opt5:"Tarot evolutivo", booking_service_opt6:"Interpretação de sonhos",
     booking_modality:"Modalidade", booking_modality_presencial:"Presencial", booking_modality_online:"Online",
+    price_theme:"por constelar o teu tema", price_participate:"por participar", price_session1h:"sessão de 1 hora",
+    booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidade habitual",
+    availability_button:"Ver disponibilidade habitual",
+    avail_yes:"Disponível das {start} às {end}.", avail_off:"Este dia normalmente não está disponível — escreve-me na mesma se precisares.",
+    avail_blocked:"Este dia está bloqueado.", avail_note_prefix:"Nota: ",
+    booking_no_slots:"Não há horários disponíveis nesse dia — tenta outra data.",
     booking_slot:"Horário preferido", booking_slot_placeholder:"Ex. terça à tarde",
     booking_message:"Mensagem (opcional)", booking_submit:"Solicitar reserva",
     booking_success:"Obrigado, vou contactar-te para confirmar o agendamento.",
     contact_eyebrow:"Contacto", contact_title:"Vamos falar",
     contact_form_name:"Nome", contact_form_email:"Email", contact_form_message:"Mensagem", contact_form_submit:"Enviar mensagem",
     contact_form_success:"Obrigado, a tua mensagem está pronta para ser enviada.",
+    mail_client_note:"A tua app de email vai abrir-se: basta tocar em \"Enviar\".",
+    whatsapp_followup_label:"Ou escreve-me diretamente no WhatsApp →",
     footer_bottom:"Constelações familiares, tarot evolutivo e interpretação de sonhos · área metropolitana de Barcelona."
   },
   ca: {
@@ -820,8 +1003,10 @@ const translations = {
     hero_subhead:"Sóc en Massimo Pietrobon. Facilito constel·lacions familiars i sistèmiques des de fa anys, i ja he acompanyat centenars de persones en sessions individuals i grupals, presencials i en línia. També treballo amb tarot evolutiu i interpretació de somnis com a camins complementaris d'autoconeixement.",
     hero_cta_book:"Reservar una sessió", hero_cta_whatsapp:"Escriure per WhatsApp",
     about_eyebrow:"Sobre mi",
-    about_body:"Abans de les constel·lacions, la meva vida ja es movia entre mapes, llengües i països. D'aquí em va quedar una intuïció senzilla: igual que un navegant llegeix a les estrelles les línies que el guien, dins de cada família hi ha una geometria pròpia —un ordre de vincles i lleialtats— que també es pot llegir i reordenar. Per a mi, una constel·lació familiar és exactament això: reordenar el teu món intern per tornar a trobar la ruta. Aplico la mateixa cura en el tarot evolutiu, en la línia oberta per Alejandro Jodorowsky, i en la interpretació simbòlica dels somnis.",
-    about_tag1:"Cartògraf i viatger de formació", about_tag2:"Centenars de sessions facilitades",
+    about_body:"Abans de les constel·lacions, la meva vida ja es movia entre mapes, llengües i països. D'aquí em va quedar una intuïció senzilla: igual que un navegant llegeix a les estrelles les línies que el guien, dins de cada família hi ha una geometria pròpia —un ordre de vincles i lleialtats— que també es pot llegir i reordenar. És una feina que va molt endins, capaç de remoure capes profundes de l'ànima: per a mi, una constel·lació familiar és exactament això, reordenar el teu món intern per tornar a trobar la ruta. Aplico la mateixa cura en el tarot evolutiu, en la línia oberta per Alejandro Jodorowsky, i en la interpretació simbòlica dels somnis.",
+    about_tag1:"Terapeuta i taròleg", about_tag2:"Centenars de sessions facilitades",
+    about_tag_mode1:"Sessions presencials i en línia", about_tag_mode2:"Sessions grupals i individuals",
+    about_tag_lang:"Sessions en espanyol, italià, anglès, francès, portuguès i català",
     about_location:"Àrea metropolitana de Barcelona",
     services_eyebrow:"Serveis", services_title:"Com et puc acompanyar",
     service1_title:"Constel·lacions Familiars",
@@ -852,15 +1037,29 @@ const translations = {
     booking_service_opt3:"Sessió grupal de constel·lacions", booking_service_opt4:"Constel·lador per al meu grup",
     booking_service_opt5:"Tarot evolutiu", booking_service_opt6:"Interpretació de somnis",
     booking_modality:"Modalitat", booking_modality_presencial:"Presencial", booking_modality_online:"En línia",
+    price_theme:"per constel·lar el teu tema", price_participate:"per participar", price_session1h:"sessió d'1 hora",
+    booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilitat habitual",
+    availability_button:"Veure disponibilitat habitual",
+    avail_yes:"Disponible de {start} a {end}.", avail_off:"Aquest dia normalment no està disponible — escriu-me igualment si ho necessites.",
+    avail_blocked:"Aquest dia està bloquejat.", avail_note_prefix:"Nota: ",
+    booking_no_slots:"No hi ha hores disponibles aquest dia — prova amb una altra data.",
     booking_slot:"Franja preferida", booking_slot_placeholder:"Ex. dimarts a la tarda",
     booking_message:"Missatge (opcional)", booking_submit:"Sol·licitar reserva",
     booking_success:"Gràcies, et contactaré per confirmar la cita.",
     contact_eyebrow:"Contacte", contact_title:"Parlem",
     contact_form_name:"Nom", contact_form_email:"Email", contact_form_message:"Missatge", contact_form_submit:"Enviar missatge",
     contact_form_success:"Gràcies, el teu missatge està a punt per enviar-se.",
+    mail_client_note:"S'obrirà la teva app de correu: només cal prémer \"Enviar\".",
+    whatsapp_followup_label:"O escriu-me directament per WhatsApp →",
     footer_bottom:"Constel·lacions familiars, tarot evolutiu i interpretació de somnis · àrea metropolitana de Barcelona."
   }
 };
+
+if (siteData.texts){
+  for (const lang in siteData.texts){
+    if (translations[lang]) Object.assign(translations[lang], siteData.texts[lang]);
+  }
+}
 
 let currentLang = 'es';
 try {
@@ -897,20 +1096,93 @@ function renderEvents(){
     </div>`).join('') : `<p class="sessions-empty">${translations[currentLang].sessions_empty_past}</p>`;
 }
 
-function renderBookingSlotField(){
-  const wrap = document.getElementById('slotFieldWrap');
-  const available = siteData.slots.filter(s=>s.status==='available');
-  if (available.length){
-    wrap.innerHTML = '<select id="bookingSlot">' +
-      available.map(s=>`<option value="${s.id}">${escapeHtml(formatDate(s.date,currentLang))} · ${escapeHtml(s.time||'')}</option>`).join('') +
-      '</select>';
-  } else {
-    wrap.innerHTML = `<input type="text" id="bookingSlot" placeholder="${translations[currentLang].booking_slot_placeholder}">`;
+function weekdayKey(dateStr){
+  const d = new Date(dateStr+'T00:00:00');
+  const idx = d.getDay(); // 0=Sun..6=Sat
+  return ['sun','mon','tue','wed','thu','fri','sat'][idx];
+}
+
+function renderPrices(){
+  const p = siteData.prices;
+  const t = translations[currentLang];
+  const presLabel = t.booking_modality_presencial, onlineLabel = t.booking_modality_online;
+  const ind = document.getElementById('priceIndividual');
+  if (ind) ind.innerHTML = `<strong>${presLabel}:</strong> ${p.indPres2h} € (2h) · ${p.indPres1h} € (1h) &nbsp;·&nbsp; <strong>${onlineLabel}:</strong> ${p.indOnline2h} € (2h) · ${p.indOnline1h} € (1h)`;
+  const grp = document.getElementById('priceGroup');
+  if (grp) grp.textContent = `${p.groupTheme} € ${t.price_theme} · ${p.groupParticipate} € ${t.price_participate}`;
+  const fac = document.getElementById('priceFacilitator');
+  if (fac) fac.textContent = `${p.facilitator} €`;
+  const tar = document.getElementById('priceTarot');
+  if (tar) tar.textContent = `${p.tarot} € (${t.price_session1h})`;
+  const drm = document.getElementById('priceDreams');
+  if (drm) drm.textContent = `${p.dreams} €`;
+  const extraEl = document.getElementById('extraServicesList');
+  if (extraEl){
+    extraEl.innerHTML = siteData.extraPrices.map(x=>`<div class="extra-row"><span>${escapeHtml(x.label)}</span><strong>${x.amount} €</strong></div>`).join('');
   }
 }
 
+const SLOT_INTERVAL_MIN = 30;
+function toMinutes(t){ const [h,m] = t.split(':').map(Number); return h*60+m; }
+function toHHMM(mins){ return String(Math.floor(mins/60)).padStart(2,'0') + ':' + String(mins%60).padStart(2,'0'); }
+
+function getDaySlots(dateVal){
+  const wk = weekdayKey(dateVal);
+  const day = siteData.availability.weekly[wk];
+  if (!day || !day.enabled) return [];
+  const blocked = siteData.availability.exceptions.some(x=>x.date===dateVal && x.type==='blocked');
+  if (blocked) return [];
+  const bookedRanges = siteData.availability.exceptions
+    .filter(x=>x.date===dateVal && x.type==='booked' && x.start && x.end)
+    .map(x=>({start:toMinutes(x.start), end:toMinutes(x.end)}));
+  const startMin = toMinutes(day.start), endMin = toMinutes(day.end);
+  const slots = [];
+  for (let m=startMin; m<endMin; m+=SLOT_INTERVAL_MIN){
+    const overlapped = bookedRanges.some(r => m >= r.start && m < r.end);
+    if (!overlapped) slots.push(toHHMM(m));
+  }
+  return slots;
+}
+
+function populateTimeSlots(){
+  const dateEl = document.getElementById('bookingDate');
+  const timeEl = document.getElementById('bookingTime');
+  const noteEl = document.getElementById('bookingAvailNote');
+  const t = translations[currentLang];
+  const dateVal = dateEl.value;
+  timeEl.innerHTML = '';
+  if (!dateVal){ timeEl.disabled = true; noteEl.textContent = ''; noteEl.className = 'booking-avail-note'; return; }
+  const slots = getDaySlots(dateVal);
+  if (!slots.length){
+    timeEl.disabled = true;
+    noteEl.textContent = t.booking_no_slots;
+    noteEl.className = 'booking-avail-note warn';
+    return;
+  }
+  timeEl.disabled = false;
+  timeEl.innerHTML = slots.map(s=>`<option value="${s}">${s}</option>`).join('');
+  noteEl.textContent = '';
+  noteEl.className = 'booking-avail-note';
+}
+document.getElementById('bookingDate').addEventListener('change', populateTimeSlots);
+
 function escapeHtml(str){
   return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function loadTextFields(){
+  const el = document.getElementById('txtLangLabel');
+  if (!el) return;
+  el.textContent = currentLang.toUpperCase();
+  document.getElementById('txtKicker').value = translations[currentLang].hero_kicker || '';
+  document.getElementById('txtHeadline').value = translations[currentLang].hero_headline || '';
+  document.getElementById('txtSubhead').value = translations[currentLang].hero_subhead || '';
+  document.getElementById('txtAbout').value = translations[currentLang].about_body || '';
+  document.getElementById('txtTag1').value = translations[currentLang].about_tag1 || '';
+  document.getElementById('txtTag2').value = translations[currentLang].about_tag2 || '';
+  document.getElementById('txtTagMode1').value = translations[currentLang].about_tag_mode1 || '';
+  document.getElementById('txtTagMode2').value = translations[currentLang].about_tag_mode2 || '';
+  document.getElementById('txtTagLang').value = translations[currentLang].about_tag_lang || '';
 }
 
 function applyLang(lang){
@@ -930,7 +1202,9 @@ function applyLang(lang){
   });
   try { localStorage.setItem('site_lang', lang); } catch(e) {}
   renderEvents();
-  renderBookingSlotField();
+  renderPrices();
+  populateTimeSlots();
+  loadTextFields();
 }
 
 document.getElementById('langSwitch').addEventListener('click', (e)=>{
@@ -940,7 +1214,19 @@ document.getElementById('langSwitch').addEventListener('click', (e)=>{
 
 applyLang(currentLang);
 
+try {
+  const todayISO = new Date().toISOString().slice(0,10);
+  document.getElementById('bookingDate').min = todayISO;
+} catch(e) {}
+
 // ---- Forms: no backend — everything travels by mailto so the page stays fully public ----
+function showFormSuccess(msgEl, successKey, waText){
+  const t = translations[currentLang];
+  const waLink = 'https://wa.me/34626651196?text=' + encodeURIComponent(waText);
+  msgEl.innerHTML = t[successKey] + ' ' + t.mail_client_note +
+    '<br><a href="' + waLink + '" target="_blank" rel="noopener" class="whatsapp-followup">' + t.whatsapp_followup_label + '</a>';
+}
+
 document.getElementById('newsletterForm').addEventListener('submit', (e)=>{
   e.preventDefault();
   const email = document.getElementById('newsletterEmail').value.trim();
@@ -948,7 +1234,7 @@ document.getElementById('newsletterForm').addEventListener('submit', (e)=>{
   const subject = encodeURIComponent('Suscripción newsletter — ' + email);
   const body = encodeURIComponent('Quiero recibir aviso de próximas sesiones.\nMi email: ' + email);
   window.location.href = 'mailto:mas.pietrobon@gmail.com?subject=' + subject + '&body=' + body;
-  msgEl.textContent = translations[currentLang].newsletter_success;
+  showFormSuccess(msgEl, 'newsletter_success', 'Hola Massimo, quiero apuntarme a tu lista de próximas sesiones. Mi email: ' + email);
   e.target.reset();
 });
 
@@ -958,19 +1244,20 @@ document.getElementById('bookingForm').addEventListener('submit', (e)=>{
   const email = document.getElementById('bookingEmail').value.trim();
   const service = document.getElementById('bookingService').value;
   const modality = document.getElementById('bookingModality').value;
-  const slotField = document.getElementById('bookingSlot');
-  const slot = slotField.tagName === 'SELECT' ? slotField.selectedOptions[0].textContent : slotField.value.trim();
+  const date = formatDate(document.getElementById('bookingDate').value, currentLang);
+  const time = document.getElementById('bookingTime').value;
   const message = document.getElementById('bookingMessage').value.trim();
   const msgEl = document.getElementById('bookingMsg');
   const subject = encodeURIComponent('Reserva de sesión — ' + name);
   const body = encodeURIComponent(
     'Nombre: ' + name + '\nEmail: ' + email + '\nServicio: ' + service +
-    '\nModalidad: ' + modality + '\nFranja: ' + slot + '\nMensaje: ' + message
+    '\nModalidad: ' + modality + '\nFecha: ' + date + '\nHora: ' + time + '\nMensaje: ' + message
   );
   window.location.href = 'mailto:mas.pietrobon@gmail.com?subject=' + subject + '&body=' + body;
-  msgEl.textContent = translations[currentLang].booking_success;
+  const waText = 'Hola Massimo, quiero reservar: ' + service + ' (' + modality + '), el ' + date + ' a las ' + time + '. Nombre: ' + name + '. ' + message;
+  showFormSuccess(msgEl, 'booking_success', waText);
   e.target.reset();
-  renderBookingSlotField();
+  populateTimeSlots();
 });
 
 document.getElementById('contactForm').addEventListener('submit', (e)=>{
@@ -982,7 +1269,7 @@ document.getElementById('contactForm').addEventListener('submit', (e)=>{
   const subject = encodeURIComponent('Contacto desde la web — ' + name);
   const body = encodeURIComponent(message + '\n\n' + email);
   window.location.href = 'mailto:mas.pietrobon@gmail.com?subject=' + subject + '&body=' + body;
-  msgEl.textContent = translations[currentLang].contact_form_success;
+  showFormSuccess(msgEl, 'contact_form_success', 'Hola Massimo, soy ' + name + '. ' + message);
   e.target.reset();
 });
 
@@ -990,6 +1277,21 @@ document.getElementById('contactForm').addEventListener('submit', (e)=>{
 const ADMIN_PIN = '6632';
 let isAdmin = false;
 try { isAdmin = sessionStorage.getItem('mp_admin') === '1'; } catch(e){}
+
+let isDirty = false;
+function markDirty(){
+  isDirty = true;
+  const el = document.getElementById('dirtyBanner');
+  if (el) el.hidden = false;
+}
+function clearDirty(){
+  isDirty = false;
+  const el = document.getElementById('dirtyBanner');
+  if (el) el.hidden = true;
+}
+window.addEventListener('beforeunload', (e)=>{
+  if (isDirty){ e.preventDefault(); e.returnValue = ''; return ''; }
+});
 
 const pinOverlay = document.getElementById('pinOverlay');
 const adminPanel = document.getElementById('adminPanel');
@@ -1029,6 +1331,8 @@ document.getElementById('pinInput').addEventListener('keydown', (e)=>{
 });
 document.getElementById('adminExit').addEventListener('click', hideAdmin);
 
+const WEEK_LABELS_IT = {mon:'Lunedì', tue:'Martedì', wed:'Mercoledì', thu:'Giovedì', fri:'Venerdì', sat:'Sabato', sun:'Domenica'};
+
 function renderAdminLists(){
   const evList = document.getElementById('evList');
   evList.innerHTML = siteData.events.map(e=>`
@@ -1036,31 +1340,87 @@ function renderAdminLists(){
       <span>${e.type==='past'?'🕘':'📅'} ${escapeHtml(formatDate(e.date,'it'))} — ${escapeHtml(e.title)}</span>
       <span class="admin-row-actions"><button data-del-ev="${e.id}">eliminar</button></span>
     </div>`).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessun evento.</p>';
-
-  const slList = document.getElementById('slList');
-  slList.innerHTML = siteData.slots.map(s=>`
-    <div class="admin-row">
-      <span>${escapeHtml(formatDate(s.date,'it'))} · ${escapeHtml(s.time)} <span class="status-badge ${s.status}">${s.status==='available'?'disponibile':'bloccata'}</span></span>
-      <span class="admin-row-actions">
-        <button data-toggle-sl="${s.id}">${s.status==='available'?'blocca':'libera'}</button>
-        <button data-del-sl="${s.id}">elimina</button>
-      </span>
-    </div>`).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessuna franja.</p>';
-
   evList.querySelectorAll('[data-del-ev]').forEach(b=>b.addEventListener('click', ()=>{
     siteData.events = siteData.events.filter(e=>e.id !== b.getAttribute('data-del-ev'));
-    renderAdminLists(); renderEvents();
+    renderAdminLists(); renderEvents(); markDirty();
   }));
-  slList.querySelectorAll('[data-del-sl]').forEach(b=>b.addEventListener('click', ()=>{
-    siteData.slots = siteData.slots.filter(s=>s.id !== b.getAttribute('data-del-sl'));
-    renderAdminLists(); renderBookingSlotField();
+
+  const weeklyGrid = document.getElementById('weeklyGrid');
+  weeklyGrid.innerHTML = WEEK_ORDER.map(k=>{
+    const d = siteData.availability.weekly[k];
+    return `<div class="weekly-row">
+      <input type="checkbox" data-wk="${k}" data-f="enabled" ${d.enabled?'checked':''}>
+      <span>${WEEK_LABELS_IT[k]}</span>
+      <input type="time" data-wk="${k}" data-f="start" value="${d.start}">
+      <input type="time" data-wk="${k}" data-f="end" value="${d.end}">
+    </div>`;
+  }).join('');
+  weeklyGrid.querySelectorAll('[data-wk]').forEach(inp=>inp.addEventListener('change', ()=>{
+    const k = inp.getAttribute('data-wk'), f = inp.getAttribute('data-f');
+    siteData.availability.weekly[k][f] = f==='enabled' ? inp.checked : inp.value;
+    populateTimeSlots();
+    markDirty();
   }));
-  slList.querySelectorAll('[data-toggle-sl]').forEach(b=>b.addEventListener('click', ()=>{
-    const s = siteData.slots.find(s=>s.id === b.getAttribute('data-toggle-sl'));
-    if (s) s.status = s.status==='available' ? 'blocked' : 'available';
-    renderAdminLists(); renderBookingSlotField();
+
+  const exList = document.getElementById('exList');
+  exList.innerHTML = siteData.availability.exceptions.map(x=>`
+    <div class="admin-row">
+      <span>${escapeHtml(formatDate(x.date,'it'))} — ${x.type==='blocked'?'bloccato':('occupato '+escapeHtml(x.start||'')+'–'+escapeHtml(x.end||''))}${x.note?' ('+escapeHtml(x.note)+')':''}</span>
+      <span class="admin-row-actions"><button data-del-ex="${x.id}">elimina</button></span>
+    </div>`).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessuna eccezione.</p>';
+  exList.querySelectorAll('[data-del-ex]').forEach(b=>b.addEventListener('click', ()=>{
+    siteData.availability.exceptions = siteData.availability.exceptions.filter(x=>x.id !== b.getAttribute('data-del-ex'));
+    renderAdminLists(); populateTimeSlots(); markDirty();
+  }));
+
+  document.getElementById('pIndPres2h').value = siteData.prices.indPres2h;
+  document.getElementById('pIndPres1h').value = siteData.prices.indPres1h;
+  document.getElementById('pIndOnline2h').value = siteData.prices.indOnline2h;
+  document.getElementById('pIndOnline1h').value = siteData.prices.indOnline1h;
+  document.getElementById('pGroupTheme').value = siteData.prices.groupTheme;
+  document.getElementById('pGroupParticipate').value = siteData.prices.groupParticipate;
+  document.getElementById('pFacilitator').value = siteData.prices.facilitator;
+  document.getElementById('pTarot').value = siteData.prices.tarot;
+  document.getElementById('pDreams').value = siteData.prices.dreams;
+
+  const epList = document.getElementById('epList');
+  epList.innerHTML = siteData.extraPrices.map(x=>`
+    <div class="admin-row">
+      <span>${escapeHtml(x.label)} — ${x.amount} €</span>
+      <span class="admin-row-actions"><button data-del-ep="${x.id}">elimina</button></span>
+    </div>`).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessun servizio extra.</p>';
+  epList.querySelectorAll('[data-del-ep]').forEach(b=>b.addEventListener('click', ()=>{
+    siteData.extraPrices = siteData.extraPrices.filter(x=>x.id !== b.getAttribute('data-del-ep'));
+    renderAdminLists(); renderPrices(); markDirty();
   }));
 }
+
+document.getElementById('epAdd').addEventListener('click', ()=>{
+  const label = document.getElementById('epLabel').value.trim();
+  const amount = Number(document.getElementById('epAmount').value);
+  if (!label || !amount) return;
+  siteData.extraPrices.push({ id: 'p'+Date.now(), label, amount });
+  document.getElementById('epLabel').value = '';
+  document.getElementById('epAmount').value = '';
+  renderAdminLists(); renderPrices(); markDirty();
+});
+
+document.getElementById('txtSave').addEventListener('click', ()=>{
+  const kicker = document.getElementById('txtKicker').value;
+  const headline = document.getElementById('txtHeadline').value;
+  const subhead = document.getElementById('txtSubhead').value;
+  const about = document.getElementById('txtAbout').value;
+  const tag1 = document.getElementById('txtTag1').value;
+  const tag2 = document.getElementById('txtTag2').value;
+  const tagMode1 = document.getElementById('txtTagMode1').value;
+  const tagMode2 = document.getElementById('txtTagMode2').value;
+  const tagLang = document.getElementById('txtTagLang').value;
+  siteData.texts[currentLang] = { hero_kicker: kicker, hero_headline: headline, hero_subhead: subhead, about_body: about, about_tag1: tag1, about_tag2: tag2, about_tag_mode1: tagMode1, about_tag_mode2: tagMode2, about_tag_lang: tagLang };
+  Object.assign(translations[currentLang], siteData.texts[currentLang]);
+  applyLang(currentLang);
+  markDirty();
+  document.getElementById('adminStatus').textContent = 'Testi (' + currentLang.toUpperCase() + ') aggiornati localmente — premi "Salva e pubblica" per renderli pubblici.';
+});
 
 document.getElementById('evAdd').addEventListener('click', ()=>{
   const date = document.getElementById('evDate').value.trim();
@@ -1072,17 +1432,83 @@ document.getElementById('evAdd').addEventListener('click', ()=>{
   document.getElementById('evDate').value = '';
   document.getElementById('evTitle').value = '';
   document.getElementById('evBody').value = '';
-  renderAdminLists(); renderEvents();
+  renderAdminLists(); renderEvents(); markDirty();
 });
 
-document.getElementById('slAdd').addEventListener('click', ()=>{
-  const date = document.getElementById('slDate').value.trim();
-  const time = document.getElementById('slTime').value.trim();
-  if (!date || !time) return;
-  siteData.slots.push({ id: 's'+Date.now(), date, time, status: 'available' });
-  document.getElementById('slDate').value = '';
-  document.getElementById('slTime').value = '';
-  renderAdminLists(); renderBookingSlotField();
+document.getElementById('exAdd').addEventListener('click', ()=>{
+  const date = document.getElementById('exDate').value.trim();
+  const type = document.getElementById('exType').value;
+  const start = document.getElementById('exStart').value;
+  const end = document.getElementById('exEnd').value;
+  const note = document.getElementById('exNote').value.trim();
+  if (!date) return;
+  if (type==='booked' && (!start || !end)) return;
+  siteData.availability.exceptions.push({ id: 'x'+Date.now(), date, type, start, end, note });
+  document.getElementById('exDate').value = '';
+  document.getElementById('exStart').value = '';
+  document.getElementById('exEnd').value = '';
+  document.getElementById('exNote').value = '';
+  renderAdminLists(); populateTimeSlots(); markDirty();
+});
+
+document.getElementById('priceSave').addEventListener('click', ()=>{
+  siteData.prices = {
+    indPres2h: Number(document.getElementById('pIndPres2h').value)||0,
+    indPres1h: Number(document.getElementById('pIndPres1h').value)||0,
+    indOnline2h: Number(document.getElementById('pIndOnline2h').value)||0,
+    indOnline1h: Number(document.getElementById('pIndOnline1h').value)||0,
+    groupTheme: Number(document.getElementById('pGroupTheme').value)||0,
+    groupParticipate: Number(document.getElementById('pGroupParticipate').value)||0,
+    facilitator: Number(document.getElementById('pFacilitator').value)||0,
+    tarot: Number(document.getElementById('pTarot').value)||0,
+    dreams: Number(document.getElementById('pDreams').value)||0
+  };
+  renderPrices();
+  markDirty();
+  document.getElementById('adminStatus').textContent = 'Prezzi aggiornati localmente — ricordati di premere "Salva e pubblica" per renderli pubblici.';
+});
+
+document.getElementById('dataExport').addEventListener('click', async ()=>{
+  const statusEl = document.getElementById('importStatus');
+  const json = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, extraPrices: siteData.extraPrices, texts: siteData.texts}, null, 2);
+  try{
+    const downloads = window.claude && typeof window.claude.use === 'function' ? await window.claude.use('downloads') : null;
+    if (!downloads){ statusEl.textContent = 'Esportazione non disponibile in questa vista.'; return; }
+    await downloads.save({ filename: 'costellazioni-dati.json', data: json });
+    statusEl.textContent = 'Esportato ✓';
+  } catch(err){
+    statusEl.textContent = 'Errore esportazione: ' + (err && err.message ? err.message : String(err));
+  }
+});
+
+document.getElementById('dataImport').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  const statusEl = document.getElementById('importStatus');
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const parsed = JSON.parse(reader.result);
+      if (Array.isArray(parsed.events)) siteData.events = parsed.events;
+      if (parsed.availability){
+        if (parsed.availability.weekly) siteData.availability.weekly = parsed.availability.weekly;
+        if (Array.isArray(parsed.availability.exceptions)) siteData.availability.exceptions = parsed.availability.exceptions;
+      }
+      if (parsed.prices) siteData.prices = Object.assign({}, siteData.prices, parsed.prices);
+      if (Array.isArray(parsed.extraPrices)) siteData.extraPrices = parsed.extraPrices;
+      if (parsed.texts){
+        siteData.texts = parsed.texts;
+        for (const lang in siteData.texts){ if (translations[lang]) Object.assign(translations[lang], siteData.texts[lang]); }
+      }
+      renderAdminLists(); applyLang(currentLang);
+      statusEl.textContent = 'Importato ✓ — premi "Salva e pubblica" per renderlo pubblico.';
+      markDirty();
+    } catch(err){
+      statusEl.textContent = 'File non valido.';
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
 });
 
 document.getElementById('adminPublish').addEventListener('click', async ()=>{
@@ -1095,13 +1521,14 @@ document.getElementById('adminPublish').addEventListener('click', async ()=>{
   try{
     const artifact = await window.claude.use('artifact');
     if (!artifact){ statusEl.textContent = 'Pubblicazione non concessa in questa vista (capacità "artifact" non disponibile qui).'; return; }
-    const newJson = JSON.stringify({events: siteData.events, slots: siteData.slots});
+    const newJson = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, extraPrices: siteData.extraPrices, texts: siteData.texts});
     const newHtml = PRISTINE_HTML.replace(
       /<script type="application\/json" id="site-data">[\s\S]*?<\/script>/,
       '<script type="application/json" id="site-data">' + newJson + '<\/script>'
     );
     await artifact.publish(newHtml);
     statusEl.textContent = 'Pubblicato ✓ — tutti i visitatori vedranno le modifiche.';
+    clearDirty();
   } catch(err){
     const code = err && err.code ? err.code : null;
     const msg = err && err.message ? err.message : String(err);
