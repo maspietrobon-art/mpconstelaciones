@@ -688,7 +688,6 @@
 <script type="application/json" id="site-data">{"events":[],"availability":{"weekly":{"mon":{"enabled":true,"start":"17:00","end":"19:00"},"tue":{"enabled":true,"start":"17:00","end":"19:00"},"wed":{"enabled":true,"start":"17:00","end":"19:00"},"thu":{"enabled":true,"start":"17:00","end":"19:00"},"fri":{"enabled":true,"start":"15:30","end":"19:00"},"sat":{"enabled":true,"start":"10:00","end":"19:00"},"sun":{"enabled":true,"start":"10:00","end":"19:00"}},"exceptions":[]},"prices":{"indPres2h":80,"indPres1h":60,"indOnline2h":70,"indOnline1h":50,"groupTheme":40,"groupParticipate":15,"facilitator":120,"tarot":50,"dreams":25},"extraPrices":[],"texts":{}}</script>
 
 <script>
-const PRISTINE_HTML = '<!doctype html>\n' + document.documentElement.outerHTML;
 let siteData;
 try {
   siteData = JSON.parse(document.getElementById('site-data').textContent);
@@ -1273,10 +1272,40 @@ document.getElementById('contactForm').addEventListener('submit', (e)=>{
   e.target.reset();
 });
 
-// ---- Private admin area: PIN + self-publishing via the artifact capability ----
-const ADMIN_PIN = '6632';
+// ---- Database online (Google Sheets + Apps Script) ----
+// I dati pubblici (eventi, disponibilità, prezzi, testi) vivono nel foglio Google.
+// Il PIN NON è scritto in questa pagina: lo verifica lo script sul server.
+const DB_URL = 'https://script.google.com/macros/s/AKfycbzYiApc93V6yjhI8RmkBX-rxBqsm3pF-9-p-4VlW1Z85xSTPFgmWgQWtYnMZpbJBPCr/exec';
+const DB_APP = 'costellazioni';
+
+async function dbCall(payload){
+  const r = await fetch(DB_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(Object.assign({ app: DB_APP }, payload))
+  });
+  return r.json();
+}
+
+function applySiteData(d){
+  if (!d || typeof d !== 'object') return;
+  if (Array.isArray(d.events)) siteData.events = d.events;
+  if (d.availability){
+    if (d.availability.weekly) siteData.availability.weekly = d.availability.weekly;
+    if (Array.isArray(d.availability.exceptions)) siteData.availability.exceptions = d.availability.exceptions;
+  }
+  if (d.prices) siteData.prices = Object.assign({}, siteData.prices, d.prices);
+  if (Array.isArray(d.extraPrices)) siteData.extraPrices = d.extraPrices;
+  if (d.texts){
+    siteData.texts = d.texts;
+    for (const lang in d.texts){ if (translations[lang]) Object.assign(translations[lang], d.texts[lang]); }
+  }
+}
+
+// ---- Private admin area: PIN verificato dal server ----
+let adminPin = null;
+try { adminPin = sessionStorage.getItem('mp_admin_pin'); } catch(e){}
 let isAdmin = false;
-try { isAdmin = sessionStorage.getItem('mp_admin') === '1'; } catch(e){}
 
 let isDirty = false;
 function markDirty(){
@@ -1296,18 +1325,47 @@ window.addEventListener('beforeunload', (e)=>{
 const pinOverlay = document.getElementById('pinOverlay');
 const adminPanel = document.getElementById('adminPanel');
 
+// Caricamento pubblico: tutti i visitatori leggono i dati online
+(async ()=>{
+  try{
+    const res = await dbCall({ azione: 'carica' });
+    if (res && res.ok && res.dati && res.dati.sito && !isDirty){
+      applySiteData(res.dati.sito);
+      applyLang(currentLang);
+      if (isAdmin) renderAdminLists();
+    }
+  } catch(e){ /* senza connessione restano i dati incorporati nella pagina */ }
+})();
+
+// Caricamento privato (con le note delle eccezioni), solo dopo il PIN
+async function loadPrivateData(){
+  const statusEl = document.getElementById('adminStatus');
+  try{
+    const res = await dbCall({ azione: 'carica', pin: adminPin });
+    if (res && res.ok && res.admin){
+      const d = res.dati.sito_admin || res.dati.sito;
+      if (d && !isDirty){ applySiteData(d); applyLang(currentLang); renderAdminLists(); }
+    } else if (res && (res.pinErrato || res.errore === 'bloccato')){
+      hideAdmin();
+    }
+  } catch(e){
+    if (statusEl) statusEl.textContent = 'Impossibile caricare i dati online: controlla la connessione.';
+  }
+}
+
 function showAdmin(){
   isAdmin = true;
-  try { sessionStorage.setItem('mp_admin','1'); } catch(e){}
   adminPanel.hidden = false;
   renderAdminLists();
+  loadPrivateData();
 }
 function hideAdmin(){
   isAdmin = false;
-  try { sessionStorage.removeItem('mp_admin'); } catch(e){}
+  adminPin = null;
+  try { sessionStorage.removeItem('mp_admin_pin'); } catch(e){}
   adminPanel.hidden = true;
 }
-if (isAdmin) showAdmin();
+if (adminPin) showAdmin();
 
 document.getElementById('adminToggle').addEventListener('click', ()=>{
   if (isAdmin){ hideAdmin(); return; }
@@ -1317,13 +1375,31 @@ document.getElementById('adminToggle').addEventListener('click', ()=>{
   document.getElementById('pinInput').focus();
 });
 document.getElementById('pinCancel').addEventListener('click', ()=>{ pinOverlay.hidden = true; });
-document.getElementById('pinSubmit').addEventListener('click', ()=>{
+document.getElementById('pinSubmit').addEventListener('click', async ()=>{
+  const btn = document.getElementById('pinSubmit');
+  const errEl = document.getElementById('pinError');
   const val = document.getElementById('pinInput').value.trim();
-  if (val === ADMIN_PIN){
-    pinOverlay.hidden = true;
-    showAdmin();
-  } else {
-    document.getElementById('pinError').hidden = false;
+  if (!val) return;
+  btn.disabled = true;
+  errEl.hidden = true;
+  try{
+    const res = await dbCall({ azione: 'verifica', pin: val });
+    if (res && res.ok && res.admin){
+      adminPin = val;
+      try { sessionStorage.setItem('mp_admin_pin', val); } catch(e){}
+      pinOverlay.hidden = true;
+      showAdmin();
+    } else {
+      errEl.textContent = (res && res.errore === 'bloccato')
+        ? 'Troppi tentativi sbagliati: riprova tra 15 minuti.'
+        : 'PIN errato.';
+      errEl.hidden = false;
+    }
+  } catch(e){
+    errEl.textContent = 'Connessione non riuscita. Riprova.';
+    errEl.hidden = false;
+  } finally {
+    btn.disabled = false;
   }
 });
 document.getElementById('pinInput').addEventListener('keydown', (e)=>{
@@ -1468,13 +1544,18 @@ document.getElementById('priceSave').addEventListener('click', ()=>{
   document.getElementById('adminStatus').textContent = 'Prezzi aggiornati localmente — ricordati di premere "Salva e pubblica" per renderli pubblici.';
 });
 
-document.getElementById('dataExport').addEventListener('click', async ()=>{
+document.getElementById('dataExport').addEventListener('click', ()=>{
   const statusEl = document.getElementById('importStatus');
   const json = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, extraPrices: siteData.extraPrices, texts: siteData.texts}, null, 2);
   try{
-    const downloads = window.claude && typeof window.claude.use === 'function' ? await window.claude.use('downloads') : null;
-    if (!downloads){ statusEl.textContent = 'Esportazione non disponibile in questa vista.'; return; }
-    await downloads.save({ filename: 'costellazioni-dati.json', data: json });
+    const blob = new Blob([json], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'costellazioni-dati.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
     statusEl.textContent = 'Esportato ✓';
   } catch(err){
     statusEl.textContent = 'Errore esportazione: ' + (err && err.message ? err.message : String(err));
@@ -1513,28 +1594,30 @@ document.getElementById('dataImport').addEventListener('change', (e)=>{
 
 document.getElementById('adminPublish').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('adminStatus');
-  statusEl.textContent = 'Pubblicazione in corso…';
-  if (!window.claude || typeof window.claude.use !== 'function'){
-    statusEl.textContent = 'La pubblicazione automatica non è disponibile in questa vista. Apri la pagina dal link pubblicato su claude.ai (non da un file scaricato o da un\u2019anteprima) e accedi con il tuo account.';
-    return;
-  }
+  const btn = document.getElementById('adminPublish');
+  if (!adminPin){ statusEl.textContent = 'Sessione scaduta: rientra con il PIN.'; hideAdmin(); return; }
+  statusEl.textContent = 'Salvataggio online in corso…';
+  btn.disabled = true;
   try{
-    const artifact = await window.claude.use('artifact');
-    if (!artifact){ statusEl.textContent = 'Pubblicazione non concessa in questa vista (capacità "artifact" non disponibile qui).'; return; }
-    const newJson = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, extraPrices: siteData.extraPrices, texts: siteData.texts});
-    const newHtml = PRISTINE_HTML.replace(
-      /<script type="application\/json" id="site-data">[\s\S]*?<\/script>/,
-      '<script type="application/json" id="site-data">' + newJson + '<\/script>'
-    );
-    await artifact.publish(newHtml);
-    statusEl.textContent = 'Pubblicato ✓ — tutti i visitatori vedranno le modifiche.';
+    const full = {events: siteData.events, availability: siteData.availability, prices: siteData.prices, extraPrices: siteData.extraPrices, texts: siteData.texts};
+    // Versione pubblica: senza le note private delle eccezioni (es. nomi dei clienti)
+    const pub = JSON.parse(JSON.stringify(full));
+    pub.availability.exceptions = pub.availability.exceptions.map(x => { const c = Object.assign({}, x); delete c.note; return c; });
+
+    const r1 = await dbCall({ azione: 'salva', pin: adminPin, chiave: 'sito', valore: pub, protezione: '' });
+    if (!r1 || !r1.ok) throw r1 || {};
+    const r2 = await dbCall({ azione: 'salva', pin: adminPin, chiave: 'sito_admin', valore: full, protezione: 'admin' });
+    if (!r2 || !r2.ok) throw r2 || {};
+
+    statusEl.textContent = 'Salvato online ✓ — tutti i visitatori vedranno le modifiche, da qualsiasi dispositivo.';
     clearDirty();
   } catch(err){
-    const code = err && err.code ? err.code : null;
-    const msg = err && err.message ? err.message : String(err);
-    statusEl.textContent = code
-      ? 'Errore (' + code + '): ' + msg
-      : 'Errore imprevisto: ' + msg + '. Assicurati di essere autenticato con il tuo account Claude su questa pagina.';
+    if (err && err.errore === 'pin'){ statusEl.textContent = 'PIN non più valido: rientra nell\u2019area privata.'; hideAdmin(); }
+    else if (err && err.errore === 'bloccato'){ statusEl.textContent = 'Troppi tentativi sbagliati: riprova tra 15 minuti.'; }
+    else if (err && err.errore){ statusEl.textContent = 'Errore dal server: ' + err.errore; }
+    else { statusEl.textContent = 'Connessione non riuscita: le modifiche NON sono state salvate. Riprova.'; }
+  } finally {
+    btn.disabled = false;
   }
 });
 </script>
