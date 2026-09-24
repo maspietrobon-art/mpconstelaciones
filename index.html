@@ -117,6 +117,8 @@
   .admin-card h4{font-family:var(--sans); font-size:14px; font-weight:600; color:#fff; margin:0 0 10px;}
   .admin-card label{color:#B9C7DA; font-size:12.5px; margin-bottom:4px;}
   .admin-card input, .admin-card select, .admin-card textarea{width:100%; margin-bottom:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); color:#fff; color-scheme:dark;}
+  .offer-check{display:flex; align-items:center; gap:6px; font-size:11.5px; color:#D9C48A; margin:-4px 0 8px; cursor:pointer;}
+  .offer-check input{width:auto; margin:0;}
   .weekly-grid{display:flex; flex-direction:column; gap:10px;}
   .weekly-row{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; font-size:12.5px; min-width:0;}
   .weekly-row span{color:#DCE6F2; min-width:64px;}
@@ -232,6 +234,13 @@
   .extra-services{margin-top:20px; display:flex; flex-direction:column; gap:8px;}
   .extra-services .extra-row{display:flex; justify-content:space-between; gap:12px; font-size:15px; border-top:1px solid var(--line); padding-top:10px;}
   .extra-services .extra-row strong{color:var(--gold-deep); font-weight:600;}
+  .offer-banner{
+    display:flex; align-items:center; gap:16px; background:linear-gradient(135deg, rgba(201,154,69,0.14), rgba(201,154,69,0.06));
+    border:1px solid var(--gold); border-radius:12px; padding:22px 26px;
+  }
+  .offer-icon{font-size:32px; flex-shrink:0; line-height:1;}
+  .offer-banner p{margin:0; font-size:16px; color:var(--navy-deep); line-height:1.55;}
+  @media(max-width:520px){ .offer-banner{flex-direction:column; text-align:center; gap:10px; padding:20px;} }
 
   /* ---------- sessions ---------- */
   .sessions-grid{display:grid; grid-template-columns:1fr; gap:36px;}
@@ -377,6 +386,8 @@
         <input type="text" id="txtTagMode2">
         <label>Tag 5 (lingue)</label>
         <input type="text" id="txtTagLang">
+        <label>Testo offerta finale (banner con 🎁)</label>
+        <textarea id="txtOfferBanner" rows="3"></textarea>
         <button id="txtSave" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiorna testi</button>
         <button id="txtTranslateAll" class="btn btn-line" type="button" style="margin-top:8px;">🌐 Salva e traduci nelle altre 5 lingue</button>
         <p style="font-size:11px; color:#8DA0BB; margin-top:4px;">Usa l'IA di Claude: te lo chiederà una conferma la prima volta. Rivedi sempre il risultato prima di pubblicare.</p>
@@ -422,23 +433,26 @@
 
       <div class="admin-card">
         <h4>Prezzi dei servizi (€)</h4>
+        <p style="font-size:11px; color:#8DA0BB; margin-top:-4px;">Spunta "Gratis/oferta" per mostrare un'offerta invece del prezzo (il numero resta salvato per quando la disattivi).</p>
         <div class="two-col">
-          <div><label>Individuale presencial 2h</label><input type="number" id="pIndPres2h"></div>
-          <div><label>Individuale presencial 1h</label><input type="number" id="pIndPres1h"></div>
+          <div><label>Individuale presencial 2h</label><input type="number" id="pIndPres2h"><label class="offer-check"><input type="checkbox" id="pIndPres2hFree"> Gratis/oferta</label></div>
+          <div><label>Individuale presencial 1h</label><input type="number" id="pIndPres1h"><label class="offer-check"><input type="checkbox" id="pIndPres1hFree"> Gratis/oferta</label></div>
         </div>
         <div class="two-col">
-          <div><label>Individuale online 2h</label><input type="number" id="pIndOnline2h"></div>
-          <div><label>Individuale online 1h</label><input type="number" id="pIndOnline1h"></div>
+          <div><label>Individuale online 2h</label><input type="number" id="pIndOnline2h"><label class="offer-check"><input type="checkbox" id="pIndOnline2hFree"> Gratis/oferta</label></div>
+          <div><label>Individuale online 1h</label><input type="number" id="pIndOnline1h"><label class="offer-check"><input type="checkbox" id="pIndOnline1hFree"> Gratis/oferta</label></div>
         </div>
         <div class="two-col">
-          <div><label>Grupo — constelar tema</label><input type="number" id="pGroupTheme"></div>
-          <div><label>Grupo — participar</label><input type="number" id="pGroupParticipate"></div>
+          <div><label>Grupo — constelar tema</label><input type="number" id="pGroupTheme"><label class="offer-check"><input type="checkbox" id="pGroupThemeFree"> Gratis/oferta</label></div>
+          <div><label>Grupo — participar</label><input type="number" id="pGroupParticipate"><label class="offer-check"><input type="checkbox" id="pGroupParticipateFree"> Gratis/oferta</label></div>
         </div>
         <div class="two-col">
-          <div><label>Constelador para tu grupo</label><input type="number" id="pFacilitator"></div>
-          <div><label>Tarot evolutivo (1h)</label><input type="number" id="pTarot"></div>
+          <div><label>Constelador para tu grupo</label><input type="number" id="pFacilitator"><label class="offer-check"><input type="checkbox" id="pFacilitatorFree"> Gratis/oferta</label></div>
+          <div><label>Tarot evolutivo (1h)</label><input type="number" id="pTarot"><label class="offer-check"><input type="checkbox" id="pTarotFree"> Gratis/oferta</label></div>
         </div>
-        <label>Interpretación de sueños</label><input type="number" id="pDreams">
+        <div>
+          <label>Interpretación de sueños</label><input type="number" id="pDreams"><label class="offer-check"><input type="checkbox" id="pDreamsFree"> Gratis/oferta</label>
+        </div>
         <button id="priceSave" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiorna prezzi</button>
 
         <h4 style="margin-top:18px;">Altri servizi (facoltativo)</h4>
@@ -446,7 +460,8 @@
           <div><label>Nome servizio</label><input type="text" id="epLabel" placeholder="Es. Sesión de seguimiento"></div>
           <div><label>Prezzo (€)</label><input type="number" id="epAmount"></div>
         </div>
-        <button id="epAdd" class="btn btn-line" type="button">Aggiungi servizio</button>
+        <label class="offer-check"><input type="checkbox" id="epFree"> Gratis/oferta (invece del prezzo)</label>
+        <button id="epAdd" class="btn btn-line" type="button" style="margin-top:8px;">Aggiungi servizio</button>
         <div id="epList" class="admin-list"></div>
       </div>
 
@@ -569,6 +584,15 @@
         </div>
       </div>
       <div id="extraServicesList" class="extra-services"></div>
+    </div>
+  </section>
+
+  <section id="oferta">
+    <div class="wrap">
+      <div class="offer-banner">
+        <span class="offer-icon">🎁</span>
+        <p data-i18n="offer_banner_text">Te regalo la interpretación de un sueño (mejor en audio por WhatsApp). Echa un vistazo bien a la página — puede haber otras ofertas activas en este momento.</p>
+      </div>
     </div>
   </section>
 
@@ -723,7 +747,7 @@
   </div>
 </footer>
 
-<script type="application/json" id="site-data">{"events":[],"availability":{"weekly":{"mon":{"enabled":true,"start":"17:00","end":"19:00"},"tue":{"enabled":true,"start":"17:00","end":"19:00"},"wed":{"enabled":true,"start":"17:00","end":"19:00"},"thu":{"enabled":true,"start":"17:00","end":"19:00"},"fri":{"enabled":true,"start":"15:30","end":"19:00"},"sat":{"enabled":true,"start":"10:00","end":"19:00"},"sun":{"enabled":true,"start":"10:00","end":"19:00"}},"exceptions":[]},"prices":{"indPres2h":80,"indPres1h":60,"indOnline2h":70,"indOnline1h":50,"groupTheme":40,"groupParticipate":15,"facilitator":120,"tarot":50,"dreams":25},"extraPrices":[],"texts":{}}</script>
+<script type="application/json" id="site-data">{"events":[],"availability":{"weekly":{"mon":{"enabled":true,"start":"17:00","end":"19:00"},"tue":{"enabled":true,"start":"17:00","end":"19:00"},"wed":{"enabled":true,"start":"17:00","end":"19:00"},"thu":{"enabled":true,"start":"17:00","end":"19:00"},"fri":{"enabled":true,"start":"15:30","end":"19:00"},"sat":{"enabled":true,"start":"10:00","end":"19:00"},"sun":{"enabled":true,"start":"10:00","end":"19:00"}},"exceptions":[]},"prices":{"indPres2h":80,"indPres1h":60,"indOnline2h":70,"indOnline1h":50,"groupTheme":40,"groupParticipate":15,"facilitator":120,"tarot":50,"dreams":25},"priceOffers":{},"extraPrices":[],"texts":{}}</script>
 
 <script>
 let siteData;
@@ -743,6 +767,7 @@ if (!siteData.prices) siteData.prices = {};
 const priceDefaults = {indPres2h:80,indPres1h:60,indOnline2h:70,indOnline1h:50,groupTheme:40,groupParticipate:15,facilitator:120,tarot:50,dreams:25};
 for (const k in priceDefaults){ if (siteData.prices[k]===undefined) siteData.prices[k] = priceDefaults[k]; }
 if (!Array.isArray(siteData.extraPrices)) siteData.extraPrices = [];
+if (!siteData.priceOffers) siteData.priceOffers = {};
 if (!siteData.texts) siteData.texts = {};
 const WEEK_ORDER = ['mon','tue','wed','thu','fri','sat','sun'];
 const WEEK_REF_DATES = {mon:'2024-01-01',tue:'2024-01-02',wed:'2024-01-03',thu:'2024-01-04',fri:'2024-01-05',sat:'2024-01-06',sun:'2024-01-07'};
@@ -792,6 +817,8 @@ const translations = {
     booking_service_opt5:"Tarot evolutivo", booking_service_opt6:"Interpretación de sueños",
     booking_modality:"Modalidad", booking_modality_presencial:"Presencial", booking_modality_online:"Online",
     price_theme:"por constelar tu tema", price_participate:"por participar", price_session1h:"sesión de 1 hora",
+    price_offer_label:"¡Gratis!",
+    offer_banner_text:"Te regalo la interpretación de un sueño (mejor en audio por WhatsApp). Echa un vistazo bien a la página — puede haber otras ofertas activas en este momento.",
     booking_date:"Fecha preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidad habitual",
     availability_button:"Ver disponibilidad habitual",
     avail_yes:"Disponible de {start} a {end}.", avail_off:"Ese día no suele estar disponible — escríbeme igualmente si lo necesitas.",
@@ -851,6 +878,8 @@ const translations = {
     booking_service_opt5:"Tarocchi evolutivi", booking_service_opt6:"Interpretazione dei sogni",
     booking_modality:"Modalità", booking_modality_presencial:"In presenza", booking_modality_online:"Online",
     price_theme:"per costellare il tuo tema", price_participate:"per partecipare", price_session1h:"sessione di 1 ora",
+    price_offer_label:"Gratis!",
+    offer_banner_text:"Ti regalo l'interpretazione di un sogno (meglio in audio su WhatsApp). Dai un'occhiata bene alla pagina — potrebbero esserci altre offerte attive in questo momento.",
     booking_date:"Data preferita", booking_time:"Ora preferita", weekly_summary_title:"Disponibilità abituale",
     availability_button:"Vedi disponibilità abituale",
     avail_yes:"Disponibile dalle {start} alle {end}.", avail_off:"Questo giorno di solito non è disponibile — scrivimi comunque se ti serve.",
@@ -910,6 +939,8 @@ const translations = {
     booking_service_opt5:"Evolutionary tarot", booking_service_opt6:"Dream interpretation",
     booking_modality:"Format", booking_modality_presencial:"In person", booking_modality_online:"Online",
     price_theme:"to constellate your theme", price_participate:"to take part", price_session1h:"1-hour session",
+    price_offer_label:"Free!",
+    offer_banner_text:"I'll gift you a dream interpretation (best as a WhatsApp voice note). Have a good look around the page — there may be other offers active right now.",
     booking_date:"Preferred date", booking_time:"Preferred time", weekly_summary_title:"Usual availability",
     availability_button:"View usual availability",
     avail_yes:"Available from {start} to {end}.", avail_off:"That day isn't usually available — write to me anyway if you need it.",
@@ -969,6 +1000,8 @@ const translations = {
     booking_service_opt5:"Tarot évolutif", booking_service_opt6:"Interprétation des rêves",
     booking_modality:"Modalité", booking_modality_presencial:"En présentiel", booking_modality_online:"En ligne",
     price_theme:"pour constellater ton thème", price_participate:"pour participer", price_session1h:"séance d'1 heure",
+    price_offer_label:"Gratuit !",
+    offer_banner_text:"Je t'offre l'interprétation d'un rêve (idéalement en note vocale WhatsApp). Jette un bon coup d'œil à la page — il peut y avoir d'autres offres actives en ce moment.",
     booking_date:"Date préférée", booking_time:"Heure préférée", weekly_summary_title:"Disponibilité habituelle",
     availability_button:"Voir la disponibilité habituelle",
     avail_yes:"Disponible de {start} à {end}.", avail_off:"Ce jour n'est habituellement pas disponible — écris-moi quand même si besoin.",
@@ -1028,6 +1061,8 @@ const translations = {
     booking_service_opt5:"Tarot evolutivo", booking_service_opt6:"Interpretação de sonhos",
     booking_modality:"Modalidade", booking_modality_presencial:"Presencial", booking_modality_online:"Online",
     price_theme:"por constelar o teu tema", price_participate:"por participar", price_session1h:"sessão de 1 hora",
+    price_offer_label:"Grátis!",
+    offer_banner_text:"Ofereço-te a interpretação de um sonho (de preferência em áudio pelo WhatsApp). Dá uma boa vista de olhos à página — pode haver outras ofertas ativas neste momento.",
     booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidade habitual",
     availability_button:"Ver disponibilidade habitual",
     avail_yes:"Disponível das {start} às {end}.", avail_off:"Este dia normalmente não está disponível — escreve-me na mesma se precisares.",
@@ -1087,6 +1122,8 @@ const translations = {
     booking_service_opt5:"Tarot evolutiu", booking_service_opt6:"Interpretació de somnis",
     booking_modality:"Modalitat", booking_modality_presencial:"Presencial", booking_modality_online:"En línia",
     price_theme:"per constel·lar el teu tema", price_participate:"per participar", price_session1h:"sessió d'1 hora",
+    price_offer_label:"Gratuït!",
+    offer_banner_text:"Et regalo la interpretació d'un somni (millor en àudio per WhatsApp). Fes un bon cop d'ull a la pàgina — pot haver-hi altres ofertes actives en aquest moment.",
     booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilitat habitual",
     availability_button:"Veure disponibilitat habitual",
     avail_yes:"Disponible de {start} a {end}.", avail_off:"Aquest dia normalment no està disponible — escriu-me igualment si ho necessites.",
@@ -1151,23 +1188,27 @@ function weekdayKey(dateStr){
   return ['sun','mon','tue','wed','thu','fri','sat'][idx];
 }
 
+function priceText(key, amount){
+  return siteData.priceOffers[key] ? translations[currentLang].price_offer_label : (amount + ' €');
+}
+
 function renderPrices(){
   const p = siteData.prices;
   const t = translations[currentLang];
   const presLabel = t.booking_modality_presencial, onlineLabel = t.booking_modality_online;
   const ind = document.getElementById('priceIndividual');
-  if (ind) ind.innerHTML = `<strong>${presLabel}:</strong> ${p.indPres2h} € (2h) · ${p.indPres1h} € (1h) &nbsp;·&nbsp; <strong>${onlineLabel}:</strong> ${p.indOnline2h} € (2h) · ${p.indOnline1h} € (1h)`;
+  if (ind) ind.innerHTML = `<strong>${presLabel}:</strong> ${priceText('indPres2h',p.indPres2h)} (2h) · ${priceText('indPres1h',p.indPres1h)} (1h) &nbsp;·&nbsp; <strong>${onlineLabel}:</strong> ${priceText('indOnline2h',p.indOnline2h)} (2h) · ${priceText('indOnline1h',p.indOnline1h)} (1h)`;
   const grp = document.getElementById('priceGroup');
-  if (grp) grp.textContent = `${p.groupTheme} € ${t.price_theme} · ${p.groupParticipate} € ${t.price_participate}`;
+  if (grp) grp.textContent = `${priceText('groupTheme',p.groupTheme)} ${t.price_theme} · ${priceText('groupParticipate',p.groupParticipate)} ${t.price_participate}`;
   const fac = document.getElementById('priceFacilitator');
-  if (fac) fac.textContent = `${p.facilitator} €`;
+  if (fac) fac.textContent = priceText('facilitator', p.facilitator);
   const tar = document.getElementById('priceTarot');
-  if (tar) tar.textContent = `${p.tarot} € (${t.price_session1h})`;
+  if (tar) tar.textContent = priceText('tarot', p.tarot) + ' (' + t.price_session1h + ')';
   const drm = document.getElementById('priceDreams');
-  if (drm) drm.textContent = `${p.dreams} €`;
+  if (drm) drm.textContent = priceText('dreams', p.dreams);
   const extraEl = document.getElementById('extraServicesList');
   if (extraEl){
-    extraEl.innerHTML = siteData.extraPrices.map(x=>`<div class="extra-row"><span>${escapeHtml(x.label)}</span><strong>${x.amount} €</strong></div>`).join('');
+    extraEl.innerHTML = siteData.extraPrices.map(x=>`<div class="extra-row"><span>${escapeHtml(x.label)}</span><strong>${x.offer ? t.price_offer_label : x.amount + ' €'}</strong></div>`).join('');
   }
 }
 
@@ -1234,6 +1275,7 @@ function loadTextFields(){
   document.getElementById('txtTagMode1').value = translations[currentLang].about_tag_mode1 || '';
   document.getElementById('txtTagMode2').value = translations[currentLang].about_tag_mode2 || '';
   document.getElementById('txtTagLang').value = translations[currentLang].about_tag_lang || '';
+  document.getElementById('txtOfferBanner').value = translations[currentLang].offer_banner_text || '';
 }
 
 function applyLang(lang){
@@ -1343,7 +1385,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e)=>{
 // ---- Database online (Google Sheets + Apps Script) ----
 // I dati pubblici (eventi, disponibilità, prezzi, testi) vivono nel foglio Google.
 // Il PIN NON è scritto in questa pagina: lo verifica lo script sul server.
-const DB_URL = 'https://script.google.com/macros/s/AKfycbzYiApc93V6yjhI8RmkBX-rxBqsm3pF-9-p-4VlW1Z85xSTPFgmWgQWtYnMZpbJBPCr/exec';
+const DB_URL = 'https://script.google.com/macros/s/AKfycbxQzzlKEGLepzHYz37-GymNRSATKHwMDVNtghvX_849vHwHSUcecqA2QF1kfMHDA_hS/exec';
 const DB_APP = 'costellazioni';
 
 async function dbCall(payload){
@@ -1374,6 +1416,7 @@ function applySiteData(d){
     if (Array.isArray(d.availability.exceptions)) siteData.availability.exceptions = d.availability.exceptions;
   }
   if (d.prices) siteData.prices = Object.assign({}, siteData.prices, d.prices);
+  if (d.priceOffers) siteData.priceOffers = Object.assign({}, siteData.priceOffers, d.priceOffers);
   if (Array.isArray(d.extraPrices)) siteData.extraPrices = d.extraPrices;
   if (d.texts){
     siteData.texts = d.texts;
@@ -1537,15 +1580,32 @@ function renderAdminLists(){
   document.getElementById('pFacilitator').value = siteData.prices.facilitator;
   document.getElementById('pTarot').value = siteData.prices.tarot;
   document.getElementById('pDreams').value = siteData.prices.dreams;
+  document.getElementById('pIndPres2hFree').checked = !!siteData.priceOffers.indPres2h;
+  document.getElementById('pIndPres1hFree').checked = !!siteData.priceOffers.indPres1h;
+  document.getElementById('pIndOnline2hFree').checked = !!siteData.priceOffers.indOnline2h;
+  document.getElementById('pIndOnline1hFree').checked = !!siteData.priceOffers.indOnline1h;
+  document.getElementById('pGroupThemeFree').checked = !!siteData.priceOffers.groupTheme;
+  document.getElementById('pGroupParticipateFree').checked = !!siteData.priceOffers.groupParticipate;
+  document.getElementById('pFacilitatorFree').checked = !!siteData.priceOffers.facilitator;
+  document.getElementById('pTarotFree').checked = !!siteData.priceOffers.tarot;
+  document.getElementById('pDreamsFree').checked = !!siteData.priceOffers.dreams;
 
   const epList = document.getElementById('epList');
   epList.innerHTML = siteData.extraPrices.map(x=>`
     <div class="admin-row">
-      <span>${escapeHtml(x.label)} — ${x.amount} €</span>
-      <span class="admin-row-actions"><button data-del-ep="${x.id}">elimina</button></span>
+      <span>${escapeHtml(x.label)} — ${x.offer ? 'Gratis/oferta' : x.amount + ' €'}</span>
+      <span class="admin-row-actions">
+        <button data-toggle-ep="${x.id}">${x.offer ? 'togli offerta' : 'rendi gratis'}</button>
+        <button data-del-ep="${x.id}">elimina</button>
+      </span>
     </div>`).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessun servizio extra.</p>';
   epList.querySelectorAll('[data-del-ep]').forEach(b=>b.addEventListener('click', ()=>{
     siteData.extraPrices = siteData.extraPrices.filter(x=>x.id !== b.getAttribute('data-del-ep'));
+    renderAdminLists(); renderPrices(); markDirty();
+  }));
+  epList.querySelectorAll('[data-toggle-ep]').forEach(b=>b.addEventListener('click', ()=>{
+    const x = siteData.extraPrices.find(x=>x.id === b.getAttribute('data-toggle-ep'));
+    if (x) x.offer = !x.offer;
     renderAdminLists(); renderPrices(); markDirty();
   }));
 }
@@ -1553,10 +1613,12 @@ function renderAdminLists(){
 document.getElementById('epAdd').addEventListener('click', ()=>{
   const label = document.getElementById('epLabel').value.trim();
   const amount = Number(document.getElementById('epAmount').value);
-  if (!label || !amount) return;
-  siteData.extraPrices.push({ id: 'p'+Date.now(), label, amount });
+  const offer = document.getElementById('epFree').checked;
+  if (!label || (!amount && !offer)) return;
+  siteData.extraPrices.push({ id: 'p'+Date.now(), label, amount, offer });
   document.getElementById('epLabel').value = '';
   document.getElementById('epAmount').value = '';
+  document.getElementById('epFree').checked = false;
   renderAdminLists(); renderPrices(); markDirty();
 });
 
@@ -1572,7 +1634,8 @@ document.getElementById('txtSave').addEventListener('click', ()=>{
   const tagMode1 = document.getElementById('txtTagMode1').value;
   const tagMode2 = document.getElementById('txtTagMode2').value;
   const tagLang = document.getElementById('txtTagLang').value;
-  siteData.texts[currentLang] = { hero_kicker: kicker, hero_headline: headline, hero_subhead1: subhead1, hero_subhead2: subhead2, about_body1: about1, about_body2: about2, about_tag1: tag1, about_tag2: tag2, about_tag_mode1: tagMode1, about_tag_mode2: tagMode2, about_tag_lang: tagLang };
+  const offerBanner = document.getElementById('txtOfferBanner').value;
+  siteData.texts[currentLang] = { hero_kicker: kicker, hero_headline: headline, hero_subhead1: subhead1, hero_subhead2: subhead2, about_body1: about1, about_body2: about2, about_tag1: tag1, about_tag2: tag2, about_tag_mode1: tagMode1, about_tag_mode2: tagMode2, about_tag_lang: tagLang, offer_banner_text: offerBanner };
   Object.assign(translations[currentLang], siteData.texts[currentLang]);
   applyLang(currentLang);
   markDirty();
@@ -1595,7 +1658,8 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
     tag2: document.getElementById('txtTag2').value,
     tagMode1: document.getElementById('txtTagMode1').value,
     tagMode2: document.getElementById('txtTagMode2').value,
-    tagLang: document.getElementById('txtTagLang').value
+    tagLang: document.getElementById('txtTagLang').value,
+    offerBanner: document.getElementById('txtOfferBanner').value
   };
   // Salva subito anche la lingua corrente, come "Aggiorna testi"
   siteData.texts[currentLang] = {
@@ -1604,7 +1668,7 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
     about_body1: src.about1, about_body2: src.about2,
     about_tag1: src.tag1, about_tag2: src.tag2,
     about_tag_mode1: src.tagMode1, about_tag_mode2: src.tagMode2,
-    about_tag_lang: src.tagLang
+    about_tag_lang: src.tagLang, offer_banner_text: src.offerBanner
   };
   Object.assign(translations[currentLang], siteData.texts[currentLang]);
   applyLang(currentLang);
@@ -1621,7 +1685,7 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
     'Texto de origen (JSON):\n' + JSON.stringify(src, null, 2) + '\n\n' +
     'Responde SOLO con un objeto JSON con esta forma exacta (sin markdown ni texto adicional), ' +
     'usando únicamente estas claves de idioma: ' + targets.join(', ') + '.\n' +
-    '{ "' + targets[0] + '": {"kicker":"...","headline":"...","subhead1":"...","subhead2":"...","about1":"...","about2":"...","tag1":"...","tag2":"...","tagMode1":"...","tagMode2":"...","tagLang":"..."} }';
+    '{ "' + targets[0] + '": {"kicker":"...","headline":"...","subhead1":"...","subhead2":"...","about1":"...","about2":"...","tag1":"...","tag2":"...","tagMode1":"...","tagMode2":"...","tagLang":"...","offerBanner":"..."} }';
 
   try{
     const sample = window.claude && typeof window.claude.use === 'function' ? await window.claude.use('sample') : null;
@@ -1641,7 +1705,7 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
         about_body1: t.about1, about_body2: t.about2,
         about_tag1: t.tag1, about_tag2: t.tag2,
         about_tag_mode1: t.tagMode1, about_tag_mode2: t.tagMode2,
-        about_tag_lang: t.tagLang
+        about_tag_lang: t.tagLang, offer_banner_text: t.offerBanner
       };
       if (translations[lang]){ Object.assign(translations[lang], siteData.texts[lang]); count++; }
     });
@@ -1700,6 +1764,17 @@ document.getElementById('priceSave').addEventListener('click', ()=>{
     tarot: Number(document.getElementById('pTarot').value)||0,
     dreams: Number(document.getElementById('pDreams').value)||0
   };
+  siteData.priceOffers = {
+    indPres2h: document.getElementById('pIndPres2hFree').checked,
+    indPres1h: document.getElementById('pIndPres1hFree').checked,
+    indOnline2h: document.getElementById('pIndOnline2hFree').checked,
+    indOnline1h: document.getElementById('pIndOnline1hFree').checked,
+    groupTheme: document.getElementById('pGroupThemeFree').checked,
+    groupParticipate: document.getElementById('pGroupParticipateFree').checked,
+    facilitator: document.getElementById('pFacilitatorFree').checked,
+    tarot: document.getElementById('pTarotFree').checked,
+    dreams: document.getElementById('pDreamsFree').checked
+  };
   renderPrices();
   markDirty();
   document.getElementById('adminStatus').textContent = 'Prezzi aggiornati localmente — ricordati di premere "Salva e pubblica" per renderli pubblici.';
@@ -1707,7 +1782,7 @@ document.getElementById('priceSave').addEventListener('click', ()=>{
 
 document.getElementById('dataExport').addEventListener('click', ()=>{
   const statusEl = document.getElementById('importStatus');
-  const json = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, extraPrices: siteData.extraPrices, texts: siteData.texts}, null, 2);
+  const json = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, priceOffers: siteData.priceOffers, extraPrices: siteData.extraPrices, texts: siteData.texts}, null, 2);
   try{
     const blob = new Blob([json], { type: 'application/json' });
     const a = document.createElement('a');
@@ -1737,6 +1812,7 @@ document.getElementById('dataImport').addEventListener('change', (e)=>{
         if (Array.isArray(parsed.availability.exceptions)) siteData.availability.exceptions = parsed.availability.exceptions;
       }
       if (parsed.prices) siteData.prices = Object.assign({}, siteData.prices, parsed.prices);
+      if (parsed.priceOffers) siteData.priceOffers = Object.assign({}, siteData.priceOffers, parsed.priceOffers);
       if (Array.isArray(parsed.extraPrices)) siteData.extraPrices = parsed.extraPrices;
       if (parsed.texts){
         siteData.texts = parsed.texts;
@@ -1760,7 +1836,7 @@ document.getElementById('adminPublish').addEventListener('click', async ()=>{
   statusEl.textContent = 'Salvataggio online in corso…';
   btn.disabled = true;
   try{
-    const full = {events: siteData.events, availability: siteData.availability, prices: siteData.prices, extraPrices: siteData.extraPrices, texts: siteData.texts};
+    const full = {events: siteData.events, availability: siteData.availability, prices: siteData.prices, priceOffers: siteData.priceOffers, extraPrices: siteData.extraPrices, texts: siteData.texts};
     // Versione pubblica: senza le note private delle eccezioni (es. nomi dei clienti)
     const pub = JSON.parse(JSON.stringify(full));
     pub.availability.exceptions = pub.availability.exceptions.map(x => { const c = Object.assign({}, x); delete c.note; return c; });
