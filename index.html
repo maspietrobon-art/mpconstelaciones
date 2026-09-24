@@ -110,6 +110,8 @@
   .admin-panel-inner{padding:18px 24px;}
   .admin-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
   .admin-head strong{font-size:14px; letter-spacing:0.3px;}
+  .sheet-link{display:inline-block; margin-bottom:14px; font-size:13px; color:#F3E3C4; text-decoration:underline;}
+  .sheet-link:hover{color:#fff;}
   .dirty-banner{background:rgba(201,154,69,0.18); border:1px solid var(--gold); color:#F3E3C4; font-size:13px; padding:10px 14px; border-radius:6px; margin-bottom:14px;}
   .admin-grid{display:grid; grid-template-columns:1fr; gap:18px;}
   @media(min-width:800px){ .admin-grid{grid-template-columns:1fr 1fr;} }
@@ -358,6 +360,7 @@
       <strong>Area privata — gestione pagina</strong>
       <button id="adminExit" class="btn btn-line" type="button">✕ Chiudi sezione privata</button>
     </div>
+    <a href="https://docs.google.com/spreadsheets/d/1Xy4agHeLcWp-MA6yA5UokR8hukDvrL1TTuq0rn2vtVs/edit?gid=0#gid=0" target="_blank" rel="noopener" class="sheet-link">📊 Apri il foglio Google (database del sito)</a>
     <p id="dirtyBanner" class="dirty-banner" hidden>⚠ Hai modifiche non ancora pubblicate — se chiudi la pagina senza premere "Salva e pubblica" andranno perse.</p>
 
     <div class="admin-grid">
