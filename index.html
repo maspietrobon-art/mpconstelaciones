@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Massimo Pietrobon — Constelaciones Familiares Barcelona</title>
-<meta name="description" content="Massimo Pietrobon, terapeuta y facilitador de constelaciones familiares, tarot evolutivo e interpretación de sueños en Barcelona. Sesiones en español, italiano, inglés, francés, portugués y catalán.">
+<title>Massimo Pietrobon — Constelaciones familiares en Rubí y Barcelona</title>
+<meta name="description" content="Massimo Pietrobon, terapeuta sistémico y facilitador de constelaciones familiares, tarot evolutivo e interpretación de sueños en Rubí y Barcelona. Sesiones en español, italiano, inglés, francés, portugués y catalán.">
 <meta name="language" content="es, it, en, fr, pt, ca">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -235,6 +235,7 @@
   .service-sub:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(15,36,64,0.10);}
   .service-sub h3{font-size:19px; margin-bottom:10px; color:var(--navy-deep);}
   .service-sub p{color:var(--ink-muted); font-size:15px; margin:0;}
+  .price-offer{color:var(--gold-deep); font-weight:600;}
   .extra-services{margin-top:20px; display:flex; flex-direction:column; gap:8px;}
   .extra-services .extra-row{display:flex; justify-content:space-between; gap:12px; font-size:15px; border-top:1px solid var(--line); padding-top:10px;}
   .extra-services .extra-row strong{color:var(--gold-deep); font-weight:600;}
@@ -413,6 +414,15 @@
       </div>
 
       <div class="admin-card">
+        <h4>📧 Avisar a tu mailing list</h4>
+        <p style="font-size:11px; color:#8DA0BB; margin-top:-4px;">Manda un unico avviso email a tutti gli iscritti alla newsletter, su un evento a tua scelta.</p>
+        <label>Evento da comunicare</label>
+        <select id="mlEventSelect"></select>
+        <button id="mlSend" class="btn btn-solid" type="button" style="margin-top:8px;">Invia avviso alla mailing list</button>
+        <p id="mlStatus" style="font-size:12px; color:#D9C48A; margin-top:8px;"></p>
+      </div>
+
+      <div class="admin-card">
         <h4>Disponibilità settimanale</h4>
         <div id="weeklyGrid" class="weekly-grid"></div>
         <p style="font-size:11.5px; color:#8DA0BB; margin-top:8px;">Questi orari valgono ogni settimana. Usa le eccezioni qui sotto per singoli giorni diversi.</p>
@@ -438,25 +448,25 @@
 
       <div class="admin-card">
         <h4>Prezzi dei servizi (€)</h4>
-        <p style="font-size:11px; color:#8DA0BB; margin-top:-4px;">Spunta "Gratis/oferta" per mostrare un'offerta invece del prezzo (il numero resta salvato per quando la disattivi).</p>
+        <p style="font-size:11px; color:#8DA0BB; margin-top:-4px;">Spunta "1ª consulta gratuita" per far comparire, accanto al prezzo, l'avviso "¡Primera consulta gratis!" (tradotto in tutte le lingue).</p>
         <div class="two-col">
-          <div><label>Individuale presencial 2h</label><input type="number" id="pIndPres2h"><label class="offer-check"><input type="checkbox" id="pIndPres2hFree"> Gratis/oferta</label></div>
-          <div><label>Individuale presencial 1h</label><input type="number" id="pIndPres1h"><label class="offer-check"><input type="checkbox" id="pIndPres1hFree"> Gratis/oferta</label></div>
+          <div><label>Individuale presencial 2h</label><input type="number" id="pIndPres2h"><label class="offer-check"><input type="checkbox" id="pIndPres2hFree"> 1ª consulta gratuita</label></div>
+          <div><label>Individuale presencial 1h</label><input type="number" id="pIndPres1h"><label class="offer-check"><input type="checkbox" id="pIndPres1hFree"> 1ª consulta gratuita</label></div>
         </div>
         <div class="two-col">
-          <div><label>Individuale online 2h</label><input type="number" id="pIndOnline2h"><label class="offer-check"><input type="checkbox" id="pIndOnline2hFree"> Gratis/oferta</label></div>
-          <div><label>Individuale online 1h</label><input type="number" id="pIndOnline1h"><label class="offer-check"><input type="checkbox" id="pIndOnline1hFree"> Gratis/oferta</label></div>
+          <div><label>Individuale online 2h</label><input type="number" id="pIndOnline2h"><label class="offer-check"><input type="checkbox" id="pIndOnline2hFree"> 1ª consulta gratuita</label></div>
+          <div><label>Individuale online 1h</label><input type="number" id="pIndOnline1h"><label class="offer-check"><input type="checkbox" id="pIndOnline1hFree"> 1ª consulta gratuita</label></div>
         </div>
         <div class="two-col">
-          <div><label>Grupo — constelar tema</label><input type="number" id="pGroupTheme"><label class="offer-check"><input type="checkbox" id="pGroupThemeFree"> Gratis/oferta</label></div>
-          <div><label>Grupo — participar</label><input type="number" id="pGroupParticipate"><label class="offer-check"><input type="checkbox" id="pGroupParticipateFree"> Gratis/oferta</label></div>
+          <div><label>Grupo — constelar tema</label><input type="number" id="pGroupTheme"><label class="offer-check"><input type="checkbox" id="pGroupThemeFree"> 1ª consulta gratuita</label></div>
+          <div><label>Grupo — participar</label><input type="number" id="pGroupParticipate"><label class="offer-check"><input type="checkbox" id="pGroupParticipateFree"> 1ª consulta gratuita</label></div>
         </div>
         <div class="two-col">
-          <div><label>Constelador para tu grupo</label><input type="number" id="pFacilitator"><label class="offer-check"><input type="checkbox" id="pFacilitatorFree"> Gratis/oferta</label></div>
-          <div><label>Tarot evolutivo (1h)</label><input type="number" id="pTarot"><label class="offer-check"><input type="checkbox" id="pTarotFree"> Gratis/oferta</label></div>
+          <div><label>Constelador para tu grupo</label><input type="number" id="pFacilitator"><label class="offer-check"><input type="checkbox" id="pFacilitatorFree"> 1ª consulta gratuita</label></div>
+          <div><label>Tarot evolutivo (1h)</label><input type="number" id="pTarot"><label class="offer-check"><input type="checkbox" id="pTarotFree"> 1ª consulta gratuita</label></div>
         </div>
         <div>
-          <label>Interpretación de sueños</label><input type="number" id="pDreams"><label class="offer-check"><input type="checkbox" id="pDreamsFree"> Gratis/oferta</label>
+          <label>Interpretación de sueños</label><input type="number" id="pDreams"><label class="offer-check"><input type="checkbox" id="pDreamsFree"> 1ª consulta gratuita</label>
         </div>
         <button id="priceSave" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiorna prezzi</button>
 
@@ -465,7 +475,7 @@
           <div><label>Nome servizio</label><input type="text" id="epLabel" placeholder="Es. Sesión de seguimiento"></div>
           <div><label>Prezzo (€)</label><input type="number" id="epAmount"></div>
         </div>
-        <label class="offer-check"><input type="checkbox" id="epFree"> Gratis/oferta (invece del prezzo)</label>
+        <label class="offer-check"><input type="checkbox" id="epFree"> 1ª consulta gratuita (accanto al prezzo)</label>
         <button id="epAdd" class="btn btn-line" type="button" style="margin-top:8px;">Aggiungi servizio</button>
         <div id="epList" class="admin-list"></div>
       </div>
@@ -493,7 +503,7 @@
     <div class="wrap hero-grid">
       <div>
         <p class="kicker" data-i18n="hero_kicker">Lo que no se nombra, se repite.</p>
-        <h1 data-i18n="hero_headline">Constelaciones familiares y sistémicas en Barcelona</h1>
+        <h1 data-i18n="hero_headline">Constelaciones familiares en Rubí y Barcelona</h1>
         <p class="lead" data-i18n="hero_subhead1">Soy Massimo Pietrobon, facilitador de constelaciones familiares y sistémicas desde hace más de diez años. He acompañado a cientos de personas en procesos individuales y grupales, presenciales y online, en seis idiomas.</p>
         <p class="lead" data-i18n="hero_subhead2">Para mí, una constelación es un espacio para mirar en profundidad lo que condiciona nuestra vida, reconocer vínculos y lealtades inconscientes y encontrar un nuevo orden interno. Acompaño cada proceso con presencia, respeto y confianza en las capacidades de cada persona. Un trabajo profundo y transformador que, al mismo tiempo, puede ser sencillo y profundamente humano.</p>
         <div class="cta-row">
@@ -537,7 +547,7 @@
       <p class="about-lede" data-i18n="about_body1">Soy italiano, de Venecia, y he vivido en diferentes lugares de Europa, África y Sudamérica. Conocí las constelaciones familiares en Brasil, y desde entonces llevo más de una década profundizando en este trabajo, tanto a través de la formación como de la experiencia con cientos de personas. En Barcelona continué mi formación con el profesor mexicano Vicente Méndez.</p>
       <p class="about-lede" data-i18n="about_body2">Mi recorrido personal, entre culturas, lenguas y países, ha ampliado también mi manera de mirar al ser humano. Acompañar no significa decirte hacia dónde ir, sino ayudarte a mirar con más claridad para que puedas encontrar tu propia dirección.</p>
       <div class="about-tags">
-        <span class="tag" data-i18n="about_tag1">Terapeuta y tarólogo</span>
+        <span class="tag" data-i18n="about_tag1">Terapeuta sistémico</span>
         <span class="tag" data-i18n="about_tag2">Cientos de sesiones facilitadas</span>
         <span class="tag" data-i18n="about_tag_mode1">Sesiones presenciales y online</span>
         <span class="tag" data-i18n="about_tag_mode2">Sesiones grupales e individuales</span>
@@ -729,7 +739,7 @@
     <div class="wrap">
       <div class="offer-banner">
         <span class="offer-icon">🎁</span>
-        <p data-i18n="offer_banner_text">Como parte de este camino que compartimos, a veces regalo la interpretación de un sueño. Vale la pena volver a mirar esta página de vez en cuando — puede haber otras ofertas activas en este momento.</p>
+        <p data-i18n="offer_banner_text">Como parte de este camino que compartimos, te regalo una primera interpretación de un sueño. Descríbeme tu sueño y te daré mi interpretación. Además, mira esta página de vez en cuando — puede haber otras ofertas activas en este momento.</p>
       </div>
     </div>
   </section>
@@ -752,7 +762,7 @@
   </div>
 </footer>
 
-<script type="application/json" id="site-data">{"events":[],"availability":{"weekly":{"mon":{"enabled":true,"start":"17:00","end":"19:00"},"tue":{"enabled":true,"start":"17:00","end":"19:00"},"wed":{"enabled":true,"start":"17:00","end":"19:00"},"thu":{"enabled":true,"start":"17:00","end":"19:00"},"fri":{"enabled":true,"start":"15:30","end":"19:00"},"sat":{"enabled":true,"start":"10:00","end":"19:00"},"sun":{"enabled":true,"start":"10:00","end":"19:00"}},"exceptions":[]},"prices":{"indPres2h":80,"indPres1h":60,"indOnline2h":70,"indOnline1h":50,"groupTheme":40,"groupParticipate":15,"facilitator":120,"tarot":50,"dreams":25},"priceOffers":{},"extraPrices":[],"texts":{}}</script>
+<script type="application/json" id="site-data">{"events":[],"availability":{"weekly":{"mon":{"enabled":true,"start":"17:00","end":"19:00"},"tue":{"enabled":true,"start":"17:00","end":"19:00"},"wed":{"enabled":true,"start":"17:00","end":"19:00"},"thu":{"enabled":true,"start":"17:00","end":"19:00"},"fri":{"enabled":true,"start":"15:30","end":"19:00"},"sat":{"enabled":true,"start":"10:00","end":"19:00"},"sun":{"enabled":true,"start":"10:00","end":"19:00"}},"exceptions":[]},"prices":{"indPres2h":80,"indPres1h":60,"indOnline2h":70,"indOnline1h":50,"groupTheme":40,"groupParticipate":15,"facilitator":120,"tarot":50,"dreams":25},"priceOffers":{"dreams":true},"extraPrices":[],"texts":{},"textsVersion":2}</script>
 
 <script>
 let siteData;
@@ -781,14 +791,14 @@ const translations = {
   es: {
     nav_about:"Sobre mí", nav_services:"Servicios", nav_sessions:"Sesiones", nav_book:"Reservar", nav_contact:"Contacto",
     hero_kicker:"Lo que no se nombra, se repite.",
-    hero_headline:"Constelaciones familiares y sistémicas en Barcelona",
+    hero_headline:"Constelaciones familiares en Rubí y Barcelona",
     hero_subhead1:"Soy Massimo Pietrobon, facilitador de constelaciones familiares y sistémicas desde hace más de diez años. He acompañado a cientos de personas en procesos individuales y grupales, presenciales y online, en seis idiomas.",
     hero_subhead2:"Para mí, una constelación es un espacio para mirar en profundidad lo que condiciona nuestra vida, reconocer vínculos y lealtades inconscientes y encontrar un nuevo orden interno. Acompaño cada proceso con presencia, respeto y confianza en las capacidades de cada persona. Un trabajo profundo y transformador que, al mismo tiempo, puede ser sencillo y profundamente humano.",
     hero_cta_book:"Reservar una sesión", hero_cta_whatsapp:"Escribir por WhatsApp",
     about_eyebrow:"Sobre mí",
     about_body1:"Soy italiano, de Venecia, y he vivido en diferentes lugares de Europa, África y Sudamérica. Conocí las constelaciones familiares en Brasil, y desde entonces llevo más de una década profundizando en este trabajo, tanto a través de la formación como de la experiencia con cientos de personas. En Barcelona continué mi formación con el profesor mexicano Vicente Méndez.",
     about_body2:"Mi recorrido personal, entre culturas, lenguas y países, ha ampliado también mi manera de mirar al ser humano. Acompañar no significa decirte hacia dónde ir, sino ayudarte a mirar con más claridad para que puedas encontrar tu propia dirección.",
-    about_tag1:"Terapeuta y tarólogo", about_tag2:"Cientos de sesiones facilitadas",
+    about_tag1:"Terapeuta sistémico", about_tag2:"Cientos de sesiones facilitadas",
     about_tag_mode1:"Sesiones presenciales y online", about_tag_mode2:"Sesiones grupales e individuales",
     about_tag_lang:"Terapia en español, italiano, inglés, francés, portugués y catalán",
     about_location:"Zona metropolitana de Barcelona",
@@ -822,8 +832,8 @@ const translations = {
     booking_service_opt5:"Tarot evolutivo", booking_service_opt6:"Interpretación de sueños",
     booking_modality:"Modalidad", booking_modality_presencial:"Presencial", booking_modality_online:"Online",
     price_theme:"por constelar tu tema", price_participate:"por participar", price_session1h:"sesión de 1 hora",
-    price_offer_label:"¡Gratis!",
-    offer_banner_text:"Como parte de este camino que compartimos, a veces regalo la interpretación de un sueño. Vale la pena volver a mirar esta página de vez en cuando — puede haber otras ofertas activas en este momento.",
+    price_offer_label:"¡Primera consulta gratis!",
+    offer_banner_text:"Como parte de este camino que compartimos, te regalo una primera interpretación de un sueño. Descríbeme tu sueño y te daré mi interpretación. Además, mira esta página de vez en cuando — puede haber otras ofertas activas en este momento.",
     booking_date:"Fecha preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidad habitual",
     availability_button:"Ver disponibilidad habitual",
     avail_yes:"Disponible de {start} a {end}.", avail_off:"Ese día no suele estar disponible — escríbeme igualmente si lo necesitas.",
@@ -842,14 +852,14 @@ const translations = {
   it: {
     nav_about:"Chi sono", nav_services:"Servizi", nav_sessions:"Sessioni", nav_book:"Prenota", nav_contact:"Contatti",
     hero_kicker:"Ciò che non si nomina, si ripete.",
-    hero_headline:"Costellazioni familiari e sistemiche a Barcellona",
+    hero_headline:"Costellazioni familiari a Rubí e Barcellona",
     hero_subhead1:"Sono Massimo Pietrobon, facilitatore di costellazioni familiari e sistemiche da oltre dieci anni. Ho accompagnato centinaia di persone in percorsi individuali e di gruppo, in presenza e online, in sei lingue.",
     hero_subhead2:"Per me, una costellazione è uno spazio per guardare in profondità ciò che condiziona la nostra vita, riconoscere legami e lealtà inconsce e trovare un nuovo ordine interno. Accompagno ogni percorso con presenza, rispetto e fiducia nelle capacità di ogni persona. Un lavoro profondo e trasformativo che, allo stesso tempo, può essere semplice e profondamente umano.",
     hero_cta_book:"Prenota una sessione", hero_cta_whatsapp:"Scrivi su WhatsApp",
     about_eyebrow:"Chi sono",
     about_body1:"Sono italiano, di Venezia, e ho vissuto in diversi luoghi d'Europa, Africa e Sudamerica. Ho conosciuto le costellazioni familiari in Brasile, e da allora sono oltre dieci anni che approfondisco questo lavoro, sia attraverso la formazione sia attraverso l'esperienza con centinaia di persone. A Barcellona ho proseguito la mia formazione con il professore messicano Vicente Méndez.",
     about_body2:"Il mio percorso personale, tra culture, lingue e paesi, ha ampliato anche il mio modo di guardare l'essere umano. Accompagnare non significa dirti dove andare, ma aiutarti a guardare con più chiarezza affinché tu possa trovare la tua propria direzione.",
-    about_tag1:"Terapeuta e tarologo", about_tag2:"Centinaia di sessioni condotte",
+    about_tag1:"Terapeuta sistemico", about_tag2:"Centinaia di sessioni condotte",
     about_tag_mode1:"Sessioni in presenza e online", about_tag_mode2:"Sessioni di gruppo e individuali",
     about_tag_lang:"Terapia in spagnolo, italiano, inglese, francese, portoghese e catalano",
     about_location:"Area metropolitana di Barcellona",
@@ -883,8 +893,8 @@ const translations = {
     booking_service_opt5:"Tarocchi evolutivi", booking_service_opt6:"Interpretazione dei sogni",
     booking_modality:"Modalità", booking_modality_presencial:"In presenza", booking_modality_online:"Online",
     price_theme:"per costellare il tuo tema", price_participate:"per partecipare", price_session1h:"sessione di 1 ora",
-    price_offer_label:"Gratis!",
-    offer_banner_text:"Come parte di questo cammino che condividiamo, a volte regalo l'interpretazione di un sogno. Vale la pena tornare a guardare questa pagina di tanto in tanto — potrebbero esserci altre offerte attive in questo momento.",
+    price_offer_label:"Prima consulenza gratis!",
+    offer_banner_text:"Come parte di questo cammino che condividiamo, ti regalo una prima interpretazione di un sogno. Descrivimi il tuo sogno e ti darò la mia interpretazione. Inoltre, dai un'occhiata a questa pagina di tanto in tanto — potrebbero esserci altre offerte attive in questo momento.",
     booking_date:"Data preferita", booking_time:"Ora preferita", weekly_summary_title:"Disponibilità abituale",
     availability_button:"Vedi disponibilità abituale",
     avail_yes:"Disponibile dalle {start} alle {end}.", avail_off:"Questo giorno di solito non è disponibile — scrivimi comunque se ti serve.",
@@ -903,14 +913,14 @@ const translations = {
   en: {
     nav_about:"About", nav_services:"Services", nav_sessions:"Sessions", nav_book:"Book", nav_contact:"Contact",
     hero_kicker:"What isn't named repeats itself.",
-    hero_headline:"Family and systemic constellations in Barcelona",
+    hero_headline:"Family constellations in Rubí and Barcelona",
     hero_subhead1:"I'm Massimo Pietrobon, a facilitator of family and systemic constellations for over ten years. I have accompanied hundreds of people through individual and group processes, in person and online, in six languages.",
     hero_subhead2:"To me, a constellation is a space to look deeply at what shapes our life, recognise unconscious bonds and loyalties, and find a new inner order. I accompany each process with presence, respect and trust in each person's own capacities. Deep, transformative work that can, at the same time, be simple and deeply human.",
     hero_cta_book:"Book a session", hero_cta_whatsapp:"Message on WhatsApp",
     about_eyebrow:"About",
     about_body1:"I'm Italian, from Venice, and I've lived in different places across Europe, Africa and South America. I first encountered family constellations in Brazil, and since then I've spent over a decade deepening this work, both through training and through experience with hundreds of people. In Barcelona I continued my training with the Mexican teacher Vicente Méndez.",
     about_body2:"My personal journey, between cultures, languages and countries, has also broadened the way I see human beings. Accompanying doesn't mean telling you where to go, but helping you see more clearly so you can find your own direction.",
-    about_tag1:"Therapist and tarot reader", about_tag2:"Hundreds of sessions facilitated",
+    about_tag1:"Systemic therapist", about_tag2:"Hundreds of sessions facilitated",
     about_tag_mode1:"In-person and online sessions", about_tag_mode2:"Group and individual sessions",
     about_tag_lang:"Sessions in Spanish, Italian, English, French, Portuguese and Catalan",
     about_location:"Barcelona metropolitan area",
@@ -944,8 +954,8 @@ const translations = {
     booking_service_opt5:"Evolutionary tarot", booking_service_opt6:"Dream interpretation",
     booking_modality:"Format", booking_modality_presencial:"In person", booking_modality_online:"Online",
     price_theme:"to constellate your theme", price_participate:"to take part", price_session1h:"1-hour session",
-    price_offer_label:"Free!",
-    offer_banner_text:"As part of this path we share, I sometimes gift a dream interpretation. It's worth checking back on this page from time to time — there may be other offers active right now.",
+    price_offer_label:"First consultation free!",
+    offer_banner_text:"As part of this path we share, I'm gifting you a first dream interpretation. Describe your dream to me and I'll give you my interpretation. Also, check back on this page from time to time — there may be other offers active right now.",
     booking_date:"Preferred date", booking_time:"Preferred time", weekly_summary_title:"Usual availability",
     availability_button:"View usual availability",
     avail_yes:"Available from {start} to {end}.", avail_off:"That day isn't usually available — write to me anyway if you need it.",
@@ -964,14 +974,14 @@ const translations = {
   fr: {
     nav_about:"À propos", nav_services:"Services", nav_sessions:"Séances", nav_book:"Réserver", nav_contact:"Contact",
     hero_kicker:"Ce qui n'est pas nommé se répète.",
-    hero_headline:"Constellations familiales et systémiques à Barcelone",
+    hero_headline:"Constellations familiales à Rubí et Barcelone",
     hero_subhead1:"Je suis Massimo Pietrobon, facilitateur de constellations familiales et systémiques depuis plus de dix ans. J'ai accompagné des centaines de personnes dans des processus individuels et de groupe, en présentiel et en ligne, en six langues.",
     hero_subhead2:"Pour moi, une constellation est un espace pour regarder en profondeur ce qui conditionne notre vie, reconnaître des liens et des loyautés inconscientes, et trouver un nouvel ordre intérieur. J'accompagne chaque processus avec présence, respect et confiance dans les capacités de chaque personne. Un travail profond et transformateur qui peut, en même temps, être simple et profondément humain.",
     hero_cta_book:"Réserver une séance", hero_cta_whatsapp:"Écrire sur WhatsApp",
     about_eyebrow:"À propos",
     about_body1:"Je suis italien, de Venise, et j'ai vécu dans différents endroits d'Europe, d'Afrique et d'Amérique du Sud. J'ai découvert les constellations familiales au Brésil, et depuis plus d'une décennie j'approfondis ce travail, à la fois par la formation et par l'expérience auprès de centaines de personnes. À Barcelone, j'ai poursuivi ma formation avec le professeur mexicain Vicente Méndez.",
     about_body2:"Mon parcours personnel, entre cultures, langues et pays, a aussi élargi ma façon de regarder l'être humain. Accompagner ne signifie pas te dire où aller, mais t'aider à voir plus clairement pour que tu puisses trouver ta propre route.",
-    about_tag1:"Thérapeute et tarologue", about_tag2:"Des centaines de séances animées",
+    about_tag1:"Thérapeute systémique", about_tag2:"Des centaines de séances animées",
     about_tag_mode1:"Séances en présentiel et en ligne", about_tag_mode2:"Séances de groupe et individuelles",
     about_tag_lang:"Séances en espagnol, italien, anglais, français, portugais et catalan",
     about_location:"Région métropolitaine de Barcelone",
@@ -1005,8 +1015,8 @@ const translations = {
     booking_service_opt5:"Tarot évolutif", booking_service_opt6:"Interprétation des rêves",
     booking_modality:"Modalité", booking_modality_presencial:"En présentiel", booking_modality_online:"En ligne",
     price_theme:"pour constellater ton thème", price_participate:"pour participer", price_session1h:"séance d'1 heure",
-    price_offer_label:"Gratuit !",
-    offer_banner_text:"Dans le cadre de ce chemin que nous partageons, il m'arrive d'offrir l'interprétation d'un rêve. Ça vaut la peine de revenir jeter un œil à cette page de temps en temps — il peut y avoir d'autres offres actives en ce moment.",
+    price_offer_label:"Première consultation gratuite !",
+    offer_banner_text:"Dans le cadre de ce chemin que nous partageons, je t'offre une première interprétation de rêve. Décris-moi ton rêve et je te donnerai mon interprétation. Et reviens jeter un œil à cette page de temps en temps — il peut y avoir d'autres offres actives en ce moment.",
     booking_date:"Date préférée", booking_time:"Heure préférée", weekly_summary_title:"Disponibilité habituelle",
     availability_button:"Voir la disponibilité habituelle",
     avail_yes:"Disponible de {start} à {end}.", avail_off:"Ce jour n'est habituellement pas disponible — écris-moi quand même si besoin.",
@@ -1025,14 +1035,14 @@ const translations = {
   pt: {
     nav_about:"Sobre mim", nav_services:"Serviços", nav_sessions:"Sessões", nav_book:"Reservar", nav_contact:"Contacto",
     hero_kicker:"O que não se nomeia, repete-se.",
-    hero_headline:"Constelações familiares e sistémicas em Barcelona",
+    hero_headline:"Constelações familiares em Rubí e Barcelona",
     hero_subhead1:"Sou o Massimo Pietrobon, facilitador de constelações familiares e sistémicas há mais de dez anos. Já acompanhei centenas de pessoas em processos individuais e de grupo, presenciais e online, em seis idiomas.",
     hero_subhead2:"Para mim, uma constelação é um espaço para olhar em profundidade o que condiciona a nossa vida, reconhecer vínculos e lealdades inconscientes e encontrar uma nova ordem interna. Acompanho cada processo com presença, respeito e confiança nas capacidades de cada pessoa. Um trabalho profundo e transformador que, ao mesmo tempo, pode ser simples e profundamente humano.",
     hero_cta_book:"Reservar uma sessão", hero_cta_whatsapp:"Escrever no WhatsApp",
     about_eyebrow:"Sobre mim",
     about_body1:"Sou italiano, de Veneza, e vivi em diferentes lugares da Europa, África e América do Sul. Conheci as constelações familiares no Brasil, e desde então já são mais de dez anos a aprofundar este trabalho, tanto através da formação como da experiência com centenas de pessoas. Em Barcelona continuei a minha formação com o professor mexicano Vicente Méndez.",
     about_body2:"O meu percurso pessoal, entre culturas, línguas e países, ampliou também a minha forma de olhar para o ser humano. Acompanhar não significa dizer-te para onde ir, mas ajudar-te a ver com mais clareza para que possas encontrar o teu próprio caminho.",
-    about_tag1:"Terapeuta e tarólogo", about_tag2:"Centenas de sessões facilitadas",
+    about_tag1:"Terapeuta sistémico", about_tag2:"Centenas de sessões facilitadas",
     about_tag_mode1:"Sessões presenciais e online", about_tag_mode2:"Sessões em grupo e individuais",
     about_tag_lang:"Sessões em espanhol, italiano, inglês, francês, português e catalão",
     about_location:"Área metropolitana de Barcelona",
@@ -1066,8 +1076,8 @@ const translations = {
     booking_service_opt5:"Tarot evolutivo", booking_service_opt6:"Interpretação de sonhos",
     booking_modality:"Modalidade", booking_modality_presencial:"Presencial", booking_modality_online:"Online",
     price_theme:"por constelar o teu tema", price_participate:"por participar", price_session1h:"sessão de 1 hora",
-    price_offer_label:"Grátis!",
-    offer_banner_text:"Como parte deste caminho que partilhamos, às vezes ofereço a interpretação de um sonho. Vale a pena voltar a esta página de vez em quando — pode haver outras ofertas ativas neste momento.",
+    price_offer_label:"Primeira consulta grátis!",
+    offer_banner_text:"Como parte deste caminho que partilhamos, ofereço-te uma primeira interpretação de um sonho. Descreve-me o teu sonho e dar-te-ei a minha interpretação. Além disso, volta a esta página de vez em quando — pode haver outras ofertas ativas neste momento.",
     booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidade habitual",
     availability_button:"Ver disponibilidade habitual",
     avail_yes:"Disponível das {start} às {end}.", avail_off:"Este dia normalmente não está disponível — escreve-me na mesma se precisares.",
@@ -1086,14 +1096,14 @@ const translations = {
   ca: {
     nav_about:"Sobre mi", nav_services:"Serveis", nav_sessions:"Sessions", nav_book:"Reservar", nav_contact:"Contacte",
     hero_kicker:"El que no es nomena, es repeteix.",
-    hero_headline:"Constel·lacions familiars i sistèmiques a Barcelona",
+    hero_headline:"Constel·lacions familiars a Rubí i Barcelona",
     hero_subhead1:"Sóc en Massimo Pietrobon, facilitador de constel·lacions familiars i sistèmiques des de fa més de deu anys. He acompanyat centenars de persones en processos individuals i grupals, presencials i en línia, en sis idiomes.",
     hero_subhead2:"Per a mi, una constel·lació és un espai per mirar en profunditat allò que condiciona la nostra vida, reconèixer vincles i lleialtats inconscients i trobar un nou ordre intern. Acompanyo cada procés amb presència, respecte i confiança en les capacitats de cada persona. Un treball profund i transformador que, alhora, pot ser senzill i profundament humà.",
     hero_cta_book:"Reservar una sessió", hero_cta_whatsapp:"Escriure per WhatsApp",
     about_eyebrow:"Sobre mi",
     about_body1:"Sóc italià, de Venècia, i he viscut en diferents llocs d'Europa, Àfrica i Sud-amèrica. Vaig conèixer les constel·lacions familiars al Brasil, i des de llavors fa més d'una dècada que aprofundeixo en aquest treball, tant a través de la formació com de l'experiència amb centenars de persones. A Barcelona vaig continuar la meva formació amb el professor mexicà Vicente Méndez.",
     about_body2:"El meu recorregut personal, entre cultures, llengües i països, ha ampliat també la meva manera de mirar l'ésser humà. Acompanyar no significa dir-te cap a on anar, sinó ajudar-te a mirar amb més claredat perquè puguis trobar la teva pròpia direcció.",
-    about_tag1:"Terapeuta i taròleg", about_tag2:"Centenars de sessions facilitades",
+    about_tag1:"Terapeuta sistèmic", about_tag2:"Centenars de sessions facilitades",
     about_tag_mode1:"Sessions presencials i en línia", about_tag_mode2:"Sessions grupals i individuals",
     about_tag_lang:"Sessions en espanyol, italià, anglès, francès, portuguès i català",
     about_location:"Àrea metropolitana de Barcelona",
@@ -1127,8 +1137,8 @@ const translations = {
     booking_service_opt5:"Tarot evolutiu", booking_service_opt6:"Interpretació de somnis",
     booking_modality:"Modalitat", booking_modality_presencial:"Presencial", booking_modality_online:"En línia",
     price_theme:"per constel·lar el teu tema", price_participate:"per participar", price_session1h:"sessió d'1 hora",
-    price_offer_label:"Gratuït!",
-    offer_banner_text:"Com part d'aquest camí que compartim, de vegades regalo la interpretació d'un somni. Val la pena tornar a mirar aquesta pàgina de tant en tant — pot haver-hi altres ofertes actives en aquest moment.",
+    price_offer_label:"Primera consulta gratuïta!",
+    offer_banner_text:"Com a part d'aquest camí que compartim, et regalo una primera interpretació d'un somni. Descriu-me el teu somni i et donaré la meva interpretació. A més, torna a mirar aquesta pàgina de tant en tant — pot haver-hi altres ofertes actives en aquest moment.",
     booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilitat habitual",
     availability_button:"Veure disponibilitat habitual",
     avail_yes:"Disponible de {start} a {end}.", avail_off:"Aquest dia normalment no està disponible — escriu-me igualment si ho necessites.",
@@ -1193,27 +1203,33 @@ function weekdayKey(dateStr){
   return ['sun','mon','tue','wed','thu','fri','sat'][idx];
 }
 
+function offerSpan(){ return '<span class="price-offer">' + translations[currentLang].price_offer_label + '</span>'; }
 function priceText(key, amount){
-  return siteData.priceOffers[key] ? translations[currentLang].price_offer_label : (amount + ' €');
+  if (!siteData.priceOffers[key]) return amount + ' €';
+  return amount ? (amount + ' € · ' + offerSpan()) : offerSpan();
 }
 
 function renderPrices(){
-  const p = siteData.prices;
+  const p = siteData.prices, o = siteData.priceOffers;
   const t = translations[currentLang];
   const presLabel = t.booking_modality_presencial, onlineLabel = t.booking_modality_online;
   const ind = document.getElementById('priceIndividual');
   if (ind) ind.innerHTML = `<strong>${presLabel}:</strong> ${priceText('indPres2h',p.indPres2h)} (2h) · ${priceText('indPres1h',p.indPres1h)} (1h) &nbsp;·&nbsp; <strong>${onlineLabel}:</strong> ${priceText('indOnline2h',p.indOnline2h)} (2h) · ${priceText('indOnline1h',p.indOnline1h)} (1h)`;
   const grp = document.getElementById('priceGroup');
-  if (grp) grp.textContent = `${priceText('groupTheme',p.groupTheme)} ${t.price_theme} · ${priceText('groupParticipate',p.groupParticipate)} ${t.price_participate}`;
+  if (grp) grp.innerHTML = `${p.groupTheme} € ${t.price_theme}${o.groupTheme ? ' · ' + offerSpan() : ''} · ${p.groupParticipate} € ${t.price_participate}${o.groupParticipate ? ' · ' + offerSpan() : ''}`;
   const fac = document.getElementById('priceFacilitator');
-  if (fac) fac.textContent = priceText('facilitator', p.facilitator);
+  if (fac) fac.innerHTML = priceText('facilitator', p.facilitator);
   const tar = document.getElementById('priceTarot');
-  if (tar) tar.textContent = priceText('tarot', p.tarot) + ' (' + t.price_session1h + ')';
+  if (tar) tar.innerHTML = p.tarot + ' € (' + t.price_session1h + ')' + (o.tarot ? ' · ' + offerSpan() : '');
   const drm = document.getElementById('priceDreams');
-  if (drm) drm.textContent = priceText('dreams', p.dreams);
+  if (drm) drm.innerHTML = priceText('dreams', p.dreams);
   const extraEl = document.getElementById('extraServicesList');
   if (extraEl){
-    extraEl.innerHTML = siteData.extraPrices.map(x=>`<div class="extra-row"><span>${escapeHtml(x.label)}</span><strong>${x.offer ? t.price_offer_label : x.amount + ' €'}</strong></div>`).join('');
+    extraEl.innerHTML = siteData.extraPrices.map(x=>{
+      const price = x.amount ? (x.amount + ' €') : '';
+      const val = x.offer ? (price ? price + ' · ' + offerSpan() : offerSpan()) : (price || '0 €');
+      return `<div class="extra-row"><span>${escapeHtml(x.label)}</span><strong>${val}</strong></div>`;
+    }).join('');
   }
 }
 
@@ -1413,6 +1429,17 @@ async function notifyServer(tipo, datos){
   }
 }
 
+// Versione dei testi: quando cambiano i testi "di serie" (titolo, tag, offerta) i valori vecchi salvati online vengono ignorati una volta sola.
+const TEXTS_VERSION = 2;
+const RESET_TEXT_KEYS = ['hero_headline','about_tag1','offer_banner_text'];
+function migrateTexts(texts, version){
+  const t = JSON.parse(JSON.stringify(texts || {}));
+  if ((version || 0) < TEXTS_VERSION){
+    for (const lang in t){ RESET_TEXT_KEYS.forEach(k => { delete t[lang][k]; }); }
+  }
+  return t;
+}
+
 function applySiteData(d){
   if (!d || typeof d !== 'object') return;
   if (Array.isArray(d.events)) siteData.events = d.events;
@@ -1422,10 +1449,11 @@ function applySiteData(d){
   }
   if (d.prices) siteData.prices = Object.assign({}, siteData.prices, d.prices);
   if (d.priceOffers) siteData.priceOffers = Object.assign({}, siteData.priceOffers, d.priceOffers);
+  if ((d.textsVersion || 0) < TEXTS_VERSION) siteData.priceOffers.dreams = true;
   if (Array.isArray(d.extraPrices)) siteData.extraPrices = d.extraPrices;
   if (d.texts){
-    siteData.texts = d.texts;
-    for (const lang in d.texts){ if (translations[lang]) Object.assign(translations[lang], d.texts[lang]); }
+    siteData.texts = migrateTexts(d.texts, d.textsVersion);
+    for (const lang in siteData.texts){ if (translations[lang]) Object.assign(translations[lang], siteData.texts[lang]); }
   }
 }
 
@@ -1548,6 +1576,15 @@ function renderAdminLists(){
     renderAdminLists(); renderEvents(); markDirty();
   }));
 
+  const mlSelect = document.getElementById('mlEventSelect');
+  if (siteData.events.length){
+    mlSelect.innerHTML = siteData.events.map(e=>`<option value="${e.id}">${e.type==='past'?'🕘':'📅'} ${escapeHtml(formatDate(e.date,'it'))} — ${escapeHtml(e.title)}</option>`).join('');
+    mlSelect.disabled = false;
+  } else {
+    mlSelect.innerHTML = '<option value="">— aggiungi prima un evento —</option>';
+    mlSelect.disabled = true;
+  }
+
   const weeklyGrid = document.getElementById('weeklyGrid');
   weeklyGrid.innerHTML = WEEK_ORDER.map(k=>{
     const d = siteData.availability.weekly[k];
@@ -1598,9 +1635,9 @@ function renderAdminLists(){
   const epList = document.getElementById('epList');
   epList.innerHTML = siteData.extraPrices.map(x=>`
     <div class="admin-row">
-      <span>${escapeHtml(x.label)} — ${x.offer ? 'Gratis/oferta' : x.amount + ' €'}</span>
+      <span>${escapeHtml(x.label)} — ${x.offer ? '1ª consulta gratuita' : x.amount + ' €'}</span>
       <span class="admin-row-actions">
-        <button data-toggle-ep="${x.id}">${x.offer ? 'togli offerta' : 'rendi gratis'}</button>
+        <button data-toggle-ep="${x.id}">${x.offer ? 'togli 1ª gratuita' : 'aggiungi 1ª gratuita'}</button>
         <button data-del-ep="${x.id}">elimina</button>
       </span>
     </div>`).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessun servizio extra.</p>';
@@ -1741,6 +1778,34 @@ document.getElementById('evAdd').addEventListener('click', ()=>{
   renderAdminLists(); renderEvents(); markDirty();
 });
 
+document.getElementById('mlSend').addEventListener('click', async ()=>{
+  const statusEl = document.getElementById('mlStatus');
+  const btn = document.getElementById('mlSend');
+  const sel = document.getElementById('mlEventSelect');
+  const evId = sel.value;
+  const ev = siteData.events.find(e=>e.id === evId);
+  if (!ev){ statusEl.textContent = 'Scegli prima un evento.'; return; }
+  if (!adminPin){ statusEl.textContent = 'Sessione scaduta: rientra con il PIN.'; hideAdmin(); return; }
+  if (!confirm('Inviare un avviso a tutti gli iscritti alla newsletter su "' + ev.title + '"?')) return;
+  btn.disabled = true;
+  statusEl.textContent = 'Invio in corso…';
+  try{
+    const res = await dbCall({
+      azione: 'difundir', pin: adminPin,
+      evento: { titulo: ev.title, fecha: formatDate(ev.date, 'es'), descripcion: ev.body || '' }
+    });
+    if (res && res.ok){
+      statusEl.textContent = 'Inviato a ' + (res.enviados||0) + ' iscritti ✓';
+    } else {
+      statusEl.textContent = 'Errore: ' + (res && res.errore ? res.errore : 'sconosciuto') + '. Forse devi ancora aggiungere la funzione "difundir" al tuo Apps Script.';
+    }
+  } catch(err){
+    statusEl.textContent = 'Errore di rete: ' + (err && err.message ? err.message : String(err));
+  } finally {
+    btn.disabled = false;
+  }
+});
+
 document.getElementById('exAdd').addEventListener('click', ()=>{
   const date = document.getElementById('exDate').value.trim();
   const type = document.getElementById('exType').value;
@@ -1787,7 +1852,7 @@ document.getElementById('priceSave').addEventListener('click', ()=>{
 
 document.getElementById('dataExport').addEventListener('click', ()=>{
   const statusEl = document.getElementById('importStatus');
-  const json = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, priceOffers: siteData.priceOffers, extraPrices: siteData.extraPrices, texts: siteData.texts}, null, 2);
+  const json = JSON.stringify({events: siteData.events, availability: siteData.availability, prices: siteData.prices, priceOffers: siteData.priceOffers, extraPrices: siteData.extraPrices, texts: siteData.texts, textsVersion: TEXTS_VERSION}, null, 2);
   try{
     const blob = new Blob([json], { type: 'application/json' });
     const a = document.createElement('a');
@@ -1820,7 +1885,7 @@ document.getElementById('dataImport').addEventListener('change', (e)=>{
       if (parsed.priceOffers) siteData.priceOffers = Object.assign({}, siteData.priceOffers, parsed.priceOffers);
       if (Array.isArray(parsed.extraPrices)) siteData.extraPrices = parsed.extraPrices;
       if (parsed.texts){
-        siteData.texts = parsed.texts;
+        siteData.texts = migrateTexts(parsed.texts, parsed.textsVersion);
         for (const lang in siteData.texts){ if (translations[lang]) Object.assign(translations[lang], siteData.texts[lang]); }
       }
       renderAdminLists(); applyLang(currentLang);
@@ -1841,7 +1906,7 @@ document.getElementById('adminPublish').addEventListener('click', async ()=>{
   statusEl.textContent = 'Salvataggio online in corso…';
   btn.disabled = true;
   try{
-    const full = {events: siteData.events, availability: siteData.availability, prices: siteData.prices, priceOffers: siteData.priceOffers, extraPrices: siteData.extraPrices, texts: siteData.texts};
+    const full = {events: siteData.events, availability: siteData.availability, prices: siteData.prices, priceOffers: siteData.priceOffers, extraPrices: siteData.extraPrices, texts: siteData.texts, textsVersion: TEXTS_VERSION};
     // Versione pubblica: senza le note private delle eccezioni (es. nomi dei clienti)
     const pub = JSON.parse(JSON.stringify(full));
     pub.availability.exceptions = pub.availability.exceptions.map(x => { const c = Object.assign({}, x); delete c.note; return c; });
