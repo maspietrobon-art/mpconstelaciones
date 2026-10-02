@@ -392,8 +392,10 @@
         <input type="text" id="txtTagMode2">
         <label>Tag 5 (lingue)</label>
         <input type="text" id="txtTagLang">
-        <label>Testo offerta finale (banner con 🎁)</label>
+        <label>Testo offerta 1 (banner con 🎁 — svuota per ritirarla)</label>
         <textarea id="txtOfferBanner" rows="3"></textarea>
+        <label>Testo offerta 2 (banner con 🂡 — svuota per ritirarla)</label>
+        <textarea id="txtOfferBanner2" rows="3"></textarea>
         <button id="txtSave" class="btn btn-solid" type="button" style="margin-top:8px;">Aggiorna testi</button>
         <button id="txtTranslateAll" class="btn btn-line" type="button" style="margin-top:8px;">🌐 Salva e traduci nelle altre 5 lingue</button>
         <p style="font-size:11px; color:#8DA0BB; margin-top:4px;">Usa l'IA di Claude: te lo chiederà una conferma la prima volta. Rivedi sempre il risultato prima di pubblicare.</p>
@@ -736,10 +738,14 @@
   </section>
 
   <section id="oferta">
-    <div class="wrap">
-      <div class="offer-banner">
+    <div class="wrap" style="display:flex; flex-direction:column; gap:16px;">
+      <div class="offer-banner" id="offerBanner1">
         <span class="offer-icon">🎁</span>
         <p data-i18n="offer_banner_text">Como parte de este camino que compartimos, te regalo una primera interpretación de un sueño. Descríbeme tu sueño y te daré mi interpretación. Además, mira esta página de vez en cuando — puede haber otras ofertas activas en este momento.</p>
+      </div>
+      <div class="offer-banner" id="offerBanner2">
+        <span class="offer-icon">🂡</span>
+        <p data-i18n="offer_banner_text2">Mientras queden ejemplares, regalo un mazo de mis arcanos mayores —diseñados e ilustrados por mí— a quien reserve su primera lectura de tarot evolutivo. Edición limitada, solo hasta agotar existencias.</p>
       </div>
     </div>
   </section>
@@ -834,6 +840,7 @@ const translations = {
     price_theme:"por constelar tu tema", price_participate:"por participar", price_session1h:"sesión de 1 hora",
     price_offer_label:"¡Primera consulta gratis!",
     offer_banner_text:"Como parte de este camino que compartimos, te regalo una primera interpretación de un sueño. Descríbeme tu sueño y te daré mi interpretación. Además, mira esta página de vez en cuando — puede haber otras ofertas activas en este momento.",
+    offer_banner_text2:"Mientras queden ejemplares, regalo un mazo de mis arcanos mayores —diseñados e ilustrados por mí— a quien reserve su primera lectura de tarot evolutivo. Edición limitada, solo hasta agotar existencias.",
     booking_date:"Fecha preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidad habitual",
     availability_button:"Ver disponibilidad habitual",
     avail_yes:"Disponible de {start} a {end}.", avail_off:"Ese día no suele estar disponible — escríbeme igualmente si lo necesitas.",
@@ -895,6 +902,7 @@ const translations = {
     price_theme:"per costellare il tuo tema", price_participate:"per partecipare", price_session1h:"sessione di 1 ora",
     price_offer_label:"Prima consulenza gratis!",
     offer_banner_text:"Come parte di questo cammino che condividiamo, ti regalo una prima interpretazione di un sogno. Descrivimi il tuo sogno e ti darò la mia interpretazione. Inoltre, dai un'occhiata a questa pagina di tanto in tanto — potrebbero esserci altre offerte attive in questo momento.",
+    offer_banner_text2:"Finché ci sono copie disponibili, regalo un mazzo dei miei arcani maggiori — disegnati e illustrati da me — a chi prenota la sua prima lettura di tarocchi evolutivi. Edizione limitata, solo fino a esaurimento scorte.",
     booking_date:"Data preferita", booking_time:"Ora preferita", weekly_summary_title:"Disponibilità abituale",
     availability_button:"Vedi disponibilità abituale",
     avail_yes:"Disponibile dalle {start} alle {end}.", avail_off:"Questo giorno di solito non è disponibile — scrivimi comunque se ti serve.",
@@ -956,6 +964,7 @@ const translations = {
     price_theme:"to constellate your theme", price_participate:"to take part", price_session1h:"1-hour session",
     price_offer_label:"First consultation free!",
     offer_banner_text:"As part of this path we share, I'm gifting you a first dream interpretation. Describe your dream to me and I'll give you my interpretation. Also, check back on this page from time to time — there may be other offers active right now.",
+    offer_banner_text2:"While stocks last, I'm gifting a deck of my own major arcana — designed and illustrated by me — to anyone who books their first evolutionary tarot reading. A limited edition, only while supplies last.",
     booking_date:"Preferred date", booking_time:"Preferred time", weekly_summary_title:"Usual availability",
     availability_button:"View usual availability",
     avail_yes:"Available from {start} to {end}.", avail_off:"That day isn't usually available — write to me anyway if you need it.",
@@ -1017,6 +1026,7 @@ const translations = {
     price_theme:"pour constellater ton thème", price_participate:"pour participer", price_session1h:"séance d'1 heure",
     price_offer_label:"Première consultation gratuite !",
     offer_banner_text:"Dans le cadre de ce chemin que nous partageons, je t'offre une première interprétation de rêve. Décris-moi ton rêve et je te donnerai mon interprétation. Et reviens jeter un œil à cette page de temps en temps — il peut y avoir d'autres offres actives en ce moment.",
+    offer_banner_text2:"Tant qu'il y a des exemplaires disponibles, j'offre un jeu de mes arcanes majeurs — dessinés et illustrés par moi-même — à toute personne réservant sa première lecture de tarot évolutif. Édition limitée, jusqu'à épuisement des stocks.",
     booking_date:"Date préférée", booking_time:"Heure préférée", weekly_summary_title:"Disponibilité habituelle",
     availability_button:"Voir la disponibilité habituelle",
     avail_yes:"Disponible de {start} à {end}.", avail_off:"Ce jour n'est habituellement pas disponible — écris-moi quand même si besoin.",
@@ -1078,6 +1088,7 @@ const translations = {
     price_theme:"por constelar o teu tema", price_participate:"por participar", price_session1h:"sessão de 1 hora",
     price_offer_label:"Primeira consulta grátis!",
     offer_banner_text:"Como parte deste caminho que partilhamos, ofereço-te uma primeira interpretação de um sonho. Descreve-me o teu sonho e dar-te-ei a minha interpretação. Além disso, volta a esta página de vez em quando — pode haver outras ofertas ativas neste momento.",
+    offer_banner_text2:"Enquanto houver exemplares disponíveis, ofereço um baralho dos meus arcanos maiores — desenhados e ilustrados por mim — a quem reservar a sua primeira leitura de tarot evolutivo. Edição limitada, só até esgotar o stock.",
     booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilidade habitual",
     availability_button:"Ver disponibilidade habitual",
     avail_yes:"Disponível das {start} às {end}.", avail_off:"Este dia normalmente não está disponível — escreve-me na mesma se precisares.",
@@ -1139,6 +1150,7 @@ const translations = {
     price_theme:"per constel·lar el teu tema", price_participate:"per participar", price_session1h:"sessió d'1 hora",
     price_offer_label:"Primera consulta gratuïta!",
     offer_banner_text:"Com a part d'aquest camí que compartim, et regalo una primera interpretació d'un somni. Descriu-me el teu somni i et donaré la meva interpretació. A més, torna a mirar aquesta pàgina de tant en tant — pot haver-hi altres ofertes actives en aquest moment.",
+    offer_banner_text2:"Mentre quedin exemplars disponibles, regalo una baralla dels meus arcans majors — dissenyats i il·lustrats per mi — a qui reservi la seva primera lectura de tarot evolutiu. Edició limitada, només fins a exhaurir existències.",
     booking_date:"Data preferida", booking_time:"Hora preferida", weekly_summary_title:"Disponibilitat habitual",
     availability_button:"Veure disponibilitat habitual",
     avail_yes:"Disponible de {start} a {end}.", avail_off:"Aquest dia normalment no està disponible — escriu-me igualment si ho necessites.",
@@ -1297,6 +1309,7 @@ function loadTextFields(){
   document.getElementById('txtTagMode2').value = translations[currentLang].about_tag_mode2 || '';
   document.getElementById('txtTagLang').value = translations[currentLang].about_tag_lang || '';
   document.getElementById('txtOfferBanner').value = translations[currentLang].offer_banner_text || '';
+  document.getElementById('txtOfferBanner2').value = translations[currentLang].offer_banner_text2 || '';
 }
 
 function applyLang(lang){
@@ -1315,6 +1328,10 @@ function applyLang(lang){
     b.classList.toggle('active', b.getAttribute('data-lang')===lang);
   });
   try { localStorage.setItem('site_lang', lang); } catch(e) {}
+  const ob1 = document.getElementById('offerBanner1');
+  const ob2 = document.getElementById('offerBanner2');
+  if (ob1) ob1.hidden = !(translations[lang].offer_banner_text || '').trim();
+  if (ob2) ob2.hidden = !(translations[lang].offer_banner_text2 || '').trim();
   renderEvents();
   renderPrices();
   populateTimeSlots();
@@ -1677,7 +1694,8 @@ document.getElementById('txtSave').addEventListener('click', ()=>{
   const tagMode2 = document.getElementById('txtTagMode2').value;
   const tagLang = document.getElementById('txtTagLang').value;
   const offerBanner = document.getElementById('txtOfferBanner').value;
-  siteData.texts[currentLang] = { hero_kicker: kicker, hero_headline: headline, hero_subhead1: subhead1, hero_subhead2: subhead2, about_body1: about1, about_body2: about2, about_tag1: tag1, about_tag2: tag2, about_tag_mode1: tagMode1, about_tag_mode2: tagMode2, about_tag_lang: tagLang, offer_banner_text: offerBanner };
+  const offerBanner2 = document.getElementById('txtOfferBanner2').value;
+  siteData.texts[currentLang] = { hero_kicker: kicker, hero_headline: headline, hero_subhead1: subhead1, hero_subhead2: subhead2, about_body1: about1, about_body2: about2, about_tag1: tag1, about_tag2: tag2, about_tag_mode1: tagMode1, about_tag_mode2: tagMode2, about_tag_lang: tagLang, offer_banner_text: offerBanner, offer_banner_text2: offerBanner2 };
   Object.assign(translations[currentLang], siteData.texts[currentLang]);
   applyLang(currentLang);
   markDirty();
@@ -1701,7 +1719,8 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
     tagMode1: document.getElementById('txtTagMode1').value,
     tagMode2: document.getElementById('txtTagMode2').value,
     tagLang: document.getElementById('txtTagLang').value,
-    offerBanner: document.getElementById('txtOfferBanner').value
+    offerBanner: document.getElementById('txtOfferBanner').value,
+    offerBanner2: document.getElementById('txtOfferBanner2').value
   };
   // Salva subito anche la lingua corrente, come "Aggiorna testi"
   siteData.texts[currentLang] = {
@@ -1710,7 +1729,7 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
     about_body1: src.about1, about_body2: src.about2,
     about_tag1: src.tag1, about_tag2: src.tag2,
     about_tag_mode1: src.tagMode1, about_tag_mode2: src.tagMode2,
-    about_tag_lang: src.tagLang, offer_banner_text: src.offerBanner
+    about_tag_lang: src.tagLang, offer_banner_text: src.offerBanner, offer_banner_text2: src.offerBanner2
   };
   Object.assign(translations[currentLang], siteData.texts[currentLang]);
   applyLang(currentLang);
@@ -1727,7 +1746,7 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
     'Texto de origen (JSON):\n' + JSON.stringify(src, null, 2) + '\n\n' +
     'Responde SOLO con un objeto JSON con esta forma exacta (sin markdown ni texto adicional), ' +
     'usando únicamente estas claves de idioma: ' + targets.join(', ') + '.\n' +
-    '{ "' + targets[0] + '": {"kicker":"...","headline":"...","subhead1":"...","subhead2":"...","about1":"...","about2":"...","tag1":"...","tag2":"...","tagMode1":"...","tagMode2":"...","tagLang":"...","offerBanner":"..."} }';
+    '{ "' + targets[0] + '": {"kicker":"...","headline":"...","subhead1":"...","subhead2":"...","about1":"...","about2":"...","tag1":"...","tag2":"...","tagMode1":"...","tagMode2":"...","tagLang":"...","offerBanner":"...","offerBanner2":"..."} }';
 
   try{
     const sample = window.claude && typeof window.claude.use === 'function' ? await window.claude.use('sample') : null;
@@ -1747,7 +1766,7 @@ document.getElementById('txtTranslateAll').addEventListener('click', async ()=>{
         about_body1: t.about1, about_body2: t.about2,
         about_tag1: t.tag1, about_tag2: t.tag2,
         about_tag_mode1: t.tagMode1, about_tag_mode2: t.tagMode2,
-        about_tag_lang: t.tagLang, offer_banner_text: t.offerBanner
+        about_tag_lang: t.tagLang, offer_banner_text: t.offerBanner, offer_banner_text2: t.offerBanner2
       };
       if (translations[lang]){ Object.assign(translations[lang], siteData.texts[lang]); count++; }
     });
