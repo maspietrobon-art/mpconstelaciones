@@ -1961,6 +1961,7 @@ async function refreshMlCount(){
   const el = document.getElementById('mlCount');
   if (!el || !adminPin) return;
   try{
+    try { await dbCall({ azione:'suscriptores_recuperar', pin: adminPin }); } catch(e){}
     const r = await dbCall({ azione:'suscriptores', pin: adminPin });
     if (r && r.ok) el.textContent = 'Iscritti: ' + r.total + ' · invii rimasti oggi: ' + r.quota + '.';
     else el.textContent = 'Aggiorna lo script Apps Script per vedere gli iscritti.';
