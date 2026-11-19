@@ -1669,7 +1669,7 @@ async function loadPrivateData(){
 function showAdmin(){
   isAdmin = true;
   adminPanel.hidden = false;
-  renderAdminLists();
+  try { renderAdminLists(); } catch(e){ console.error('renderAdminLists', e); const g = document.getElementById('weeklyGrid'); if (g) g.textContent = 'Errore: ' + e.message; }
   loadPrivateData();
   if (typeof loadAdminReviews === 'function') loadAdminReviews();
   if (typeof refreshMlCount === 'function') refreshMlCount();
@@ -1748,7 +1748,7 @@ function renderAdminLists(){
 
   const weeklyGrid = document.getElementById('weeklyGrid');
   weeklyGrid.innerHTML = WEEK_ORDER.map(k=>{
-    const d = siteData.availability.weekly[k];
+    const d = siteData.availability.weekly[k] || (siteData.availability.weekly[k] = {enabled:false,start:'10:00',end:'19:00'});
     return `<div class="weekly-row">
       <input type="checkbox" data-wk="${k}" data-f="enabled" ${d.enabled?'checked':''}>
       <span>${WEEK_LABELS_IT[k]}</span>
