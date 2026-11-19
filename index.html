@@ -510,11 +510,20 @@
 
       <div class="admin-card">
         <h4>📧 Avisar a tu mailing list</h4>
-        <p style="font-size:11px; color:#8DA0BB; margin-top:-4px;">Manda un unico avviso email a tutti gli iscritti alla newsletter, su un evento a tua scelta.</p>
-        <label>Evento da comunicare</label>
-        <select id="mlEventSelect"></select>
-        <button id="mlSend" class="btn btn-solid" type="button" style="margin-top:8px;">Invia avviso alla mailing list</button>
+        <p style="font-size:12px; opacity:.8; margin-bottom:8px;">Ogni iscritto riceve il testo nella sua lingua (se manca, in spagnolo). <span id="mlCount"></span></p>
+        <label>Cosa comunicare</label>
+        <select id="mlKind"><option value="opiniones">⭐ Invito a lasciare una recensione</option><option value="evento">📅 Un evento</option></select>
+        <div id="mlEventWrap" style="display:none;"><label>Evento da comunicare</label>
+        <select id="mlEventSelect"></select></div>
+        <label style="display:flex;gap:8px;align-items:center;margin-top:8px;"><input type="checkbox" id="mlTest" checked style="width:auto;"> Solo prova: invia soltanto a me</label>
+        <button id="mlSend" class="btn btn-solid" type="button" style="margin-top:8px;">Invia</button>
         <p id="mlStatus" style="font-size:12px; color:#D9C48A; margin-top:8px;"></p>
+        <details style="margin-top:10px;"><summary style="cursor:pointer;font-size:12px;">Importa iscritti già esistenti</summary>
+          <textarea id="mlImport" rows="3" placeholder="Incolla email separate da virgola o a capo"></textarea>
+          <label>Lingua di questi iscritti</label>
+          <select id="mlImportLang"><option value="es">Español</option><option value="it">Italiano</option><option value="en">English</option><option value="fr">Français</option><option value="pt">Português</option><option value="ca">Català</option></select>
+          <button id="mlImportBtn" class="btn btn-ghost" type="button" style="margin-top:8px;">Importa</button>
+        </details>
       </div>
 
       <div class="admin-card">
@@ -1663,6 +1672,7 @@ function showAdmin(){
   renderAdminLists();
   loadPrivateData();
   if (typeof loadAdminReviews === 'function') loadAdminReviews();
+  if (typeof refreshMlCount === 'function') refreshMlCount();
 }
 function hideAdmin(){
   isAdmin = false;
@@ -1931,26 +1941,69 @@ document.getElementById('evAdd').addEventListener('click', ()=>{
   renderAdminLists(); renderEvents(); markDirty();
 });
 
+const REVIEW_INVITE = {
+  asunto: {
+    es:'Tu opinión es importante para mí', it:'La tua opinione è importante per me', en:'Your opinion matters to me',
+    fr:'Votre avis compte pour moi', pt:'A sua opinião é importante para mim', ca:'La teva opinió és important per a mi' },
+  texto: {
+    es:'Hola,\n\nEn la web hay ahora un espacio de opiniones. Si has participado en una constelación, una sesión o un taller, me haría mucha ilusión que compartieras unas líneas sobre tu experiencia. También puedes leer lo que han escrito otras personas.\n\nGracias de corazón por tu confianza.',
+    it:'Ciao,\n\nSul sito c\'è ora uno spazio dedicato alle recensioni. Se hai partecipato a una costellazione, a una seduta o a un workshop, mi farebbe molto piacere se condividessi qualche riga sulla tua esperienza. Puoi anche leggere ciò che hanno scritto altre persone.\n\nGrazie di cuore per la tua fiducia.',
+    en:'Hello,\n\nThe website now has a space for reviews. If you have taken part in a constellation, a session or a workshop, I would be glad if you shared a few lines about your experience. You can also read what others have written.\n\nThank you for your trust.',
+    fr:'Bonjour,\n\nLe site dispose désormais d\'un espace pour les avis. Si vous avez participé à une constellation, une séance ou un atelier, je serais heureux que vous partagiez quelques lignes sur votre expérience. Vous pouvez aussi lire ce que d\'autres ont écrit.\n\nMerci de tout cœur pour votre confiance.',
+    pt:'Olá,\n\nO site tem agora um espaço para opiniões. Se participou numa constelação, numa sessão ou num workshop, ficaria muito contente se partilhasse algumas linhas sobre a sua experiência. Também pode ler o que outras pessoas escreveram.\n\nObrigado de coração pela sua confiança.',
+    ca:'Hola,\n\nA la web hi ha ara un espai d\'opinions. Si has participat en una constel·lació, una sessió o un taller, m\'agradaria molt que compartissis unes línies sobre la teva experiència. També pots llegir el que han escrit altres persones.\n\nGràcies de cor per la teva confiança.' },
+  boton: { es:'Dejar o leer opiniones', it:'Lascia o leggi le recensioni', en:'Leave or read reviews', fr:'Laisser ou lire des avis', pt:'Deixar ou ler opiniões', ca:'Deixar o llegir opinions' },
+  enlace: 'https://maspietrobon-art.github.io/mpconstelaciones/#opiniones'
+};
+
+async function refreshMlCount(){
+  const el = document.getElementById('mlCount');
+  if (!el || !adminPin) return;
+  try{
+    const r = await dbCall({ azione:'suscriptores', pin: adminPin });
+    if (r && r.ok) el.textContent = 'Iscritti: ' + r.total + ' · invii rimasti oggi: ' + r.quota + '.';
+    else el.textContent = 'Aggiorna lo script Apps Script per vedere gli iscritti.';
+  }catch(e){}
+}
+document.getElementById('mlKind').addEventListener('change', e=>{
+  document.getElementById('mlEventWrap').style.display = e.target.value === 'evento' ? 'block' : 'none';
+});
+document.getElementById('mlImportBtn').addEventListener('click', async ()=>{
+  const st = document.getElementById('mlStatus');
+  const lista = document.getElementById('mlImport').value.trim();
+  if (!lista){ st.textContent = 'Incolla prima le email.'; return; }
+  if (!adminPin){ st.textContent = 'Sessione scaduta: rientra con il PIN.'; hideAdmin(); return; }
+  st.textContent = 'Importazione…';
+  try{
+    const r = await dbCall({ azione:'suscriptores_importar', pin: adminPin, lista, idioma: document.getElementById('mlImportLang').value });
+    st.textContent = r && r.ok ? 'Aggiunti ' + r.nuevos + ' nuovi (scartati: ' + r.invalidos + '). Totale: ' + r.total + '.' : 'Errore: ' + (r && r.errore || 'sconosciuto');
+    if (r && r.ok){ document.getElementById('mlImport').value=''; refreshMlCount(); }
+  }catch(e){ st.textContent = 'Errore di rete.'; }
+});
 document.getElementById('mlSend').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('mlStatus');
   const btn = document.getElementById('mlSend');
-  const sel = document.getElementById('mlEventSelect');
-  const evId = sel.value;
-  const ev = siteData.events.find(e=>e.id === evId);
-  if (!ev){ statusEl.textContent = 'Scegli prima un evento.'; return; }
+  const kind = document.getElementById('mlKind').value;
+  const test = document.getElementById('mlTest').checked;
+  let payload;
+  if (kind === 'evento'){
+    const ev = siteData.events.find(e=>e.id === document.getElementById('mlEventSelect').value);
+    if (!ev){ statusEl.textContent = 'Scegli prima un evento.'; return; }
+    payload = { evento: { titulo: ev.title, fecha: formatDate(ev.date, 'es'), descripcion: ev.body || '' } };
+  } else {
+    payload = { mensaje: REVIEW_INVITE };
+  }
   if (!adminPin){ statusEl.textContent = 'Sessione scaduta: rientra con il PIN.'; hideAdmin(); return; }
-  if (!confirm('Inviare un avviso a tutti gli iscritti alla newsletter su "' + ev.title + '"?')) return;
+  if (!test && !confirm('Inviare il messaggio a TUTTI gli iscritti? Non si può annullare.')) return;
   btn.disabled = true;
   statusEl.textContent = 'Invio in corso…';
   try{
-    const res = await dbCall({
-      azione: 'difundir', pin: adminPin,
-      evento: { titulo: ev.title, fecha: formatDate(ev.date, 'es'), descripcion: ev.body || '' }
-    });
+    const res = await dbCall(Object.assign({ azione:'difundir', pin: adminPin, soloPrueba: test }, payload));
     if (res && res.ok){
-      statusEl.textContent = 'Inviato a ' + (res.enviados||0) + ' iscritti ✓';
+      statusEl.textContent = (test ? 'Prova inviata a te ✓ (controlla la tua posta)' : 'Inviato a ' + (res.enviados||0) + ' iscritti ✓') + (res.fallidos ? ' — falliti: ' + res.fallidos : '');
+      refreshMlCount();
     } else {
-      statusEl.textContent = 'Errore: ' + (res && res.errore ? res.errore : 'sconosciuto') + '. Forse devi ancora aggiungere la funzione "difundir" al tuo Apps Script.';
+      statusEl.textContent = 'Errore: ' + (res && res.errore ? res.errore : 'sconosciuto') + '. Hai pubblicato la nuova versione dello script?';
     }
   } catch(err){
     statusEl.textContent = 'Errore di rete: ' + (err && err.message ? err.message : String(err));
