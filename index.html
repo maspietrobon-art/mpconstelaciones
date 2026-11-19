@@ -518,7 +518,8 @@
         <label style="display:flex;gap:8px;align-items:center;margin-top:8px;"><input type="checkbox" id="mlTest" checked style="width:auto;"> Solo prova: invia soltanto a me</label>
         <button id="mlSend" class="btn btn-solid" type="button" style="margin-top:8px;">Invia</button>
         <p id="mlStatus" style="font-size:12px; color:#D9C48A; margin-top:8px;"></p>
-        <details style="margin-top:10px;"><summary style="cursor:pointer;font-size:12px;">Importa iscritti già esistenti</summary>
+        <button id="mlRecover" class="btn btn-ghost" type="button" style="margin-top:10px;">🔄 Recupera iscritti dalla tua posta</button>
+        <details style="margin-top:10px;"><summary style="cursor:pointer;font-size:12px;">Aggiungi email a mano</summary>
           <textarea id="mlImport" rows="3" placeholder="Incolla email separate da virgola o a capo"></textarea>
           <label>Lingua di questi iscritti</label>
           <select id="mlImportLang"><option value="es">Español</option><option value="it">Italiano</option><option value="en">English</option><option value="fr">Français</option><option value="pt">Português</option><option value="ca">Català</option></select>
@@ -1967,6 +1968,16 @@ async function refreshMlCount(){
 }
 document.getElementById('mlKind').addEventListener('change', e=>{
   document.getElementById('mlEventWrap').style.display = e.target.value === 'evento' ? 'block' : 'none';
+});
+document.getElementById('mlRecover').addEventListener('click', async ()=>{
+  const st = document.getElementById('mlStatus');
+  if (!adminPin){ st.textContent = 'Sessione scaduta: rientra con il PIN.'; hideAdmin(); return; }
+  st.textContent = 'Cerco nella tua posta…';
+  try{
+    const r = await dbCall({ azione:'suscriptores_recuperar', pin: adminPin });
+    st.textContent = r && r.ok ? 'Trovati ' + r.leidos + ' messaggi, aggiunti ' + r.nuevos + ' nuovi iscritti. Totale: ' + r.total + '.' : 'Errore: ' + (r && r.errore || 'sconosciuto') + '. Hai pubblicato la nuova versione dello script?';
+    if (r && r.ok) refreshMlCount();
+  }catch(e){ st.textContent = 'Errore di rete.'; }
 });
 document.getElementById('mlImportBtn').addEventListener('click', async ()=>{
   const st = document.getElementById('mlStatus');
