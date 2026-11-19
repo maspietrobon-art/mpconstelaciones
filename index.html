@@ -257,6 +257,61 @@
   .session-info strong{color:var(--navy-deep); font-weight:600; display:block; font-size:15px; margin-bottom:2px;}
   .session-note{font-size:13px; color:var(--ink-muted); margin-top:16px; font-style:italic;}
 
+
+  /* ---------- reviews ---------- */
+  #opiniones, .rv-box{--star-off:#C3CEDD;}
+  .rv-bar{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px;}
+  .rv-summary{display:flex; align-items:center; gap:10px; font-size:15px; color:var(--ink-muted); min-height:40px;}
+  .rv-summary strong{font-family:var(--serif); font-size:24px; font-weight:500; color:var(--navy-deep);}
+  .rv-controls{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .rv-arrows{display:flex; gap:8px;}
+  .rv-arrow{width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--navy-deep); cursor:pointer; font-size:18px; line-height:1; display:inline-flex; align-items:center; justify-content:center; transition:background .15s, border-color .15s;}
+  .rv-arrow:hover:not(:disabled){background:var(--navy); color:#fff; border-color:var(--navy);}
+  .rv-arrow:disabled{opacity:.35; cursor:default;}
+  .rv-stars{letter-spacing:2px; white-space:nowrap; font-size:15px; line-height:1;}
+  .rv-stars .on{color:var(--gold);}
+  .rv-stars .off{color:var(--star-off);}
+  .rv-track{display:flex; gap:16px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; padding:4px 2px 16px; scrollbar-width:thin; scrollbar-color:var(--line) transparent; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain;}
+  .rv-card{flex:0 0 min(320px, 84%); height:232px; scroll-snap-align:start; text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:20px; display:flex; flex-direction:column; gap:10px; cursor:pointer; font:inherit; color:inherit; box-shadow:0 6px 18px rgba(15,36,64,0.05); transition:transform .15s ease, box-shadow .15s ease, border-color .15s;}
+  .rv-card:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(15,36,64,0.1); border-color:#C9D4E3;}
+  .rv-card:focus-visible, .rv-track:focus-visible{outline:2px solid var(--sky); outline-offset:2px;}
+  .rv-card-top{display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:20px;}
+  .rv-chip{font-size:11px; font-weight:600; letter-spacing:.3px; color:var(--gold-deep); border:1px solid var(--gold); border-radius:999px; padding:1px 9px;}
+  .rv-text{font-family:var(--serif); font-size:16px; line-height:1.5; color:var(--navy-deep); margin:0; flex:none; max-height:6em; overflow:hidden; display:-webkit-box; -webkit-line-clamp:4; line-clamp:4; -webkit-box-orient:vertical;}
+  .rv-card-foot{margin-top:auto; display:flex; align-items:baseline; justify-content:space-between; gap:10px; font-size:13.5px; color:var(--ink-muted);}
+  .rv-card-foot strong{color:var(--navy-deep); font-weight:600; font-size:14.5px; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:170px;}
+  .rv-more{color:var(--gold-deep); font-weight:600; font-size:13px; white-space:nowrap;}
+  .rv-empty{background:var(--surface); border:1px dashed #C9D4E3; border-radius:10px; padding:28px; color:var(--ink-muted); max-width:560px; margin:0;}
+  .rv-arrows[hidden], .rv-demo-note[hidden]{display:none;}
+  .rv-demo-note{font-size:13px; font-style:italic; color:var(--ink-muted); margin:6px 0 0;}
+  .rv-box{background:var(--surface); border-radius:12px; width:100%; max-width:520px; max-height:min(88vh, 680px); overflow-y:auto; padding:28px 26px; box-shadow:0 20px 50px rgba(0,0,0,0.3); position:relative;}
+  .rv-box h3{font-size:20px; margin:0 36px 14px 0;}
+  .rv-close{position:absolute; top:10px; right:10px; width:38px; height:38px; border-radius:50%; border:none; background:transparent; color:var(--ink-muted); font-size:24px; line-height:1; cursor:pointer;}
+  .rv-close:hover{background:var(--bg-alt); color:var(--navy-deep);}
+  .rv-full{font-family:var(--serif); font-size:17px; line-height:1.65; color:var(--navy-deep); margin:14px 0 18px; white-space:pre-wrap; overflow-wrap:anywhere;}
+  .rv-by{font-size:14px; color:var(--ink-muted);}
+  .rv-by strong{color:var(--navy-deep);}
+  .rv-form{display:flex; flex-direction:column; gap:16px;}
+  .rv-form input[type=text], .rv-form textarea{flex:none; width:100%; min-width:0;}
+  .rv-form textarea{resize:vertical; min-height:120px;}
+  .rv-hint{font-size:12.5px; color:var(--ink-muted); margin:6px 0 0;}
+  .rv-pick{display:flex; gap:2px; margin-left:-4px;}
+  .rv-star-btn{appearance:none; border:none; background:none; cursor:pointer; font-size:32px; line-height:1; padding:2px 4px; color:var(--star-off); transition:transform .1s;}
+  .rv-star-btn.on{color:var(--gold);}
+  .rv-star-btn:hover{transform:scale(1.12);}
+  .rv-star-btn:focus-visible{outline:2px solid var(--sky); border-radius:4px;}
+  .rv-consent{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--ink-muted); margin:0;}
+  .rv-consent input{margin-top:3px; flex:none;}
+  .rv-hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .rv-actions-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .rv-actions-row .btn{flex:1; min-width:130px;}
+  .rv-admin-state{font-size:11px; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.3); white-space:nowrap;}
+  .rv-admin-state.pend{color:#E0A05C;}
+  .rv-admin-state.ok{color:#8FD19E;}
+  .rv-admin-text{display:block; color:#DCE6F3; margin-top:2px; overflow-wrap:anywhere;}
+  @media(max-width:520px){ .rv-controls{width:100%; justify-content:space-between;} .rv-box{padding:24px 20px;} }
+  @media (prefers-reduced-motion: reduce){ .rv-card, .rv-star-btn{transition:none;} .rv-track{scroll-behavior:auto;} }
+
   /* ---------- newsletter ---------- */
   .newsletter-box{
     background:var(--surface); border:1px solid var(--line); padding:32px;
@@ -343,6 +398,44 @@
     <button id="adminToggle" class="admin-star" title="Area privata" aria-label="Area privata">★</button>
   </div>
 </header>
+
+<div id="rvReadOverlay" class="overlay" hidden>
+  <div class="rv-box" role="dialog" aria-modal="true" aria-labelledby="rvReadName">
+    <button type="button" class="rv-close" id="rvReadClose" aria-label="Cerrar">&times;</button>
+    <div class="rv-stars" id="rvReadStars"></div>
+    <p class="rv-full" id="rvReadText"></p>
+    <div class="rv-by"><strong id="rvReadName"></strong> · <span id="rvReadDate"></span></div>
+  </div>
+</div>
+
+<div id="rvWriteOverlay" class="overlay" hidden>
+  <div class="rv-box" role="dialog" aria-modal="true" aria-labelledby="rvWriteTitle">
+    <button type="button" class="rv-close" id="rvWriteClose" aria-label="Cerrar">&times;</button>
+    <h3 id="rvWriteTitle" data-i18n="rev_form_title">Tu opinión</h3>
+    <form class="rv-form" id="rvForm">
+      <div>
+        <label for="rvName" data-i18n="rev_form_name">Nombre (o iniciales)</label>
+        <input type="text" id="rvName" maxlength="60" autocomplete="given-name" required>
+      </div>
+      <div>
+        <label id="rvRatingLabel" data-i18n="rev_form_rating">Valoración</label>
+        <div class="rv-pick" id="rvPick" role="radiogroup" aria-labelledby="rvRatingLabel"></div>
+      </div>
+      <div>
+        <label for="rvText" data-i18n="rev_form_text">Tu experiencia</label>
+        <textarea id="rvText" maxlength="800" minlength="10" required></textarea>
+        <p class="rv-hint" data-i18n="rev_form_hint">Por favor, no incluyas datos de salud ni información sobre otras personas.</p>
+      </div>
+      <div class="rv-hp" aria-hidden="true"><label for="rvWeb">Web</label><input type="text" id="rvWeb" tabindex="-1" autocomplete="off"></div>
+      <label class="rv-consent"><input type="checkbox" id="rvConsent" required><span data-i18n="rev_form_consent">Acepto que mi nombre y mi opinión se publiquen en esta página.</span></label>
+      <div class="form-msg" id="rvFormMsg" role="status"></div>
+      <div class="rv-actions-row">
+        <button type="submit" class="btn btn-solid" id="rvSubmit" data-i18n="rev_form_submit">Enviar opinión</button>
+        <button type="button" class="btn btn-line" id="rvCancel" data-i18n="rev_form_cancel">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <div id="pinOverlay" class="overlay" hidden>
   <div class="pin-box">
@@ -483,6 +576,12 @@
       </div>
 
       <div class="admin-card">
+        <h4>Opinioni dei visitatori</h4>
+        <p style="font-size:12.5px; color:#B9C7DA;">Le nuove opinioni restano nascoste finché non le approvi.</p>
+        <div id="rvAdminList" class="admin-list" style="max-height:260px;"></div>
+      </div>
+
+      <div class="admin-card">
         <h4>Backup dati (eventi, disponibilità, prezzi)</h4>
         <p style="font-size:12.5px; color:#B9C7DA;">Esporta un file con tutto ciò che hai inserito. Se la pagina viene rigenerata, puoi importarlo per recuperare tutto senza rifare il lavoro a mano.</p>
         <button id="dataExport" class="btn btn-line" type="button">⬇ Esporta dati (JSON)</button>
@@ -620,6 +719,28 @@
           <div id="pastList"></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="rev_eyebrow">Opiniones</span>
+        <h2 data-i18n="rev_title">Lo que cuentan quienes han participado</h2>
+        <p data-i18n="rev_intro">Experiencias de personas que han hecho constelaciones, tarot o sesiones de sueños. Si has participado, puedes añadir la tuya.</p>
+      </div>
+      <div class="rv-bar">
+        <div class="rv-summary" id="rvSummary"></div>
+        <div class="rv-controls">
+          <div class="rv-arrows">
+            <button type="button" class="rv-arrow" id="rvPrev" aria-label="Anterior">&#8592;</button>
+            <button type="button" class="rv-arrow" id="rvNext" aria-label="Siguiente">&#8594;</button>
+          </div>
+          <button type="button" class="btn btn-line" id="rvWriteBtn" data-i18n="rev_write">Escribir una opinión</button>
+        </div>
+      </div>
+      <div class="rv-track" id="rvTrack" tabindex="0"></div>
+      <p class="rv-demo-note" id="rvDemoNote" hidden></p>
     </div>
   </section>
 
@@ -854,6 +975,7 @@ const translations = {
     booking_message:"Mensaje (opcional)", booking_submit:"Solicitar reserva",
     booking_success:"Gracias, te contactaré para confirmar la cita.",
     contact_eyebrow:"Contacto", contact_title:"Hablemos", contact_location:"Ver ubicación",
+    rev_eyebrow:"Opiniones", rev_title:"Lo que cuentan quienes han participado", rev_intro:"Experiencias de personas que han hecho constelaciones, tarot o sesiones de sueños. Si has participado, puedes añadir la tuya.", rev_write:"Escribir una opinión", rev_more:"Leer completa", rev_close:"Cerrar", rev_empty:"Todavía no hay opiniones. Si has participado, puedes ser la primera persona en escribir una.", rev_count_one:"1 opinión", rev_count_many:"{n} opiniones", rev_example:"Ejemplo", rev_form_title:"Tu opinión", rev_form_name:"Nombre (o iniciales)", rev_form_rating:"Valoración", rev_form_text:"Tu experiencia", rev_form_hint:"Por favor, no incluyas datos de salud ni información sobre otras personas.", rev_form_consent:"Acepto que mi nombre y mi opinión se publiquen en esta página.", rev_form_submit:"Enviar opinión", rev_form_cancel:"Cancelar", rev_form_success:"Gracias. Tu opinión se publicará cuando Massimo la haya revisado.", rev_form_error:"No se ha podido enviar. Inténtalo de nuevo más tarde.", rev_form_demo:"Modo prueba: en la versión final quedará pendiente de aprobación.", rev_form_pick:"Elige una valoración.", rev_demo_note:"Vista previa: las opiniones mostradas son ejemplos y no se guardan.", rev_prev:"Anterior", rev_next:"Siguiente", rev_stars:"{n} de 5",
     contact_form_name:"Nombre", contact_form_email:"Email", contact_form_message:"Mensaje", contact_form_submit:"Enviar mensaje",
     contact_form_success:"Gracias, tu mensaje se ha preparado para enviar.",
     mail_client_note:"Se abrirá tu app de correo: solo tienes que pulsar \"Enviar\".",
@@ -916,6 +1038,7 @@ const translations = {
     booking_message:"Messaggio (facoltativo)", booking_submit:"Richiedi prenotazione",
     booking_success:"Grazie, ti contatterò per confermare l'appuntamento.",
     contact_eyebrow:"Contatti", contact_title:"Parliamone", contact_location:"Vedi posizione",
+    rev_eyebrow:"Opinioni", rev_title:"Cosa raccontano le persone che hanno partecipato", rev_intro:"Esperienze di chi ha fatto costellazioni, tarocchi o sessioni sui sogni. Se hai partecipato, puoi aggiungere la tua.", rev_write:"Scrivi un'opinione", rev_more:"Leggi tutta", rev_close:"Chiudi", rev_empty:"Non ci sono ancora opinioni. Se hai partecipato, puoi essere la prima persona a scriverne una.", rev_count_one:"1 opinione", rev_count_many:"{n} opinioni", rev_example:"Esempio", rev_form_title:"La tua opinione", rev_form_name:"Nome (o iniziali)", rev_form_rating:"Valutazione", rev_form_text:"La tua esperienza", rev_form_hint:"Per favore non includere dati di salute né informazioni su altre persone.", rev_form_consent:"Accetto che il mio nome e la mia opinione vengano pubblicati su questa pagina.", rev_form_submit:"Invia opinione", rev_form_cancel:"Annulla", rev_form_success:"Grazie. La tua opinione sarà pubblicata dopo essere stata rivista da Massimo.", rev_form_error:"Non è stato possibile inviarla. Riprova più tardi.", rev_form_demo:"Modalità prova: in quella finale resterà in attesa di approvazione.", rev_form_pick:"Scegli una valutazione.", rev_demo_note:"Anteprima: le opinioni mostrate sono esempi e non vengono salvate.", rev_prev:"Precedente", rev_next:"Successivo", rev_stars:"{n} su 5",
     contact_form_name:"Nome", contact_form_email:"Email", contact_form_message:"Messaggio", contact_form_submit:"Invia messaggio",
     contact_form_success:"Grazie, il tuo messaggio è pronto per essere inviato.",
     mail_client_note:"Si aprirà la tua app di posta: basta premere \"Invia\".",
@@ -978,6 +1101,7 @@ const translations = {
     booking_message:"Message (optional)", booking_submit:"Request booking",
     booking_success:"Thank you, I'll contact you to confirm the appointment.",
     contact_eyebrow:"Contact", contact_title:"Let's talk", contact_location:"View location",
+    rev_eyebrow:"Reviews", rev_title:"What people who took part say", rev_intro:"Experiences from people who have done constellations, tarot or dream sessions. If you took part, you can add yours.", rev_write:"Write a review", rev_more:"Read in full", rev_close:"Close", rev_empty:"There are no reviews yet. If you took part, you can be the first to write one.", rev_count_one:"1 review", rev_count_many:"{n} reviews", rev_example:"Example", rev_form_title:"Your review", rev_form_name:"Name (or initials)", rev_form_rating:"Rating", rev_form_text:"Your experience", rev_form_hint:"Please don't include health details or information about other people.", rev_form_consent:"I agree that my name and review may be published on this page.", rev_form_submit:"Send review", rev_form_cancel:"Cancel", rev_form_success:"Thank you. Your review will be published once Massimo has read it.", rev_form_error:"It could not be sent. Please try again later.", rev_form_demo:"Test mode: in the final version it will wait for approval.", rev_form_pick:"Please choose a rating.", rev_demo_note:"Preview: the reviews shown are examples and are not saved.", rev_prev:"Previous", rev_next:"Next", rev_stars:"{n} out of 5",
     contact_form_name:"Name", contact_form_email:"Email", contact_form_message:"Message", contact_form_submit:"Send message",
     contact_form_success:"Thank you, your message is ready to send.",
     mail_client_note:"Your email app will open: just tap \"Send\".",
@@ -1040,6 +1164,7 @@ const translations = {
     booking_message:"Message (facultatif)", booking_submit:"Demander une réservation",
     booking_success:"Merci, je te contacterai pour confirmer le rendez-vous.",
     contact_eyebrow:"Contact", contact_title:"Parlons-en", contact_location:"Voir la localisation",
+    rev_eyebrow:"Avis", rev_title:"Ce que disent les personnes qui ont participé", rev_intro:"Des expériences de personnes ayant vécu des constellations, du tarot ou des séances sur les rêves. Si tu as participé, tu peux ajouter la tienne.", rev_write:"Écrire un avis", rev_more:"Lire en entier", rev_close:"Fermer", rev_empty:"Il n'y a pas encore d'avis. Si tu as participé, tu peux être la première personne à en écrire un.", rev_count_one:"1 avis", rev_count_many:"{n} avis", rev_example:"Exemple", rev_form_title:"Ton avis", rev_form_name:"Prénom (ou initiales)", rev_form_rating:"Note", rev_form_text:"Ton expérience", rev_form_hint:"Merci de ne pas inclure de données de santé ni d'informations sur d'autres personnes.", rev_form_consent:"J'accepte que mon prénom et mon avis soient publiés sur cette page.", rev_form_submit:"Envoyer l'avis", rev_form_cancel:"Annuler", rev_form_success:"Merci. Ton avis sera publié après relecture par Massimo.", rev_form_error:"Envoi impossible. Réessaie plus tard.", rev_form_demo:"Mode test : dans la version finale, il attendra d'être validé.", rev_form_pick:"Choisis une note.", rev_demo_note:"Aperçu : les avis affichés sont des exemples et ne sont pas enregistrés.", rev_prev:"Précédent", rev_next:"Suivant", rev_stars:"{n} sur 5",
     contact_form_name:"Nom", contact_form_email:"Email", contact_form_message:"Message", contact_form_submit:"Envoyer le message",
     contact_form_success:"Merci, ton message est prêt à être envoyé.",
     mail_client_note:"Ton application mail va s'ouvrir : il te suffit d'appuyer sur \"Envoyer\".",
@@ -1102,6 +1227,7 @@ const translations = {
     booking_message:"Mensagem (opcional)", booking_submit:"Solicitar reserva",
     booking_success:"Obrigado, vou contactar-te para confirmar o agendamento.",
     contact_eyebrow:"Contacto", contact_title:"Vamos falar", contact_location:"Ver localização",
+    rev_eyebrow:"Opiniões", rev_title:"O que dizem as pessoas que participaram", rev_intro:"Experiências de pessoas que fizeram constelações, tarot ou sessões de sonhos. Se participaste, podes deixar a tua.", rev_write:"Escrever uma opinião", rev_more:"Ler completa", rev_close:"Fechar", rev_empty:"Ainda não há opiniões. Se participaste, podes ser a primeira pessoa a escrever uma.", rev_count_one:"1 opinião", rev_count_many:"{n} opiniões", rev_example:"Exemplo", rev_form_title:"A tua opinião", rev_form_name:"Nome (ou iniciais)", rev_form_rating:"Avaliação", rev_form_text:"A tua experiência", rev_form_hint:"Por favor, não incluas dados de saúde nem informações sobre outras pessoas.", rev_form_consent:"Aceito que o meu nome e a minha opinião sejam publicados nesta página.", rev_form_submit:"Enviar opinião", rev_form_cancel:"Cancelar", rev_form_success:"Obrigado. A tua opinião será publicada depois de o Massimo a rever.", rev_form_error:"Não foi possível enviar. Tenta novamente mais tarde.", rev_form_demo:"Modo de teste: na versão final ficará a aguardar aprovação.", rev_form_pick:"Escolhe uma avaliação.", rev_demo_note:"Pré-visualização: as opiniões mostradas são exemplos e não são guardadas.", rev_prev:"Anterior", rev_next:"Seguinte", rev_stars:"{n} de 5",
     contact_form_name:"Nome", contact_form_email:"Email", contact_form_message:"Mensagem", contact_form_submit:"Enviar mensagem",
     contact_form_success:"Obrigado, a tua mensagem está pronta para ser enviada.",
     mail_client_note:"A tua app de email vai abrir-se: basta tocar em \"Enviar\".",
@@ -1164,6 +1290,7 @@ const translations = {
     booking_message:"Missatge (opcional)", booking_submit:"Sol·licitar reserva",
     booking_success:"Gràcies, et contactaré per confirmar la cita.",
     contact_eyebrow:"Contacte", contact_title:"Parlem", contact_location:"Veure ubicació",
+    rev_eyebrow:"Opinions", rev_title:"Què expliquen les persones que hi han participat", rev_intro:"Experiències de persones que han fet constel·lacions, tarot o sessions de somnis. Si hi has participat, pots afegir la teva.", rev_write:"Escriure una opinió", rev_more:"Llegir completa", rev_close:"Tancar", rev_empty:"Encara no hi ha opinions. Si hi has participat, pots ser la primera persona a escriure'n una.", rev_count_one:"1 opinió", rev_count_many:"{n} opinions", rev_example:"Exemple", rev_form_title:"La teva opinió", rev_form_name:"Nom (o inicials)", rev_form_rating:"Valoració", rev_form_text:"La teva experiència", rev_form_hint:"Si us plau, no incloguis dades de salut ni informació sobre altres persones.", rev_form_consent:"Accepto que el meu nom i la meva opinió es publiquin en aquesta pàgina.", rev_form_submit:"Enviar opinió", rev_form_cancel:"Cancel·lar", rev_form_success:"Gràcies. La teva opinió es publicarà quan el Massimo l'hagi revisada.", rev_form_error:"No s'ha pogut enviar. Torna-ho a provar més tard.", rev_form_demo:"Mode de prova: a la versió final quedarà pendent d'aprovació.", rev_form_pick:"Selecciona una valoració.", rev_demo_note:"Previsualització: les opinions mostrades són exemples i no es guarden.", rev_prev:"Anterior", rev_next:"Següent", rev_stars:"{n} de 5",
     contact_form_name:"Nom", contact_form_email:"Email", contact_form_message:"Missatge", contact_form_submit:"Enviar missatge",
     contact_form_success:"Gràcies, el teu missatge està a punt per enviar-se.",
     mail_client_note:"S'obrirà la teva app de correu: només cal prémer \"Enviar\".",
@@ -1320,6 +1447,7 @@ function applyLang(lang){
   if (!translations[lang]) return;
   currentLang = lang;
   document.documentElement.lang = lang;
+  if (typeof renderReviews === 'function') renderReviews();
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
@@ -1534,6 +1662,7 @@ function showAdmin(){
   adminPanel.hidden = false;
   renderAdminLists();
   loadPrivateData();
+  if (typeof loadAdminReviews === 'function') loadAdminReviews();
 }
 function hideAdmin(){
   isAdmin = false;
@@ -1586,6 +1715,7 @@ document.getElementById('adminExit').addEventListener('click', hideAdmin);
 const WEEK_LABELS_IT = {mon:'Lunedì', tue:'Martedì', wed:'Mercoledì', thu:'Giovedì', fri:'Venerdì', sat:'Sabato', sun:'Domenica'};
 
 function renderAdminLists(){
+  if (typeof renderAdminReviews === 'function') renderAdminReviews();
   const evList = document.getElementById('evList');
   evList.innerHTML = siteData.events.map(e=>`
     <div class="admin-row">
@@ -1952,5 +2082,317 @@ document.getElementById('adminPublish').addEventListener('click', async ()=>{
 });
 </script>
 
+<script>
+// ---- Opiniones: carosello, popup di lettura, modulo, moderazione ----
+// REVIEWS_LIVE = false  → anteprima senza salvataggio (non usata nella versione finale).
+// REVIEWS_LIVE = true   → usa lo script Apps Script (azioni: recensioni, recensione_invia, recensioni_admin, recensione_moderar).
+(function(){
+const REVIEWS_LIVE = true;
+
+const DEMO = [];
+const DEMO_PENDING = [];
+
+let reviews = [];
+let pending = [];
+let rating = 0;
+let lastFocus = null;
+const $ = id => document.getElementById(id);
+const tr = k => (translations[currentLang] && translations[currentLang][k]) || (translations.es && translations.es[k]) || '';
+
+function starsHTML(n){
+  n = Math.max(0, Math.min(5, Math.round(n)));
+  return '<span class="on">' + '★'.repeat(n) + '</span><span class="off">' + '★'.repeat(5 - n) + '</span>';
+}
+function setStars(el, n){
+  el.innerHTML = starsHTML(n);
+  el.setAttribute('role', 'img');
+  el.setAttribute('aria-label', tr('rev_stars').replace('{n}', n));
+}
+function fmtDate(iso){
+  try{
+    const d = new Date(String(iso).slice(0,10) + 'T12:00:00');
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString(currentLang, {month:'long', year:'numeric'});
+  } catch(e){ return ''; }
+}
+
+// ---------- carosello ----------
+function renderReviews(){
+  const track = $('rvTrack');
+  if (!track) return;
+  const list = reviews.slice().sort((a,b)=> String(b.date).localeCompare(String(a.date)));
+  track.textContent = '';
+  const summary = $('rvSummary');
+  summary.textContent = '';
+
+  if (!list.length){
+    const p = document.createElement('p');
+    p.className = 'rv-empty';
+    p.textContent = tr('rev_empty');
+    track.appendChild(p);
+  } else {
+    const avg = list.reduce((t,r)=>t + Number(r.rating || 0), 0) / list.length;
+    const strong = document.createElement('strong');
+    strong.textContent = avg.toLocaleString(currentLang, {minimumFractionDigits:1, maximumFractionDigits:1});
+    const stars = document.createElement('span');
+    stars.className = 'rv-stars';
+    setStars(stars, avg);
+    const count = document.createElement('span');
+    count.textContent = list.length === 1 ? tr('rev_count_one') : tr('rev_count_many').replace('{n}', list.length);
+    summary.append(strong, stars, count);
+
+    list.forEach(r=>{
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'rv-card';
+      card.setAttribute('data-id', String(r.id));
+
+      const top = document.createElement('div');
+      top.className = 'rv-card-top';
+      const st = document.createElement('span');
+      st.className = 'rv-stars';
+      setStars(st, r.rating);
+      top.appendChild(st);
+      if (r.demo){
+        const chip = document.createElement('span');
+        chip.className = 'rv-chip';
+        chip.textContent = tr('rev_example');
+        top.appendChild(chip);
+      }
+
+      const text = document.createElement('p');
+      text.className = 'rv-text';
+      text.textContent = r.text;
+
+      const foot = document.createElement('div');
+      foot.className = 'rv-card-foot';
+      const who = document.createElement('div');
+      const nm = document.createElement('strong');
+      nm.textContent = r.name;
+      const dt = document.createElement('span');
+      dt.textContent = fmtDate(r.date);
+      who.append(nm, dt);
+      const more = document.createElement('span');
+      more.className = 'rv-more';
+      more.textContent = tr('rev_more') + ' →';
+      foot.append(who, more);
+
+      card.append(top, text, foot);
+      track.appendChild(card);
+    });
+  }
+
+  const note = $('rvDemoNote');
+  note.hidden = REVIEWS_LIVE;
+  note.textContent = REVIEWS_LIVE ? '' : tr('rev_demo_note');
+  $('rvPrev').setAttribute('aria-label', tr('rev_prev'));
+  $('rvNext').setAttribute('aria-label', tr('rev_next'));
+  $('rvReadClose').setAttribute('aria-label', tr('rev_close'));
+  $('rvWriteClose').setAttribute('aria-label', tr('rev_close'));
+  buildPicker();
+  updateArrows();
+}
+
+function updateArrows(){
+  const t = $('rvTrack');
+  const arrows = document.querySelector('.rv-arrows');
+  const scrollable = t.scrollWidth > t.clientWidth + 4;
+  arrows.hidden = !scrollable;
+  $('rvPrev').disabled = t.scrollLeft <= 2;
+  $('rvNext').disabled = t.scrollLeft + t.clientWidth >= t.scrollWidth - 2;
+}
+function scrollStep(dir){
+  const t = $('rvTrack');
+  const card = t.querySelector('.rv-card');
+  const step = card ? card.getBoundingClientRect().width + 16 : 300;
+  t.scrollBy({left: dir * step, behavior: 'smooth'});
+}
+$('rvPrev').addEventListener('click', ()=>scrollStep(-1));
+$('rvNext').addEventListener('click', ()=>scrollStep(1));
+$('rvTrack').addEventListener('scroll', updateArrows, {passive:true});
+window.addEventListener('resize', updateArrows);
+$('rvTrack').addEventListener('keydown', e=>{
+  if (e.target !== $('rvTrack')) return;
+  if (e.key === 'ArrowRight'){ e.preventDefault(); scrollStep(1); }
+  if (e.key === 'ArrowLeft'){ e.preventDefault(); scrollStep(-1); }
+});
+
+// ---------- popup di lettura ----------
+function openOverlay(el, focusEl){
+  lastFocus = document.activeElement;
+  el.hidden = false;
+  if (focusEl) focusEl.focus();
+}
+function closeOverlay(el){
+  el.hidden = true;
+  if (lastFocus && lastFocus.focus) { try{ lastFocus.focus(); }catch(e){} }
+}
+$('rvTrack').addEventListener('click', e=>{
+  const card = e.target.closest('.rv-card');
+  if (!card) return;
+  const r = reviews.find(x=>String(x.id) === card.getAttribute('data-id'));
+  if (!r) return;
+  setStars($('rvReadStars'), r.rating);
+  $('rvReadText').textContent = r.text;
+  $('rvReadName').textContent = r.name;
+  $('rvReadDate').textContent = fmtDate(r.date);
+  openOverlay($('rvReadOverlay'), $('rvReadClose'));
+});
+$('rvReadClose').addEventListener('click', ()=>closeOverlay($('rvReadOverlay')));
+
+// ---------- modulo ----------
+function buildPicker(){
+  const box = $('rvPick');
+  box.textContent = '';
+  for (let i = 1; i <= 5; i++){
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'rv-star-btn' + (i <= rating ? ' on' : '');
+    b.textContent = '★';
+    b.setAttribute('role', 'radio');
+    b.setAttribute('aria-checked', i === rating ? 'true' : 'false');
+    b.setAttribute('aria-label', tr('rev_stars').replace('{n}', i));
+    b.addEventListener('click', ()=>{ rating = i; buildPicker(); $('rvFormMsg').textContent = ''; });
+    box.appendChild(b);
+  }
+}
+$('rvWriteBtn').addEventListener('click', ()=>{
+  rating = 0;
+  $('rvForm').reset();
+  $('rvFormMsg').textContent = '';
+  $('rvSubmit').disabled = false;
+  buildPicker();
+  openOverlay($('rvWriteOverlay'), $('rvName'));
+});
+$('rvWriteClose').addEventListener('click', ()=>closeOverlay($('rvWriteOverlay')));
+$('rvCancel').addEventListener('click', ()=>closeOverlay($('rvWriteOverlay')));
+
+$('rvForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const msg = $('rvFormMsg');
+  if (!rating){ msg.textContent = tr('rev_form_pick'); return; }
+  const name = $('rvName').value.trim();
+  const text = $('rvText').value.trim();
+  if (!name || text.length < 10 || !$('rvConsent').checked) return;
+  if ($('rvWeb').value){ // trappola anti-bot: finge di aver funzionato
+    msg.textContent = tr('rev_form_success');
+    return;
+  }
+  const btn = $('rvSubmit');
+  btn.disabled = true;
+
+  if (!REVIEWS_LIVE){
+    reviews.unshift({id:'u' + Date.now(), name, rating, text, date:new Date().toISOString().slice(0,10), demo:true});
+    renderReviews();
+    $('rvTrack').scrollTo({left:0});
+    msg.textContent = tr('rev_form_demo');
+    setTimeout(()=>closeOverlay($('rvWriteOverlay')), 2400);
+    return;
+  }
+  let ok = false;
+  try{
+    const res = await dbCall({azione:'recensione_invia', nombre:name, puntuacion:rating, texto:text, idioma:currentLang, web:''});
+    ok = !!(res && res.ok);
+  } catch(err){ ok = false; }
+  if (ok){
+    msg.textContent = tr('rev_form_success');
+    setTimeout(()=>closeOverlay($('rvWriteOverlay')), 3200);
+  } else {
+    msg.textContent = tr('rev_form_error');
+    btn.disabled = false;
+  }
+});
+
+// chiusura con Esc o clic sullo sfondo
+document.addEventListener('keydown', e=>{
+  if (e.key !== 'Escape') return;
+  ['rvReadOverlay','rvWriteOverlay'].forEach(id=>{ const el = $(id); if (!el.hidden) closeOverlay(el); });
+});
+['rvReadOverlay','rvWriteOverlay'].forEach(id=>{
+  $(id).addEventListener('click', e=>{ if (e.target === $(id)) closeOverlay($(id)); });
+});
+
+// ---------- caricamento ----------
+async function loadReviews(){
+  if (!REVIEWS_LIVE){
+    reviews = DEMO.map(r=>Object.assign({}, r));
+    renderReviews();
+    return;
+  }
+  try{
+    const res = await dbCall({azione:'recensioni'});
+    if (res && res.ok && Array.isArray(res.recensioni)) reviews = res.recensioni;
+  } catch(e){ /* senza connessione: nessuna opinione */ }
+  renderReviews();
+}
+
+// ---------- moderazione (area privata) ----------
+function renderAdminReviews(){
+  const box = $('rvAdminList');
+  if (!box) return;
+  const rows = pending.map(r=>Object.assign({st:'pend'}, r)).concat(reviews.map(r=>Object.assign({st:'ok'}, r)));
+  const short = t => String(t).length > 160 ? String(t).slice(0,160) + '…' : String(t);
+  box.innerHTML = rows.map(r=>{
+    const id = escapeHtml(String(r.id));
+    return `<div class="admin-row" style="align-items:flex-start;">
+      <span style="min-width:0;"><span class="rv-admin-state ${r.st}">${r.st==='pend' ? 'da approvare' : 'pubblicata'}</span> ${'★'.repeat(Number(r.rating)||0)} ${escapeHtml(r.name)}<span class="rv-admin-text">${escapeHtml(short(r.text))}</span></span>
+      <span class="admin-row-actions" style="flex-direction:column; align-items:flex-end;">
+        ${r.st==='pend' ? `<button data-rv-ok="${id}">approva</button>` : ''}
+        <button data-rv-del="${id}">elimina</button>
+      </span>
+    </div>`;
+  }).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessuna opinione.</p>';
+  box.querySelectorAll('[data-rv-ok]').forEach(b=>b.addEventListener('click', ()=>moderate(b.getAttribute('data-rv-ok'), 'aprobar')));
+  box.querySelectorAll('[data-rv-del]').forEach(b=>b.addEventListener('click', ()=>moderate(b.getAttribute('data-rv-del'), 'eliminar')));
+}
+
+async function loadAdminReviews(){
+  if (!REVIEWS_LIVE){
+    if (!pending.length && !window.__rvPendingSeeded){ pending = DEMO_PENDING.map(r=>Object.assign({}, r)); window.__rvPendingSeeded = true; }
+    renderAdminReviews();
+    return;
+  }
+  try{
+    const res = await dbCall({azione:'recensioni_admin', pin:adminPin});
+    if (res && res.ok && Array.isArray(res.recensioni)) pending = res.recensioni.filter(r=>r.estado === 'pendiente');
+  } catch(e){}
+  renderAdminReviews();
+}
+
+async function moderate(id, accion){
+  if (REVIEWS_LIVE){
+    try{
+      const res = await dbCall({azione:'recensione_moderar', pin:adminPin, id, accion});
+      if (!(res && res.ok)) throw new Error('no');
+    } catch(e){
+      const st = $('adminStatus');
+      if (st) st.textContent = 'Operazione non riuscita: riprova.';
+      return;
+    }
+    await loadReviews();
+    await loadAdminReviews();
+    return;
+  }
+  const same = r => String(r.id) === String(id);
+  if (accion === 'aprobar'){
+    const i = pending.findIndex(same);
+    if (i >= 0) reviews.unshift(pending.splice(i, 1)[0]);
+  } else {
+    pending = pending.filter(r=>!same(r));
+    reviews = reviews.filter(r=>!same(r));
+  }
+  renderReviews();
+  renderAdminReviews();
+}
+
+window.renderReviews = renderReviews;
+window.renderAdminReviews = renderAdminReviews;
+window.loadAdminReviews = loadAdminReviews;
+
+buildPicker();
+loadReviews();
+})();
+
+</script>
 </body>
 </html>
