@@ -305,6 +305,13 @@
   .rv-hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
   .rv-actions-row{display:flex; gap:10px; flex-wrap:wrap;}
   .rv-actions-row .btn{flex:1; min-width:130px;}
+  .rv-adm-row{flex-direction:column; align-items:stretch !important; gap:12px; padding:14px 0;}
+  .rv-adm-actions{display:flex; justify-content:space-between; gap:48px; margin-top:4px;}
+  .rv-adm-actions.only-del{justify-content:flex-end;}
+  .rv-adm-btn{appearance:none; cursor:pointer; min-height:46px; padding:0 18px; border-radius:10px; font-size:14px; font-weight:600; font-family:inherit; border:1.5px solid; background:transparent;}
+  .rv-adm-btn.ok{color:#8FD19E; border-color:#8FD19E; flex:1;}
+  .rv-adm-btn.del{color:#F0A0A0; border-color:rgba(240,160,160,0.6); flex:0 0 auto; min-width:44%;}
+  .rv-adm-btn.del.armed{background:#C0504D; color:#fff; border-color:#C0504D;}
   .rv-admin-state{font-size:11px; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,0.3); white-space:nowrap;}
   .rv-admin-state.pend{color:#E0A05C;}
   .rv-admin-state.ok{color:#8FD19E;}
@@ -2399,16 +2406,23 @@ function renderAdminReviews(){
   const short = t => String(t).length > 160 ? String(t).slice(0,160) + '…' : String(t);
   box.innerHTML = rows.map(r=>{
     const id = escapeHtml(String(r.id));
-    return `<div class="admin-row" style="align-items:flex-start;">
-      <span style="min-width:0;"><span class="rv-admin-state ${r.st}">${r.st==='pend' ? 'da approvare' : 'pubblicata'}</span> ${'★'.repeat(Number(r.rating)||0)} ${escapeHtml(r.name)}<span class="rv-admin-text">${escapeHtml(short(r.text))}</span></span>
-      <span class="admin-row-actions" style="flex-direction:column; align-items:flex-end;">
-        ${r.st==='pend' ? `<button data-rv-ok="${id}">approva</button>` : ''}
-        <button data-rv-del="${id}">elimina</button>
+    return `<div class="admin-row rv-adm-row">
+      <span style="min-width:0; display:block;"><span class="rv-admin-state ${r.st}">${r.st==='pend' ? 'da approvare' : 'pubblicata'}</span> ${'★'.repeat(Number(r.rating)||0)} ${escapeHtml(r.name)}<span class="rv-admin-text">${escapeHtml(short(r.text))}</span></span>
+      <span class="rv-adm-actions ${r.st==='pend' ? '' : 'only-del'}">
+        ${r.st==='pend' ? `<button type="button" class="rv-adm-btn ok" data-rv-ok="${id}">✓ Approva</button>` : ''}
+        <button type="button" class="rv-adm-btn del" data-rv-del="${id}">🗑 Elimina</button>
       </span>
     </div>`;
   }).join('') || '<p style="color:#8DA0BB; font-size:12.5px;">Nessuna opinione.</p>';
   box.querySelectorAll('[data-rv-ok]').forEach(b=>b.addEventListener('click', ()=>moderate(b.getAttribute('data-rv-ok'), 'aprobar')));
-  box.querySelectorAll('[data-rv-del]').forEach(b=>b.addEventListener('click', ()=>moderate(b.getAttribute('data-rv-del'), 'eliminar')));
+  box.querySelectorAll('[data-rv-del]').forEach(b=>b.addEventListener('click', ()=>{
+    // due tocchi per eliminare: il primo chiede conferma, il secondo elimina
+    if (b.dataset.armed === '1'){ moderate(b.getAttribute('data-rv-del'), 'eliminar'); return; }
+    b.dataset.armed = '1';
+    b.textContent = 'Sicuro? Tocca ancora';
+    b.classList.add('armed');
+    setTimeout(()=>{ if (b.isConnected){ b.dataset.armed = ''; b.textContent = '🗑 Elimina'; b.classList.remove('armed'); } }, 4000);
+  }));
 }
 
 async function loadAdminReviews(){
